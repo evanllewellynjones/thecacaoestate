@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Cacao Estate at NOVUS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* =====================================================================
+   THE CACAO ESTATE AT NOVUS — Shared stylesheet
+   Palette: dark green, purple accents, maroon, gray, black, white
+   ===================================================================== */
+
+:root {
+  --green-deep:   #1f3a2e;   /* dominant dark green */
+  --green-darker: #142319;
+  --green-mid:    #2d5642;
+  --purple:       #5b3a7a;   /* purple accent */
+  --purple-soft:  #7d5aa3;
+  --maroon:       #6b1f2a;   /* maroon / dark red */
+  --maroon-soft:  #8a2a36;
+  --gray-100:     #f3f1ed;   /* paper */
+  --gray-300:     #c9c4ba;
+  --gray-500:     #807a70;
+  --gray-700:     #3a3833;
+  --black:        #0d0c0a;
+  --white:        #faf8f4;
+  --shadow:       0 4px 24px rgba(0,0,0,0.18);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Georgia", "Cormorant Garamond", serif;
+  color: var(--gray-700);
+  background: var(--white);
+  line-height: 1.55;
+  font-size: 17px;
+}
+
+/* ---------------- TOP BAR / NAV ---------------- */
+.topbar {
+  background: var(--green-darker);
+  color: var(--white);
+  border-bottom: 3px solid var(--maroon);
+  padding: 14px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  font-family: "Didot", "Cormorant Garamond", "Playfair Display", serif;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-size: 22px;
+  color: var(--gray-100);
+}
+.brand a { color: inherit; text-decoration: none; }
+.brand .accent { color: var(--purple-soft); font-style: italic; }
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+nav a {
+  color: var(--gray-100);
+  text-decoration: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+nav a:hover {
+  background: var(--maroon);
+  border-color: var(--maroon-soft);
+  color: var(--white);
+}
+nav a.active {
+  background: var(--purple);
+  color: var(--white);
+}
+
+/* ---------------- HERO (index) ---------------- */
+.hero {
+  background: linear-gradient(180deg, var(--green-deep) 0%, var(--green-darker) 100%);
+  color: var(--white);
+  padding: 64px 32px 48px;
+  text-align: center;
+  border-bottom: 2px solid var(--purple);
+}
+.hero h1 {
+  font-family: "Didot", "Playfair Display", serif;
+  font-size: 56px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+.hero h1 .em {
+  color: var(--purple-soft);
+  font-style: italic;
+}
+.hero .tagline {
+  font-size: 16px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray-300);
+  margin-bottom: 28px;
+}
+.hero .lede {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 18px;
+  color: var(--gray-100);
+  font-style: italic;
+}
+
+/* ---------------- LAYOUT MAP ---------------- */
+.layout-wrap {
+  max-width: 1200px;
+  margin: 48px auto;
+  padding: 0 24px;
+}
+.layout-title {
+  font-family: "Didot", "Playfair Display", serif;
+  font-size: 30px;
+  color: var(--green-deep);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.layout-sub {
+  text-align: center;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.layout-instructions {
+  background: var(--gray-100);
+  border-left: 4px solid var(--purple);
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  font-style: italic;
+  color: var(--gray-700);
+}
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-300);
+  background: var(--white);
+}
+.map-container img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+/* Overlay clickable areas as absolutely-positioned anchors with % coords */
+.hot {
+  position: absolute;
+  display: block;
+  background: rgba(91, 58, 122, 0.0);
+  border: 2px solid transparent;
+  transition: all 0.18s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+.hot:hover {
+  background: rgba(91, 58, 122, 0.32);
+  border-color: var(--purple-soft);
+  box-shadow: 0 0 0 2px rgba(91, 58, 122, 0.4) inset;
+}
+.hot:hover .hot-label {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.hot-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.92);
+  background: var(--green-darker);
+  color: var(--white);
+  padding: 6px 12px;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.18s ease;
+  pointer-events: none;
+  border: 1px solid var(--purple);
+}
+
+/* ---------------- AREA LEGEND ---------------- */
+.legend {
+  max-width: 1100px;
+  margin: 32px auto 64px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.legend a {
+  display: block;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-left: 4px solid var(--green-mid);
+  padding: 14px 16px;
+  text-decoration: none;
+  color: var(--gray-700);
+  transition: all 0.2s ease;
+}
+.legend a:hover {
+  border-left-color: var(--purple);
+  background: var(--gray-100);
+  transform: translateX(2px);
+}
+.legend a .legend-title {
+  font-family: "Didot", serif;
+  font-size: 17px;
+  color: var(--green-deep);
+  margin-bottom: 4px;
+  display: block;
+}
+.legend a .legend-sub {
+  font-size: 12px;
+  color: var(--gray-500);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---------------- SUB-PAGE LAYOUT ---------------- */
+.subpage-header {
+  background: linear-gradient(180deg, var(--green-deep) 0%, var(--green-mid) 100%);
+  color: var(--white);
+  padding: 48px 32px;
+  border-bottom: 2px solid var(--purple);
+}
+.subpage-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.subpage-header .crumb {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gray-300);
+  margin-bottom: 14px;
+}
+.subpage-header .crumb a {
+  color: var(--purple-soft);
+  text-decoration: none;
+}
+.subpage-header .crumb a:hover { text-decoration: underline; }
+.subpage-header h1 {
+  font-family: "Didot", "Playfair Display", serif;
+  font-size: 44px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.subpage-header .subtitle {
+  font-size: 17px;
+  color: var(--gray-300);
+  font-style: italic;
+}
+
+.subpage-body {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+.subpage-body h2 {
+  font-family: "Didot", "Playfair Display", serif;
+  font-size: 28px;
+  color: var(--green-deep);
+  margin-top: 40px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gray-300);
+}
+.subpage-body h2:first-child { margin-top: 0; }
+
+.subpage-body h3 {
+  font-family: "Didot", serif;
+  font-size: 20px;
+  color: var(--maroon);
+  margin-top: 26px;
+  margin-bottom: 8px;
+}
+
+.subpage-body p {
+  margin-bottom: 14px;
+}
+
+.subpage-body ul, .subpage-body ol {
+  margin: 0 0 18px 22px;
+}
+.subpage-body li { margin-bottom: 6px; }
+
+.callout {
+  background: var(--gray-100);
+  border-left: 4px solid var(--purple);
+  padding: 14px 18px;
+  margin: 18px 0;
+  font-size: 15.5px;
+}
+.callout.warn {
+  border-left-color: var(--maroon);
+  background: rgba(107, 31, 42, 0.06);
+}
+.callout-label {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--purple);
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: block;
+}
+.callout.warn .callout-label { color: var(--maroon); }
+
+/* ---------------- EQUIPMENT CARDS ---------------- */
+.slot {
+  margin: 32px 0;
+  border: 1px solid var(--gray-300);
+  border-top: 4px solid var(--green-mid);
+  background: var(--white);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.slot-header {
+  background: var(--green-darker);
+  color: var(--white);
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.slot-header h3 {
+  font-family: "Didot", serif;
+  color: var(--white);
+  margin: 0;
+  font-size: 20px;
+}
+.slot-header .slot-num {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--purple-soft);
+  align-self: center;
+}
+.slot-body {
+  padding: 18px 22px;
+}
+.slot-body .spec {
+  font-size: 13.5px;
+  color: var(--gray-500);
+  font-style: italic;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--gray-300);
+}
+.slot-body .rec {
+  font-family: "Didot", serif;
+  font-size: 17px;
+  color: var(--maroon);
+  margin-bottom: 10px;
+}
+.slot-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14.5px;
+}
+.slot-body table th, .slot-body table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--gray-300);
+  vertical-align: top;
+}
+.slot-body table th {
+  width: 140px;
+  background: var(--gray-100);
+  color: var(--green-deep);
+  font-weight: 600;
+}
+
+/* ---------------- SUMMARY TABLE ---------------- */
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14.5px;
+  box-shadow: var(--shadow);
+}
+.summary-table th {
+  background: var(--green-darker);
+  color: var(--white);
+  text-align: left;
+  padding: 12px;
+  letter-spacing: 0.06em;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.summary-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--gray-300);
+  background: var(--white);
+}
+.summary-table tr:nth-child(even) td { background: var(--gray-100); }
+.summary-table tr.total td {
+  background: var(--maroon);
+  color: var(--white);
+  font-weight: 700;
+}
+
+/* ---------------- BACK LINK / FOOTER ---------------- */
+.back-link {
+  display: inline-block;
+  margin: 20px 0;
+  padding: 10px 18px;
+  background: var(--purple);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: "Helvetica Neue", sans-serif;
+  transition: all 0.2s ease;
+}
+.back-link:hover { background: var(--maroon); }
+.back-link::before { content: "← "; }
+
+footer {
+  background: var(--black);
+  color: var(--gray-300);
+  padding: 24px 32px;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  border-top: 3px solid var(--purple);
+}
+footer .footer-brand {
+  font-family: "Didot", serif;
+  color: var(--gray-100);
+  font-size: 15px;
+  margin-bottom: 6px;
+  display: block;
+  letter-spacing: 0.15em;
+}
+
+/* ---------------- PLACEHOLDER PAGE ---------------- */
+.placeholder {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 48px 32px;
+  text-align: center;
+}
+.placeholder h2 {
+  font-family: "Didot", serif;
+  font-size: 36px;
+  color: var(--green-deep);
+  margin-bottom: 16px;
+  border: none;
+}
+.placeholder p {
+  color: var(--gray-500);
+  font-size: 17px;
+  font-style: italic;
+}
+.placeholder .badge {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 6px 16px;
+  background: var(--purple);
+  color: var(--white);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 700px) {
+  .topbar { flex-direction: column; align-items: flex-start; padding: 14px 18px; }
+  nav ul { gap: 0; }
+  nav a { padding: 6px 10px; font-size: 12px; }
+  .hero h1 { font-size: 36px; }
+  .subpage-header h1 { font-size: 30px; }
+  .hot-label { font-size: 9px; padding: 4px 8px; }
+}
+
+/* ---------------- DOWNLOAD LINKS ---------------- */
+/* For PDFs, PPTs, and other downloadable files */
+.download-block {
+  max-width: 950px;
+  margin: 24px auto;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-left: 4px solid var(--maroon);
+  padding: 18px 24px;
+  box-shadow: var(--shadow);
+}
+.download-block h3 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 12px;
+  border: none;
+  padding: 0;
+}
+.download-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  margin: 6px 0;
+  background: var(--gray-100);
+  border: 1px solid transparent;
+  border-left: 3px solid var(--purple);
+  text-decoration: none;
+  color: var(--green-deep);
+  transition: all 0.18s ease;
+}
+.download-link:hover {
+  background: var(--white);
+  border-color: var(--maroon);
+  border-left-color: var(--maroon);
+  transform: translateX(3px);
+}
+.download-link .file-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 46px;
+  background: var(--maroon);
+  color: var(--white);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+  flex-shrink: 0;
+  position: relative;
+}
+.download-link .file-icon.pdf { background: var(--maroon); }
+.download-link .file-icon.pptx { background: var(--purple); }
+/* folded-corner effect */
+.download-link .file-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 0 8px 8px 0;
+  border-color: transparent var(--white) transparent transparent;
+}
+.download-link .file-meta {
+  flex: 1;
+  min-width: 0;
+}
+.download-link .file-name {
+  font-family: "Didot", "Playfair Display", serif;
+  font-size: 16px;
+  color: var(--green-deep);
+  margin-bottom: 2px;
+}
+.download-link .file-desc {
+  font-size: 12.5px;
+  color: var(--gray-500);
+  font-style: italic;
+}
+.download-link .file-arrow {
+  color: var(--purple);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.download-link:hover .file-arrow { color: var(--maroon); }
+
+</style>
+<style>
+  /* ---- Layout: floor plan + capacity panel ---- */
+  .map-and-capacity {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 1000px) {
+    .map-and-capacity { grid-template-columns: 1fr; }
+  }
+
+  /* ---- SVG floor plan styling ---- */
+  .floorplan-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    box-shadow: var(--shadow);
+    padding: 18px;
+  }
+  .floorplan-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: var(--white);
+  }
+
+  /* Building shell */
+  .shell {
+    fill: #faf8f4;          /* off-white, matches site --white */
+    stroke: #0d0c0a;
+    stroke-width: 1.8;
+  }
+
+  /* Room base style */
+  .room { cursor: pointer; }
+  .room rect {
+    stroke: #1a1a1a;
+    stroke-width: 1.2;
+    transition: fill 0.18s ease, stroke 0.18s ease;
+  }
+  .room:hover rect {
+    fill: var(--purple) !important;
+    stroke: var(--purple);
+  }
+  .room:hover .room-label,
+  .room:hover .room-sub {
+    fill: var(--white);
+  }
+  .room-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    fill: var(--gray-700);
+    text-anchor: middle;
+    pointer-events: none;
+    transition: fill 0.18s ease;
+  }
+  .room-sub {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    fill: var(--gray-500);
+    text-anchor: middle;
+    pointer-events: none;
+    transition: fill 0.18s ease;
+  }
+
+  /* Color variants by category — site palette: white, black, purple, maroon */
+  .room--service rect       { fill: #ffffff; stroke: var(--gray-700); }      /* white — production / service */
+  .room--service .room-label{ fill: var(--green-deep); }
+  .room--bar rect           { fill: var(--maroon); stroke: var(--maroon-soft); }  /* maroon — bar */
+  .room--bar .room-label    { fill: var(--white); font-weight: 700; }
+  .room--bar .room-sub      { fill: var(--gray-100); }
+  .room--display rect       { fill: var(--purple); stroke: var(--purple-soft); } /* purple — retail displays */
+  .room--display .room-label{ fill: var(--white); font-weight: 700; }
+  .room--display .room-sub  { fill: var(--gray-100); }
+  .room--seating rect       { fill: #f5f2ec; stroke: var(--gray-500); }      /* off-white — seating & office */
+  .room--seating .room-label{ fill: var(--green-deep); }
+  .room--utility rect       { fill: #ffffff; stroke: var(--gray-500); stroke-dasharray: 2,2; }   /* white dashed — hallways */
+  .room--utility .room-sub  { fill: var(--gray-500); font-style: italic; }
+  .room--column rect        { fill: #0d0c0a; }                                /* black — structural column */
+  .room--column .room-label { fill: var(--white); font-size: 10px; }
+  .room--door rect          { fill: var(--maroon); stroke: var(--maroon-soft); }  /* maroon — close-off door */
+  .room--door .room-label   { fill: var(--white); font-size: 9px; font-weight: 600; }
+  .room--electric rect      { fill: #0d0c0a; stroke: var(--maroon); }         /* black — electric box */
+  .room--electric .room-label { fill: var(--purple-soft); font-size: 9px; }
+  .room--window rect        { fill: var(--gray-100); stroke: var(--gray-500); } /* light gray — window/service pass */
+  .room--window .room-label { fill: var(--gray-700); font-size: 11px; font-style: italic; }
+
+  /* Non-clickable items still hover but don't darken */
+  .room.no-click           { cursor: default; }
+  .room.no-click:hover rect { fill: inherit !important; }
+
+  /* Non-clickable labels */
+  .static-text {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    fill: var(--gray-700);
+    pointer-events: none;
+  }
+  .static-text--note {
+    font-size: 11px;
+    fill: var(--gray-700);
+    font-style: italic;
+    text-anchor: middle;
+  }
+  .axis-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 8px;
+    fill: var(--gray-500);
+    text-anchor: middle;
+  }
+  .sidewalk-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    fill: var(--gray-500);
+    text-anchor: middle;
+  }
+  .legend-key {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    fill: var(--gray-500);
+  }
+  .door-swing {
+    fill: var(--maroon);
+    fill-opacity: 0.18;
+    pointer-events: none;
+  }
+
+  /* ---- Capacity panel ---- */
+  .capacity-panel {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-top: 4px solid var(--maroon);
+    box-shadow: var(--shadow);
+  }
+  .capacity-panel-header {
+    background: var(--green-darker);
+    color: var(--white);
+    padding: 14px 18px;
+    font-family: "Didot", "Playfair Display", serif;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    border-bottom: 2px solid var(--purple);
+  }
+  .capacity-panel-header .sub {
+    display: block;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-300);
+    margin-top: 4px;
+  }
+  .capacity-section {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--gray-300);
+  }
+  .capacity-section:last-child { border-bottom: 0; }
+  .capacity-section h4 {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 8px;
+  }
+  .capacity-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--gray-700);
+  }
+  .capacity-row .label { color: var(--gray-500); }
+  .capacity-row .val   { font-weight: 600; color: var(--green-deep); font-family: "Didot", serif; }
+  .capacity-row.total {
+    border-top: 1px solid var(--gray-300);
+    margin-top: 6px;
+    padding-top: 8px;
+  }
+  .capacity-row.total .label { color: var(--green-deep); font-weight: 600; }
+  .capacity-row.total .val   { color: var(--maroon); font-size: 16px; }
+  .capacity-big {
+    text-align: center;
+    padding: 18px 12px;
+    background: linear-gradient(180deg, var(--green-deep), var(--green-darker));
+    color: var(--white);
+  }
+  .capacity-big .big-num {
+    font-family: "Didot", "Playfair Display", serif;
+    font-size: 56px;
+    color: var(--purple-soft);
+    line-height: 1;
+  }
+  .capacity-big .big-lbl {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray-300);
+    margin-top: 6px;
+  }
+  .capacity-big .big-sub {
+    font-size: 12px;
+    color: var(--gray-100);
+    margin-top: 4px;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<!-- =============== TOP BAR =============== -->
+<header class="topbar">
+  <div class="brand"><a href="index.html">The Cacao Estate <span class="accent">at NOVUS</span></a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="wine.html">Wine</a></li>
+      <li><a href="food-production.html">Food Production</a></li>
+      <li><a href="employees.html">Employees</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="chocolate-production.html">Chocolate Production</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- =============== HERO =============== -->
+<section class="hero">
+  <h1>The Cacao Estate <span class="em">at NOVUS</span></h1>
+  <div class="tagline">Wine &middot; Chocolate &middot; Pairings &middot; Durham, NC</div>
+  <p class="lede">A 1,683 sq ft wine and chocolate bar built around Tier&nbsp;1 chocolate production, a curated wine program, and Sunday brunch. Click any room in the layout below to explore its design.</p>
+</section>
+
+<!-- =============== LAYOUT =============== -->
+<section class="layout-wrap">
+  <h2 class="layout-title">NOVUS Floor Plan</h2>
+  <p class="layout-sub">May 11, 2026 &middot; click rooms to explore</p>
+
+  <div class="layout-instructions">
+    <strong>How to use this site:</strong> Click any colored room in the floor plan below to open its detailed equipment specification. The navigation bar at the top will take you to operational areas (menu, wine, marketing, etc.) as those sub-pages are developed.
+  </div>
+
+  <div class="map-and-capacity">
+
+    <!--
+      ===========================================================================
+      INLINE SVG FLOOR PLAN
+      ---------------------------------------------------------------------------
+      Coordinate system: 14 SVG units per foot.
+
+      Origin (0,0) at top-left of viewBox.
+      Building NW corner = (40, 40), so labels/sidewalk fit above & at the side.
+
+      Building footprint (L-shape):
+        WEST section (left/main): 24' wide × 42' deep
+            x = 40 to 40+(24*14)=376
+            y = 40 to 40+(42*14)=628
+        EAST section (right wing): 27' wide × 25' deep, only the top portion
+            x = 376 to 376+(27*14)=754
+            y = 40 to 40+(25*14)=390
+        (Below east section, y > 390, is open / no building — just outdoor or seating)
+
+      Total viewBox: 780 × 690.
+      ===========================================================================
+    -->
+    <div class="floorplan-card">
+      <svg class="floorplan-svg" viewBox="0 0 780 690" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NOVUS floor plan with clickable rooms">
+
+        <!-- Sidewalk strip across the top -->
+        <rect x="40" y="12" width="714" height="20" fill="#e0e6ee" stroke="#999" stroke-width="0.8"/>
+        <text class="sidewalk-label" x="397" y="26">S I D E W A L K</text>
+
+        <!-- ============ BUILDING SHELLS ============ -->
+        <!-- West section -->
+        <rect class="shell" x="40" y="40" width="336" height="588"/>
+        <!-- East section -->
+        <rect class="shell" x="376" y="40" width="378" height="350"/>
+
+        <!-- ============ TOP AXIS LABELS (foot markers, 52 on far left to 2 on far right) ============ -->
+        <!-- Building total width: 24 + 27 = 51 ft, plus close-off door area. Axis labels every 2 ft. -->
+        <!-- West section (24 ft wide, x=40 to x=376): labels from 52 (=west outer wall) to 28 (east edge of west) -->
+        <g class="axis-label">
+          <text x="40"  y="9">52</text>
+          <text x="68"  y="9">50</text>
+          <text x="96"  y="9">48</text>
+          <text x="124" y="9">46</text>
+          <text x="152" y="9">44</text>
+          <text x="180" y="9">42</text>
+          <text x="208" y="9">40</text>
+          <text x="236" y="9">38</text>
+          <text x="264" y="9">36</text>
+          <text x="292" y="9">34</text>
+          <text x="320" y="9">32</text>
+          <text x="348" y="9">30</text>
+          <text x="376" y="9">28</text>
+          <!-- East section (27 ft wide, x=376 to x=754): labels from 28 (= east edge of west = west edge of east) to 2 -->
+          <text x="404" y="9">26</text>
+          <text x="432" y="9">24</text>
+          <text x="460" y="9">22</text>
+          <text x="488" y="9">20</text>
+          <text x="516" y="9">18</text>
+          <text x="544" y="9">16</text>
+          <text x="572" y="9">14</text>
+          <text x="600" y="9">12</text>
+          <text x="628" y="9">10</text>
+          <text x="656" y="9">8</text>
+          <text x="684" y="9">6</text>
+          <text x="712" y="9">4</text>
+          <text x="740" y="9">2</text>
+        </g>
+
+        <!-- ============ LEFT AXIS LABELS (west outer wall, y=42 at top to y=2 at bottom) ============ -->
+        <g class="axis-label">
+          <text x="28" y="48">42</text><text x="28" y="76">40</text>
+          <text x="28" y="104">38</text><text x="28" y="132">36</text>
+          <text x="28" y="160">34</text><text x="28" y="188">32</text>
+          <text x="28" y="216">30</text><text x="28" y="244">28</text>
+          <text x="28" y="272">26</text><text x="28" y="300">24</text>
+          <text x="28" y="328">22</text><text x="28" y="356">20</text>
+          <text x="28" y="384">18</text><text x="28" y="412">16</text>
+          <text x="28" y="440">14</text><text x="28" y="468">12</text>
+          <text x="28" y="496">10</text><text x="28" y="524">8</text>
+          <text x="28" y="552">6</text><text x="28" y="580">4</text>
+          <text x="28" y="608">2</text>
+        </g>
+
+        <!-- ============ INNER AXIS (between west right wall and bottom of east, in the open area) ============ -->
+        <g class="axis-label">
+          <!-- East section ends at y=390. From y=410 (= 16ft from top of building) down to y=608 (= 2ft from bottom) -->
+          <text x="384" y="412">16</text><text x="384" y="440">14</text>
+          <text x="384" y="468">12</text><text x="384" y="496">10</text>
+          <text x="384" y="524">8</text><text x="384" y="552">6</text>
+          <text x="384" y="580">4</text><text x="384" y="608">2</text>
+        </g>
+
+        <!-- ============ RIGHT AXIS (east outer wall) ============ -->
+        <g class="axis-label">
+          <text x="762" y="48">42</text><text x="762" y="76">40</text>
+          <text x="762" y="104">38</text><text x="762" y="132">36</text>
+          <text x="762" y="160">34</text><text x="762" y="188">32</text>
+          <text x="762" y="216">30</text><text x="762" y="244">28</text>
+          <text x="762" y="272">26</text><text x="762" y="300">24</text>
+          <text x="762" y="328">22</text><text x="762" y="356">20</text>
+          <text x="762" y="384">18</text>
+        </g>
+
+        <!-- ============ DIMENSION NOTES ============ -->
+        <text class="static-text--note" x="208" y="60">24&prime; across &middot; 42&prime; deep &middot; 1,008 sq ft</text>
+        <text class="static-text--note" x="565" y="60">27&prime; across &middot; 25&prime; deep &middot; 675 sq ft</text>
+
+        <!-- ============ CLOSE-OFF DOOR (top, near boundary between sections) ============ -->
+        <a xlink:href="#" class="room room--door no-click" tabindex="-1">
+          <rect x="346" y="40" width="30" height="34"/>
+          <text class="room-label" x="361" y="54">Close</text>
+          <text class="room-label" x="361" y="65">Off Door</text>
+          <title>Close-Off Door &mdash; separates west FOH from east production zone</title>
+        </a>
+
+        <!-- ====================================================================
+             WEST SECTION ROOMS (x = 40..376, y = 40..628)
+             ==================================================================== -->
+
+        <!-- Bar & Back Bar: 18' × 10', positioned at top
+             Bar runs east-west, 18' wide × 10' deep, set in 3.5' from each side
+             SVG: 18' = 252 units wide, 10' = 140 units deep
+             Position: starts 3.5' (= 49 units) east of west wall ? Actually looking at image
+             the bar is at the NW corner of west section, occupying mostly upper area.
+             Image shows: bar fills from ~axis 50 (left side, 2ft in from west wall) to axis 32 (close-off door)
+             That's 18ft wide in the EW direction. Vertically (NS) it appears to go from row 42 to row 24,
+             which is 18ft deep -- but the label says 18'×10'. There may be a 8' walkway in the bar zone.
+             
+             Let me reconsider: in the image, the BAR & BACK BAR (pink rectangle, 18'×10' label)
+             takes up the LEFT half of the upper-west region, with "7 Stools" strip to its right.
+             So bar is on the west wall, runs 18' deep vertically (top to bottom of "bar area"),
+             and 10' wide horizontally (from west wall toward center).
+             
+             That means: bar x=54..194 (10' wide = 140 units), y=82..334 (18' deep = 252 units)
+             7 stools strip: x=194..222 (2' wide), y=84..330
+        -->
+        <a xlink:href="bar.html" class="room room--bar">
+          <rect x="54" y="82" width="140" height="252"/>
+          <text class="room-label" x="124" y="190">Bar &amp; Back Bar</text>
+          <text class="room-sub"   x="124" y="208">18&prime; &times; 10&prime;</text>
+          <text class="room-sub"   x="124" y="240" font-style="italic" font-size="9">3.5&prime; on each side for entrance</text>
+          <title>Bar &amp; Back Bar &mdash; 18&prime; &times; 10&prime;</title>
+        </a>
+
+        <!-- 7 Stools strip (2' wide, just east of bar) -->
+        <a xlink:href="bar.html" class="room room--seating">
+          <rect x="200" y="100" width="22" height="216"/>
+          <text class="room-label" x="211" y="208" font-size="10" transform="rotate(-90 211 208)">7&nbsp; S t o o l s</text>
+          <title>7 Stools at Bar</title>
+        </a>
+
+        <!-- Wine Display 10' × 3' (yellow vertical strip)
+             From image: located in middle-west, slightly east of west wall, vertical orientation
+             Position: x=180..222 (3' wide), y=376..516 (10' deep)
+        -->
+        <a xlink:href="wine.html" class="room room--display">
+          <rect x="180" y="376" width="42" height="140"/>
+          <text class="room-label" x="201" y="450" font-size="10" transform="rotate(-90 201 450)">Wine Display</text>
+          <text class="room-sub"   x="201" y="464" font-size="9" transform="rotate(-90 201 464)">10&prime;&times;3&prime;</text>
+          <title>Wine Display &mdash; 10&prime; &times; 3&prime;</title>
+        </a>
+
+        <!-- Electric box (red, west wall, between bar and wash area) -->
+        <a xlink:href="#" class="room room--electric no-click" tabindex="-1">
+          <rect x="54" y="376" width="22" height="72"/>
+          <text class="room-label" x="65" y="414" transform="rotate(-90 65 414)">Electric Box</text>
+          <title>Electric Box</title>
+        </a>
+
+        <!-- Hallway upper (between electric box and wine display vertical strip) -->
+        <a xlink:href="#" class="room room--utility no-click" tabindex="-1">
+          <rect x="76" y="376" width="48" height="72"/>
+          <text class="room-sub" x="100" y="416">Hallway</text>
+          <title>Hallway</title>
+        </a>
+
+        <!-- Hallway lower (the lower L-shape continuation, between electric and wash) -->
+        <a xlink:href="#" class="room room--utility no-click" tabindex="-1">
+          <rect x="54" y="448" width="70" height="40"/>
+          <text class="room-sub" x="89" y="473">Hallway</text>
+          <title>Hallway</title>
+        </a>
+
+        <!-- Wash & Clean Area 9' × 10', south wall, far west
+             Position: x=54..180 (9' wide=126), y=488..628 (10' deep=140)
+        -->
+        <a xlink:href="wash.html" class="room room--service">
+          <rect x="54" y="488" width="126" height="140"/>
+          <text class="room-label" x="117" y="546">Wash / Clean only</text>
+          <text class="room-label" x="117" y="562">Area</text>
+          <text class="room-sub"   x="117" y="582">9&prime; &times; 10&prime;</text>
+          <title>Wash &amp; Clean Area &mdash; 9&prime; &times; 10&prime;</title>
+          <polygon class="door-swing" points="180,488 136,488 180,518"/>
+        </a>
+
+        <!-- Bathroom #1: 7' × 10', south wall middle
+             Position: x=180..278 (7' wide=98), y=488..628 (10' deep=140)
+        -->
+        <a xlink:href="bathroom.html" class="room room--service">
+          <rect x="180" y="488" width="98" height="140"/>
+          <text class="room-label" x="229" y="552">7&times;10 Bathroom #1</text>
+          <title>Bathroom #1 (ADA-compliant)</title>
+          <polygon class="door-swing" points="278,488 234,488 278,518"/>
+        </a>
+
+        <!-- Bathroom #2: 7' × 10', south wall east -->
+        <a xlink:href="bathroom.html" class="room room--service">
+          <rect x="278" y="488" width="98" height="140"/>
+          <text class="room-label" x="327" y="556" transform="rotate(-90 327 556)">7&times;10 Bathroom #2</text>
+          <title>Bathroom #2 (ADA-compliant)</title>
+          <polygon class="door-swing" points="376,488 332,488 376,518"/>
+        </a>
+
+        <!-- ====================================================================
+             EAST SECTION ROOMS (x = 376..754, y = 40..390)
+             ==================================================================== -->
+
+        <!-- 10' Teak Table: far east, upper-right
+             Looking at image: positioned on the east wall, vertical orientation
+             10ft tall × 2.5ft deep, so position: x=696..734, y=80..220
+        -->
+        <a xlink:href="teak-table.html" class="room room--seating">
+          <rect x="696" y="80" width="44" height="170"/>
+          <text class="room-label" x="718" y="170" transform="rotate(-90 718 170)">10&prime; Teak Table</text>
+          <title>10&prime; Teak Communal Table &mdash; flagship seating</title>
+        </a>
+
+        <!-- Chocolate Display Case (Counter for sale) 8' × 5'
+             Yellow box positioned at top of east section, west of teak
+             Position: x=460..572, y=190..232 (8' wide=112, 5' depth=42... actually 3' depth in image)
+             Image shows roughly: starts mid-east section, before the chocolate prep room
+        -->
+        <a xlink:href="chocolate-display.html" class="room room--display">
+          <rect x="460" y="190" width="112" height="42"/>
+          <text class="room-label" x="516" y="210" font-size="11">Chocolate Display</text>
+          <text class="room-sub"   x="516" y="225">8&prime; &times; 5&prime;</text>
+          <title>Chocolate Display Case &mdash; 8&prime; &times; 5&prime; (FOH refrigerated case)</title>
+        </a>
+
+        <!-- Window (between display and chocolate prep) -->
+        <a xlink:href="#" class="room room--window no-click" tabindex="-1">
+          <rect x="460" y="232" width="112" height="20"/>
+          <text class="room-label" x="516" y="246">Window</text>
+          <title>Pass-through Window from Chocolate Prep to FOH</title>
+        </a>
+
+        <!-- Structural Column (between open seating and chocolate prep, west side of east section) -->
+        <a xlink:href="#" class="room room--column no-click" tabindex="-1">
+          <rect x="432" y="252" width="28" height="28"/>
+          <text class="room-label" x="446" y="270">Column</text>
+          <title>Structural Column</title>
+        </a>
+
+        <!-- Chocolate Prep Area 12' × 10'
+             12ft wide × 10ft deep = 168 × 140 units
+             Position: x=460..628, y=252..392
+        -->
+        <a xlink:href="chocolate-prep.html" class="room room--service">
+          <rect x="460" y="252" width="168" height="140"/>
+          <text class="room-label" x="544" y="316">Chocolate Prep Area</text>
+          <text class="room-sub"   x="544" y="332">12&prime; &times; 10&prime;</text>
+          <title>Chocolate Prep Area &mdash; 12&prime; &times; 10&prime; &middot; Tier 1 production</title>
+        </a>
+
+        <!-- Service window (between chocolate prep and food prep) -->
+        <a xlink:href="#" class="room room--window no-click" tabindex="-1">
+          <rect x="628" y="232" width="56" height="20"/>
+          <text class="room-label" x="656" y="246">Service</text>
+          <title>Service Window between Chocolate Prep and Food Prep</title>
+        </a>
+
+        <!-- Food Prep Area 8' × 10'
+             8ft wide × 10ft deep = 112 × 140 units
+             Position: x=628..740, y=252..392
+        -->
+        <a xlink:href="food-prep.html" class="room room--service">
+          <rect x="628" y="252" width="84" height="140"/>
+          <text class="room-label" x="670" y="316">Food Prep</text>
+          <text class="room-sub"   x="670" y="332">8&prime; &times; 10&prime;</text>
+          <title>Food Prep Area &mdash; 8&prime; &times; 10&prime; &middot; Sunday brunch + hors d&rsquo;oeuvres</title>
+          <polygon class="door-swing" points="712,252 670,252 712,282"/>
+        </a>
+
+        <!-- Wine display 3' × 5' on east wall, above the office
+             Position: just to the right of Food Prep, above Office
+        -->
+        <a xlink:href="wine.html" class="room room--display">
+          <rect x="712" y="190" width="42" height="70"/>
+          <text class="room-label" x="733" y="216" font-size="10">Wine</text>
+          <text class="room-label" x="733" y="230" font-size="10">Display</text>
+          <text class="room-sub"   x="733" y="246">3&prime;&times;5&prime;</text>
+          <title>Wine Display &mdash; 3&prime; &times; 5&prime;</title>
+        </a>
+
+        <!-- Office 5' × 8' — east wall, south of wine display
+             Position: x=712..754 (5' wide rounded), y=260..390 (~8' deep)
+        -->
+        <a xlink:href="office.html" class="room room--seating">
+          <rect x="712" y="260" width="42" height="130"/>
+          <text class="room-label" x="733" y="320">Office</text>
+          <text class="room-sub"   x="733" y="336">5&prime; &times; 8&prime;</text>
+          <title>Office &mdash; 5&prime; &times; 8&prime; &middot; back-of-house</title>
+        </a>
+
+        <!-- ============ DOOR-SWING TRIANGLES (decorative blue arrows) ============ -->
+        <!-- Top entries from sidewalk into the building -->
+        <polygon class="door-swing" points="54,40 96,40 54,80"/>
+        <polygon class="door-swing" points="394,40 436,40 394,80"/>
+        <!-- Side door swings near food prep -->
+        <polygon class="door-swing" points="740,232 700,232 740,260"/>
+
+        <!-- ============ LEGEND ============ -->
+        <g transform="translate(180, 658)">
+          <rect x="0" y="0" width="14" height="10" fill="#ffffff" stroke="#3a3833" stroke-width="0.5"/>
+          <text class="legend-key" x="20" y="9">Production / Service</text>
+
+          <rect x="160" y="0" width="14" height="10" fill="#6b1f2a" stroke="#3a3833" stroke-width="0.5"/>
+          <text class="legend-key" x="180" y="9">Bar Area</text>
+
+          <rect x="260" y="0" width="14" height="10" fill="#5b3a7a" stroke="#3a3833" stroke-width="0.5"/>
+          <text class="legend-key" x="280" y="9">Retail Display</text>
+
+          <rect x="390" y="0" width="14" height="10" fill="#f5f2ec" stroke="#3a3833" stroke-width="0.5"/>
+          <text class="legend-key" x="410" y="9">Seating</text>
+        </g>
+
+      </svg>
+    </div>
+
+    <!-- =============== CAPACITY PANEL =============== -->
+    <aside class="capacity-panel" aria-label="Building capacity">
+      <div class="capacity-panel-header">
+        Capacity
+        <span class="sub">Square Footage &middot; Occupancy</span>
+      </div>
+
+      <div class="capacity-section">
+        <h4>Footprint</h4>
+        <div class="capacity-row"><span class="label">24&prime; &times; 42&prime;</span><span class="val">1,008 sq ft</span></div>
+        <div class="capacity-row"><span class="label">25&prime; &times; 27&prime;</span><span class="val">675 sq ft</span></div>
+        <div class="capacity-row total"><span class="label">Total indoor</span><span class="val">1,683 sq ft</span></div>
+        <div class="capacity-row"><span class="label">Outdoor</span><span class="val">240 sq ft</span></div>
+      </div>
+
+      <div class="capacity-section">
+        <h4>Sq ft allocation</h4>
+        <div class="capacity-row"><span class="label">Bar + stools</span><span class="val">250</span></div>
+        <div class="capacity-row"><span class="label">Displays</span><span class="val">125</span></div>
+        <div class="capacity-row"><span class="label">Bathrooms</span><span class="val">140</span></div>
+        <div class="capacity-row"><span class="label">Wash / prep</span><span class="val">90</span></div>
+        <div class="capacity-row"><span class="label">Office</span><span class="val">35</span></div>
+        <div class="capacity-row total"><span class="label">Seating area</span><span class="val">1,043</span></div>
+      </div>
+
+      <div class="capacity-section">
+        <h4>Occupancy &middot; 17 sq ft / person</h4>
+        <div class="capacity-row"><span class="label">Indoor</span><span class="val">61 people</span></div>
+        <div class="capacity-row"><span class="label">Outdoor</span><span class="val">14 people</span></div>
+      </div>
+
+      <div class="capacity-big">
+        <div class="big-num">75</div>
+        <div class="big-lbl">Total Capacity</div>
+        <div class="big-sub">indoor + outdoor</div>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<!-- =============== ARCHITECT SCHEMATICS (PDF DOWNLOADS) =============== -->
+<section class="download-block">
+  <h3>Architect Schematics &mdash; Construction Documents</h3>
+  <a class="download-link" href="A-101a__GROUND_FLOOR_PLAN_-_a_Rev_13_markup.pdf" target="_blank">
+    <span class="file-icon pdf">PDF</span>
+    <span class="file-meta">
+      <span class="file-name">Ground Floor Plan &mdash; Area A (Architectural)</span>
+      <span class="file-desc">A-101a Rev 13 &middot; LS3P &middot; Bulletin 30 &middot; with RFI markups &middot; 1.5 MB</span>
+    </span>
+    <span class="file-arrow">Open &rsaquo;</span>
+  </a>
+  <a class="download-link" href="E-101A__ELECTRICAL_POWER_GROUND_FLOOR_PLAN_-_AREA_A_Rev_6_markup.pdf" target="_blank">
+    <span class="file-icon pdf">PDF</span>
+    <span class="file-meta">
+      <span class="file-name">Electrical Power Ground Floor Plan &mdash; Area A</span>
+      <span class="file-desc">E-101A Rev 6 &middot; Newcomb &amp; Boyd / LS3P &middot; Bulletin 21 &middot; with RFI markups &middot; 4.7 MB</span>
+    </span>
+    <span class="file-arrow">Open &rsaquo;</span>
+  </a>
+</section>
+
+<!-- =============== LEGEND =============== -->
+<section class="legend">
+  <a href="bar.html">
+    <span class="legend-title">Bar &amp; Back Bar</span>
+    <span class="legend-sub">18&prime; &times; 10&prime;  &middot;  7 stools</span>
+  </a>
+  <a href="wash.html">
+    <span class="legend-title">Wash &amp; Clean Area</span>
+    <span class="legend-sub">9&prime; &times; 10&prime;  &middot;  3-comp + dishwasher</span>
+  </a>
+  <a href="chocolate-prep.html">
+    <span class="legend-title">Chocolate Prep Area</span>
+    <span class="legend-sub">12&prime; &times; 10&prime;  &middot;  Tier 1 production</span>
+  </a>
+  <a href="food-prep.html">
+    <span class="legend-title">Food Prep Area</span>
+    <span class="legend-sub">8&prime; &times; 10&prime;  &middot;  Brunch + hors d&rsquo;oeuvres</span>
+  </a>
+  <a href="chocolate-display.html">
+    <span class="legend-title">Chocolate Display Case</span>
+    <span class="legend-sub">8&prime; &times; 5&prime;  &middot;  FOH refrigerated case</span>
+  </a>
+  <a href="wine.html">
+    <span class="legend-title">Wine Displays</span>
+    <span class="legend-sub">10&prime;&times;3&prime;  &middot;  3&prime;&times;5&prime;</span>
+  </a>
+  <a href="office.html">
+    <span class="legend-title">Office</span>
+    <span class="legend-sub">5&prime; &times; 8&prime;  &middot;  back-of-house</span>
+  </a>
+  <a href="bathroom.html">
+    <span class="legend-title">Bathrooms</span>
+    <span class="legend-sub">Two 7&prime; &times; 10&prime; ADA-compliant</span>
+  </a>
+  <a href="teak-table.html">
+    <span class="legend-title">10&prime; Teak Communal Table</span>
+    <span class="legend-sub">East wall  &middot;  flagship seating</span>
+  </a>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer>
+  <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
+  Durham, NC &middot; Wine, Chocolate &amp; Pairings &middot; Wed&ndash;Sat 5p&ndash;12a &middot; Sunday Brunch 8a&ndash;2p
+</footer>
+
+</body>
+</html>

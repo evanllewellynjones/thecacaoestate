@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Menu &mdash; The Cacao Estate at NOVUS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Menu-specific styling */
+  .menu-tabs {
+    max-width: 900px;
+    margin: 0 auto 32px;
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--purple);
+  }
+  .menu-tab {
+    flex: 1;
+    text-align: center;
+    padding: 16px 24px;
+    background: var(--gray-100);
+    color: var(--gray-500);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    font-weight: 600;
+  }
+  .menu-tab:hover { background: var(--white); color: var(--maroon); }
+  .menu-tab.active {
+    background: var(--green-darker);
+    color: var(--white);
+  }
+  .menu-card {
+    max-width: 760px;
+    margin: 0 auto 60px;
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    box-shadow: var(--shadow);
+    padding: 48px 56px;
+  }
+  .menu-card.hidden { display: none; }
+  .menu-header {
+    text-align: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--gray-300);
+    margin-bottom: 28px;
+  }
+  .menu-header .brand {
+    font-family: "Didot", "Playfair Display", serif;
+    font-size: 26px;
+    color: var(--green-deep);
+    letter-spacing: 0.08em;
+  }
+  .menu-header .tag {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-top: 6px;
+  }
+  .menu-header .ornament {
+    color: var(--maroon);
+    margin: 16px 0 14px;
+    font-size: 14px;
+    letter-spacing: 0.5em;
+  }
+  .menu-header h2 {
+    font-family: "Didot", serif;
+    font-size: 28px;
+    color: var(--maroon);
+    margin-bottom: 4px;
+    border: none;
+    padding: 0;
+  }
+  .menu-header .when {
+    font-style: italic;
+    color: var(--gray-500);
+    font-size: 14px;
+  }
+  .menu-header .intro {
+    font-style: italic;
+    color: var(--gray-700);
+    margin-top: 14px;
+    font-size: 15px;
+  }
+  .menu-section-title {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--purple);
+    text-align: center;
+    margin: 32px 0 18px;
+    padding-bottom: 6px;
+    border-bottom: 1px dotted var(--gray-300);
+  }
+  .menu-item {
+    margin-bottom: 18px;
+  }
+  .menu-item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .menu-item-name {
+    font-family: "Didot", serif;
+    font-size: 17px;
+    color: var(--green-deep);
+    font-weight: 600;
+  }
+  .menu-item-dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--gray-300);
+    margin: 0 8px 4px;
+  }
+  .menu-item-price {
+    font-family: "Didot", serif;
+    color: var(--maroon);
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .menu-item-desc {
+    font-style: italic;
+    color: var(--gray-500);
+    font-size: 14px;
+    line-height: 1.45;
+    padding-left: 4px;
+  }
+  .menu-footnote {
+    text-align: center;
+    font-style: italic;
+    color: var(--gray-500);
+    font-size: 12.5px;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid var(--gray-300);
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html">The Cacao Estate <span class="accent">at NOVUS</span></a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="wine.html">Wine</a></li>
+      <li><a href="food-production.html">Food Production</a></li>
+      <li><a href="employees.html">Employees</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="chocolate-production.html">Chocolate Production</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="subpage-header">
+  <div class="subpage-header-inner">
+    <div class="crumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; Menu</div>
+    <h1>Menu</h1>
+    <p class="subtitle">Evening service Wed&ndash;Sat 5p&ndash;12a &middot; Sunday Brunch 8a&ndash;2p</p>
+  </div>
+</section>
+
+<div class="subpage-body">
+
+  <a href="index.html" class="back-link">Back to Floor Plan</a>
+
+  <!-- Tab switcher -->
+  <div class="menu-tabs">
+    <button class="menu-tab active" data-target="evening">Evening Menu</button>
+    <button class="menu-tab" data-target="brunch">Sunday Brunch</button>
+  </div>
+
+  <!-- =============== EVENING MENU =============== -->
+  <div class="menu-card" id="evening">
+    <div class="menu-header">
+      <div class="brand">CACAO CELLARS</div>
+      <div class="tag">Wine &middot; Chocolate &middot; Pairings</div>
+      <div class="ornament">&bull; &nbsp; &bull; &nbsp; &bull;</div>
+      <h2>Evening Menu</h2>
+      <div class="when">Wednesday through Saturday &middot; 5pm to midnight</div>
+      <p class="intro">Small plates and shared boards, designed to live alongside our wines and house-made chocolate.</p>
+    </div>
+
+    <div class="menu-section-title">Boards &amp; Shares</div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Charcuterie Board</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$20</span>
+      </div>
+      <p class="menu-item-desc">Three cured meats from the Triangle&rsquo;s finest &mdash; typically prosciutto di Parma, soppressata, and a chef&rsquo;s selection &mdash; with grain mustard, cornichons, fig jam, and grilled bread.</p>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Cheese Board</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$18</span>
+      </div>
+      <p class="menu-item-desc">Three rotating cheeses spanning soft, semi-firm, and aged &mdash; with fresh and dried fruit, marcona almonds, local honeycomb, and crisp baguette.</p>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Whipped Brie en Cro&ucirc;te</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$22</span>
+      </div>
+      <p class="menu-item-desc">A whole wheel of brie wrapped in golden puff pastry, baked until molten. Served with fig jam, candied pecans, and grilled bread for dipping.</p>
+    </div>
+
+    <div class="menu-section-title">Chocolate-Paired</div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Aged Gouda &amp; Chocolate</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$16</span>
+      </div>
+      <p class="menu-item-desc">Five-year aged Dutch gouda, butterscotch-rich and crystalline, paired with three of our house bonbons selected to bridge the salt and caramel notes.</p>
+    </div>
+
+    <div class="menu-section-title">Small Bites</div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Olives &amp; Almonds</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$10</span>
+      </div>
+      <p class="menu-item-desc">Castelvetrano and kalamata olives warmed in olive oil with citrus zest, fennel, and chili. Served alongside marcona almonds with rosemary and smoked salt.</p>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Cacao-Spiced Hummus</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$12</span>
+      </div>
+      <p class="menu-item-desc">House-made chickpea hummus folded with toasted cacao nibs, cumin, and smoked paprika. Finished with cacao-infused olive oil, warm pita, and a piece of dark chocolate to close.</p>
+    </div>
+
+    <p class="menu-footnote">Pair anything on this menu with our wine, fortified, or spirits program &mdash; your server is happy to guide you. &nbsp;&middot;&nbsp; Allergens? Please let us know.</p>
+  </div>
+
+  <!-- =============== BRUNCH MENU =============== -->
+  <div class="menu-card hidden" id="brunch">
+    <div class="menu-header">
+      <div class="brand">CACAO CELLARS</div>
+      <div class="tag">Wine &middot; Chocolate &middot; Pairings</div>
+      <div class="ornament">&bull; &nbsp; &bull; &nbsp; &bull;</div>
+      <h2>Sunday Brunch</h2>
+      <div class="when">Sundays only &middot; 8am to 2pm</div>
+      <p class="intro">A slow Sunday menu &mdash; bagels, tartines, and a few sweet things to end on.</p>
+    </div>
+
+    <div class="menu-section-title">From the Kitchen</div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Bagels &amp; Lox</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$15</span>
+      </div>
+      <p class="menu-item-desc">Toasted everything bagel, whipped dill cream cheese, smoked salmon, capers, red onion, and pickled cucumber.</p>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Bagels &amp; Cream Cheese</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$8</span>
+      </div>
+      <p class="menu-item-desc">Your choice of bagel &mdash; plain, everything, or sesame &mdash; with whipped cream cheese, served with fresh fruit on the side.</p>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Smoked Salmon Tartine</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$15</span>
+      </div>
+      <p class="menu-item-desc">Toasted sourdough, lemon cr&egrave;me fra&icirc;che, smoked salmon, capers, dill, and pickled red onion. Finished with microgreens.</p>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Avocado Toast</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$13</span>
+      </div>
+      <p class="menu-item-desc">Smashed avocado on grilled sourdough with chili crisp, sesame seeds, pickled radish, and a squeeze of lemon.</p>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Turkey &amp; Brie Croissant</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$14</span>
+      </div>
+      <p class="menu-item-desc">Warm buttery croissant with sliced roast turkey, brie, fig jam, and arugula. Pressed until the brie just begins to melt.</p>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Prosciutto Croissant</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$14</span>
+      </div>
+      <p class="menu-item-desc">Warm croissant with prosciutto di Parma, soft-ripened brie, peppery arugula, and a whisper of honey.</p>
+    </div>
+
+    <div class="menu-section-title">To Start or Share</div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Fruit &amp; Cheese Plate</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$16</span>
+      </div>
+      <p class="menu-item-desc">Three rotating cheeses including a warm wedge of brie, with seasonal fresh fruit, fig jam, marcona almonds, and grilled bread.</p>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Yogurt Parfait</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$11</span>
+      </div>
+      <p class="menu-item-desc">Greek yogurt layered with house-made oven-toasted granola, seasonal fruit, local honey, and a sprig of mint.</p>
+    </div>
+
+    <div class="menu-section-title">Something Sweet</div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Chocolate Brioche</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$9</span>
+      </div>
+      <p class="menu-item-desc">Warm brioche filled with our 70% dark chocolate, dusted with powdered sugar. The croissant&rsquo;s richer cousin.</p>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-head">
+        <span class="menu-item-name">Chocolate-Dipped Strawberries</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$10</span>
+      </div>
+      <p class="menu-item-desc">Fresh strawberries hand-dipped in our tempered dark and milk chocolates. Three pieces, plated with a drizzle of cacao oil.</p>
+    </div>
+
+    <p class="menu-footnote">Brunch pairs beautifully with mimosas, sparkling wine, or our Cacao Hot Chocolate &mdash; ask your server. &nbsp;&middot;&nbsp; Allergens? Please let us know.</p>
+  </div>
+
+  <!-- =============== STAFF TRAINING (DOWNLOAD) =============== -->
+  <section class="download-block">
+    <h3>Staff Training &mdash; Internal Reference</h3>
+    <a class="download-link" href="Cacao_Cellars_FOH_Plating_Training.pptx" target="_blank">
+      <span class="file-icon pptx">PPT</span>
+      <span class="file-meta">
+        <span class="file-name">FOH Plating Training</span>
+        <span class="file-desc">PowerPoint deck for front-of-house plate-up training &middot; reference for evening service when the Garde Manger is not on the floor &middot; 100 KB</span>
+      </span>
+      <span class="file-arrow">Download &rsaquo;</span>
+    </a>
+  </section>
+
+  <a href="index.html" class="back-link">Back to Floor Plan</a>
+</div>
+
+<footer>
+  <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
+  Durham, NC &middot; Wine, Chocolate &amp; Pairings
+</footer>
+
+<script>
+  // Simple tab switcher
+  document.querySelectorAll('.menu-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.menu-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = btn.dataset.target;
+      document.querySelectorAll('.menu-card').forEach(card => {
+        card.classList.toggle('hidden', card.id !== target);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Food Production &mdash; The Cacao Estate at NOVUS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .toc {
+    max-width: 950px;
+    margin: 24px auto 40px;
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-left: 4px solid var(--purple);
+    padding: 20px 28px;
+    box-shadow: var(--shadow);
+  }
+  .toc h3 {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 12px;
+    border: none;
+    padding: 0;
+  }
+  .toc ul {
+    list-style: none;
+    columns: 2;
+    column-gap: 32px;
+    margin: 0;
+    padding: 0;
+  }
+  .toc li {
+    padding: 4px 0;
+    break-inside: avoid;
+  }
+  .toc a {
+    color: var(--green-deep);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .toc a:hover { color: var(--maroon); }
+  .toc a .price {
+    color: var(--maroon);
+    font-family: "Didot", serif;
+    margin-left: 6px;
+  }
+
+  .item-card {
+    max-width: 950px;
+    margin: 0 auto 36px;
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-top: 4px solid var(--purple);
+    box-shadow: var(--shadow);
+  }
+  .item-card.brunch { border-top-color: var(--maroon); }
+  .item-head {
+    padding: 20px 28px 16px;
+    border-bottom: 1px solid var(--gray-300);
+    background: linear-gradient(180deg, #fafaf7, #ffffff);
+  }
+  .item-head .badge {
+    display: inline-block;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--purple);
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
+  .item-card.brunch .badge { background: var(--maroon); }
+  .item-head h3 {
+    font-family: "Didot", "Playfair Display", serif;
+    font-size: 26px;
+    color: var(--green-deep);
+    margin: 0;
+    border: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .item-head h3 .price {
+    color: var(--maroon);
+    font-size: 22px;
+  }
+  .item-head .meta {
+    color: var(--gray-500);
+    font-style: italic;
+    margin-top: 6px;
+    font-size: 13.5px;
+  }
+  .item-body {
+    padding: 22px 28px 24px;
+  }
+  .item-body h4 {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin: 18px 0 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px dotted var(--gray-300);
+  }
+  .item-body h4:first-child { margin-top: 0; }
+  .item-body ol, .item-body ul {
+    padding-left: 22px;
+    margin: 6px 0 12px;
+  }
+  .item-body ol li, .item-body ul li {
+    margin-bottom: 4px;
+    line-height: 1.55;
+    color: var(--gray-700);
+    font-size: 14.5px;
+  }
+  .ingredients-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 4px 0 12px;
+    font-size: 13.5px;
+  }
+  .ingredients-table th {
+    text-align: left;
+    background: var(--green-darker);
+    color: var(--gray-100);
+    padding: 8px 12px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .ingredients-table td {
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--gray-300);
+    vertical-align: top;
+    color: var(--gray-700);
+  }
+  .ingredients-table tr:last-child td { border-bottom: 0; }
+  .ingredients-table tr:nth-child(even) td { background: #fafaf7; }
+  .buy-make {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 0 0 14px;
+    font-size: 12.5px;
+  }
+  .buy-make .bm-cell {
+    background: var(--gray-100);
+    border-left: 3px solid var(--purple);
+    padding: 8px 12px;
+  }
+  .buy-make .bm-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--purple);
+    display: block;
+    margin-bottom: 3px;
+  }
+  .buy-make .bm-val { color: var(--green-deep); font-weight: 600; }
+  .tip-note {
+    background: #fef9f0;
+    border-left: 3px solid #d4a017;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 13.5px;
+    color: var(--gray-700);
+    line-height: 1.55;
+  }
+  .tip-note strong { color: var(--maroon); }
+  .cost-row {
+    background: var(--green-darker);
+    color: var(--white);
+    padding: 12px 18px;
+    margin: 12px -28px -24px;
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  .cost-row .cost-item {
+    color: var(--gray-100);
+  }
+  .cost-row .cost-item strong {
+    color: var(--purple-soft);
+    font-family: "Didot", serif;
+    font-size: 16px;
+    margin-left: 6px;
+  }
+
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .schedule-table th {
+    background: var(--purple);
+    color: var(--white);
+    padding: 10px 14px;
+    text-align: left;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .schedule-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--gray-300);
+    vertical-align: top;
+    color: var(--gray-700);
+  }
+  .schedule-table tr:nth-child(even) td { background: #fafaf7; }
+
+  .section-banner {
+    max-width: 950px;
+    margin: 50px auto 24px;
+    padding: 16px 28px;
+    background: var(--green-darker);
+    color: var(--white);
+    border-left: 6px solid var(--purple);
+  }
+  .section-banner.brunch { border-left-color: var(--maroon); }
+  .section-banner h2 {
+    font-family: "Didot", serif;
+    color: var(--white);
+    margin: 0;
+    border: none;
+    padding: 0;
+    font-size: 24px;
+  }
+  .section-banner .sub {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray-300);
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html">The Cacao Estate <span class="accent">at NOVUS</span></a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="wine.html">Wine</a></li>
+      <li><a href="food-production.html" class="active">Food Production</a></li>
+      <li><a href="employees.html">Employees</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="chocolate-production.html">Chocolate Production</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="subpage-header">
+  <div class="subpage-header-inner">
+    <div class="crumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; Food Production</div>
+    <h1>Kitchen Production Manual</h1>
+    <p class="subtitle">Recipes, Sourcing, and Prep Schedule for the Garde Manger &middot; Version 1.0 &middot; May 9, 2026</p>
+  </div>
+</section>
+
+<div class="subpage-body">
+
+  <a href="index.html" class="back-link">Back to Floor Plan</a>
+
+  <h2>About This Manual</h2>
+  <p>This is the back-of-house counterpart to the customer-facing food menu. For each of the 16 items on the daily and brunch menus, this manual documents how to produce it, what to buy versus make in-house, where to source the ingredients, how often production needs to happen, and how long each prepped component stays fresh.</p>
+  <p>It is intended as a working document &mdash; the kind of thing that lives in a binder in the Food Prep room, gets pages tabbed and dog-eared, and gets updated as the Garde Manger learns what works and what does not. Version 1.0 is the opening playbook; expect Version 2.0 within 90 days of opening once real production volumes are known.</p>
+
+  <h3>Sourcing philosophy</h3>
+  <p>The decision tree for buy-vs-make on each item:</p>
+  <ul>
+    <li><strong>Make in house when:</strong> the house version is meaningfully better than store-bought, the cost savings are real, and the prep fits within Tuesday/Wednesday production hours.</li>
+    <li><strong>Buy in when:</strong> vendor quality is at or above what the kitchen can produce, the time saved is better spent on items that benefit from house-made preparation, or specialized equipment is required (cured meats, smoked salmon, bakery items).</li>
+  </ul>
+  <p>This is not a moral question. Many of Durham&rsquo;s best restaurants buy in their bread, their charcuterie, and their cheeses &mdash; and use the time saved to do other things at a higher level. Cacao Cellars is a chocolate-and-wine concept where the food is supporting cast; the right buy-vs-make choices reflect that priority.</p>
+
+  <h3>Production rhythm</h3>
+  <p>The week is structured around two production days and one service day:</p>
+  <table class="schedule-table">
+    <thead>
+      <tr><th>Day</th><th>Hours</th><th>Focus</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Tuesday</strong></td><td>8 hrs</td><td>Primary production day. All batch-prep recipes that hold 3+ days. Receive cheese &amp; charcuterie deliveries.</td></tr>
+      <tr><td><strong>Wednesday</strong></td><td>4 hrs</td><td>Finish prep, plate-up systems for evening service, brief FOH. Receive produce &amp; bakery deliveries.</td></tr>
+      <tr><td><strong>Friday or Saturday</strong></td><td>6 hrs</td><td>Mid-week refresh. Slice fresh fruit, blanch fresh herbs, replenish portion containers.</td></tr>
+      <tr><td><strong>Sunday</strong></td><td>9 hrs (6 AM start)</td><td>Brunch service. All items either ready-to-plate from the reach-in or assembled to order.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Table of contents -->
+  <div class="toc">
+    <h3>Jump to an item</h3>
+    <ul>
+      <li><a href="#charcuterie-board">Charcuterie Board <span class="price">$20</span></a></li>
+      <li><a href="#cheese-board">Cheese Board <span class="price">$18</span></a></li>
+      <li><a href="#brie-en-croute">Whipped Brie en Cro&ucirc;te <span class="price">$22</span></a></li>
+      <li><a href="#gouda-chocolate">Aged Gouda &amp; Chocolate <span class="price">$16</span></a></li>
+      <li><a href="#olives-almonds">Olives &amp; Almonds <span class="price">$10</span></a></li>
+      <li><a href="#hummus">Cacao-Spiced Hummus <span class="price">$12</span></a></li>
+      <li><a href="#bagels-lox">Bagels &amp; Lox <span class="price">$15</span></a></li>
+      <li><a href="#bagels-cream-cheese">Bagels &amp; Cream Cheese <span class="price">$8</span></a></li>
+      <li><a href="#salmon-tartine">Smoked Salmon Tartine <span class="price">$15</span></a></li>
+      <li><a href="#avocado-toast">Avocado Toast <span class="price">$13</span></a></li>
+      <li><a href="#turkey-brie">Turkey &amp; Brie Croissant <span class="price">$14</span></a></li>
+      <li><a href="#prosciutto-croissant">Prosciutto Croissant <span class="price">$14</span></a></li>
+      <li><a href="#fruit-cheese">Fruit &amp; Cheese Plate <span class="price">$16</span></a></li>
+      <li><a href="#yogurt-parfait">Yogurt Parfait <span class="price">$11</span></a></li>
+      <li><a href="#chocolate-brioche">Chocolate Brioche <span class="price">$9</span></a></li>
+      <li><a href="#strawberries">Chocolate-Dipped Strawberries <span class="price">$10</span></a></li>
+      <li><a href="#weekly-schedule">Weekly Production Schedule</a></li>
+      <li><a href="#suppliers">Supplier Contact List</a></li>
+    </ul>
+  </div>
+
+  <!-- =============== SECTION 1: DAILY MENU =============== -->
+  <div class="section-banner">
+    <h2>Section 1 &mdash; Daily Menu Items</h2>
+    <div class="sub">Wednesday through Saturday &middot; Evening Service</div>
+  </div>
+
+  <!-- ===== Charcuterie Board ===== -->
+  <div class="item-card" id="charcuterie-board">
+    <div class="item-head">
+      <span class="badge">Boards &amp; Shares</span>
+      <h3>Charcuterie Board <span class="price">$20</span></h3>
+      <div class="meta">Three cured meats with mustard, cornichons, fig jam, and grilled bread.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 90% / Make 10%</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Tuesday portion; plate to order</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">7&ndash;10 days; assembled to order</span></div>
+      </div>
+
+      <h4>Ingredients &amp; Sources</h4>
+      <table class="ingredients-table">
+        <thead><tr><th>Ingredient</th><th>Source / Spec</th></tr></thead>
+        <tbody>
+          <tr><td>Prosciutto di Parma (24 mo)</td><td>Cheese Lady (Durham) or Heritage Foods USA &mdash; 3 oz per board</td></tr>
+          <tr><td>Soppressata</td><td>Olli Salumeria (VA) via Reliable Cheese Co. or Heritage &mdash; 2 oz per board</td></tr>
+          <tr><td>Chef&rsquo;s selection cured meat</td><td>Rotates: finocchiona, calabrese, lonza &mdash; Olli or La Quercia (IA) &mdash; 2 oz per board</td></tr>
+          <tr><td>Grain mustard</td><td>Maille or Edmond Fallot &mdash; buy in (jarred) &mdash; 1 tbsp per board</td></tr>
+          <tr><td>Cornichons</td><td>Maille or Trois Petits Cochons &mdash; buy in (jarred) &mdash; 4&ndash;5 per board</td></tr>
+          <tr><td>Fig jam</td><td>Dalmatia or American Spoon &mdash; buy in (jarred) &mdash; 1 oz per board</td></tr>
+          <tr><td>Grilled bread points</td><td>Loaf or Guglhupf baguette &mdash; 6&ndash;8 slices, grilled on panini flat side</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Tuesday production (~30 min for the week)</h4>
+      <ol>
+        <li>Receive charcuterie delivery; check temps (must arrive at or below 41&deg;F).</li>
+        <li>Slice prosciutto by hand: paper-thin slices, ~1 oz per portion. Layer between deli paper in a 4-quart Cambro labeled with date.</li>
+        <li>Slice soppressata and chef&rsquo;s selection: thin rounds (about 1mm), portion ~2 oz per board into deli-cup containers.</li>
+        <li>Pre-portion the jam, mustard, and cornichons into 1 oz ramekins. Cover and refrigerate.</li>
+        <li>Restock Cambros into the reach-in; rotate FIFO with prior week&rsquo;s stock.</li>
+      </ol>
+
+      <h4>To order (~3 min)</h4>
+      <ol>
+        <li>Pull plated wood or slate board (10&Prime; round).</li>
+        <li>Drape prosciutto in soft folds &mdash; never flat. Volume reads as generosity.</li>
+        <li>Fan soppressata and chef&rsquo;s selection in two clusters around the prosciutto.</li>
+        <li>Place ramekins of mustard, jam, cornichons in triangle formation.</li>
+        <li>Run baguette slices through panini flat side (350&deg;F, 90 sec). Tuck into a small cloth napkin on board.</li>
+        <li>Garnish: 5&ndash;6 cornichons fanned, fresh thyme sprig, expel.</li>
+      </ol>
+
+      <div class="tip-note"><strong>Plating note.</strong> Charcuterie boards live and die on visual generosity. The same 7 oz of meat looks small if laid flat and abundant if draped. Train every plater on the &lsquo;prosciutto rose&rsquo; technique &mdash; pinch the slice&rsquo;s center, lift, and let it fall into folds.</div>
+
+      <h4>Freshness &amp; rotation</h4>
+      <ul>
+        <li>Whole charcuterie blocks: 21 days unopened in the reach-in</li>
+        <li>Sliced and portioned: 7 days in deli paper inside Cambro</li>
+        <li>Open jars (mustard, cornichons, fig jam): 30 days in reach-in</li>
+        <li>Grilled bread: cut and bag fresh from baguette daily; do not pre-grill</li>
+      </ul>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$5.80</strong></span>
+        <span class="cost-item">Food cost % <strong>29%</strong></span>
+        <span class="cost-item">Highest-cost item: prosciutto di Parma at ~$1.60 per portion</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Cheese Board ===== -->
+  <div class="item-card" id="cheese-board">
+    <div class="item-head">
+      <span class="badge">Boards &amp; Shares</span>
+      <h3>Cheese Board <span class="price">$18</span></h3>
+      <div class="meta">Three rotating cheeses with fresh and dried fruit, marcona almonds, local honeycomb, and crisp baguette.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 80% / Make 20%</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Tuesday portion; plate to order</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">14&ndash;28 days for cheeses</span></div>
+      </div>
+
+      <h4>Ingredients &amp; Sources</h4>
+      <table class="ingredients-table">
+        <thead><tr><th>Ingredient</th><th>Source / Spec</th></tr></thead>
+        <tbody>
+          <tr><td>Soft cheese (rotating)</td><td>Boxcarr Handmade Cheese (Cedar Grove, NC) Robiola or Cottonbell &mdash; 1.5 oz per board</td></tr>
+          <tr><td>Semi-firm cheese (rotating)</td><td>Reliable Cheese Co. &mdash; Comt&eacute;, Gruy&egrave;re, or Manchego &mdash; 1.5 oz per board</td></tr>
+          <tr><td>Aged cheese (rotating)</td><td>Beemster XO Gouda, Sartori SarVecchio, or aged cheddar &mdash; 1.5 oz per board</td></tr>
+          <tr><td>Fresh fruit (seasonal)</td><td>Local farmers&rsquo; market or US Foods produce &mdash; 2 oz per board</td></tr>
+          <tr><td>Dried fruit</td><td>Made in Nature &mdash; apricots, dates &mdash; 2 pieces per board</td></tr>
+          <tr><td>Marcona almonds</td><td>Mitica or La Tienda &mdash; buy in bulk (3 lb container) &mdash; 0.5 oz per board</td></tr>
+          <tr><td>Local honeycomb</td><td>Bee Downtown (Durham) or Carolina Honey Co. &mdash; 1 small wedge per board</td></tr>
+          <tr><td>Crisp baguette</td><td>Loaf, Guglhupf, or Ninth Street Bakery &mdash; 6 slices per board</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Tuesday production (~45 min)</h4>
+      <ol>
+        <li>Receive cheese delivery. Inspect for damage; verify temps.</li>
+        <li>Pull all cheeses to room temp 1 hour before portioning (cheese cuts cleanest at 60&ndash;65&deg;F).</li>
+        <li>Cut soft cheese into 1.5 oz wedges. Wrap individually in cheese paper (NOT plastic &mdash; plastic suffocates cheese).</li>
+        <li>Cut semi-firm cheese into 1.5 oz triangular pieces. Wrap in cheese paper.</li>
+        <li>Cut aged cheese into 1.5 oz shards or rough chunks (not slices &mdash; aged cheese should look broken, not sliced). Wrap.</li>
+        <li>Store all wrapped portions in the reach-in, organized by cheese family.</li>
+      </ol>
+
+      <h4>To order (~3 min)</h4>
+      <ol>
+        <li>Pull plated wood or slate board (10&Prime; round).</li>
+        <li>Place three cheese portions at 10, 2, and 6 o&rsquo;clock. Leave space between cheeses (cross-flavor contamination).</li>
+        <li>Place small ramekin of marcona almonds at center.</li>
+        <li>Tuck honeycomb wedge near the aged cheese.</li>
+        <li>Fan fresh fruit slices around the soft cheese; place dried fruit near the semi-firm.</li>
+        <li>Sliced baguette in a separate small basket or tucked at edge of board.</li>
+        <li>Garnish: fresh herb sprig (rosemary or thyme).</li>
+      </ol>
+
+      <div class="tip-note"><strong>Cheese rotation note.</strong> The three cheeses should rotate weekly to give regulars something new and to flex with what&rsquo;s freshest. Build a quarterly cheese rotation chart with the supplier and post it inside the reach-in door.</div>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$5.40</strong></span>
+        <span class="cost-item">Food cost % <strong>30%</strong></span>
+        <span class="cost-item">Bee Downtown honeycomb is a Durham brand worth highlighting (verbal mention by server)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Brie en Croute ===== -->
+  <div class="item-card" id="brie-en-croute">
+    <div class="item-head">
+      <span class="badge">Boards &amp; Shares</span>
+      <h3>Whipped Brie en Cro&ucirc;te <span class="price">$22</span></h3>
+      <div class="meta">Whole wheel of brie wrapped in golden puff pastry, baked until molten.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 70% / Make 30%</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Tuesday assemble + freeze</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">7 days frozen; bake to order</span></div>
+      </div>
+
+      <h4>Ingredients &amp; Sources</h4>
+      <table class="ingredients-table">
+        <thead><tr><th>Ingredient</th><th>Source / Spec</th></tr></thead>
+        <tbody>
+          <tr><td>Brie wheels (small, 8 oz)</td><td>Marin French or President &mdash; via US Foods or Reliable Cheese &mdash; 1 wheel per order</td></tr>
+          <tr><td>All-butter puff pastry</td><td>Dufour (frozen sheets, 14 oz) &mdash; buy through US Foods &mdash; 1/2 sheet per wrap</td></tr>
+          <tr><td>Egg wash</td><td>1 egg + 1 tbsp water (whisked) &mdash; for golden finish</td></tr>
+          <tr><td>Fig jam (for service)</td><td>Same as Charcuterie Board &mdash; 1 oz per order</td></tr>
+          <tr><td>Candied pecans</td><td>Make in house &mdash; 1 oz per order</td></tr>
+          <tr><td>Grilled bread</td><td>Loaf or Guglhupf baguette &mdash; 6&ndash;8 slices per order</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Tuesday &mdash; Assemble &amp; Freeze (~75 min for batch of 12)</h4>
+      <ol>
+        <li>Thaw 2 boxes of Dufour puff pastry overnight in the reach-in (Monday evening for Tuesday morning use).</li>
+        <li>Roll out each puff pastry sheet on a lightly floured marble or stainless surface to about 10&Prime; &times; 10&Prime;.</li>
+        <li>Cut sheet into 4 squares, ~5&Prime; &times; 5&Prime; each.</li>
+        <li>Place a brie wheel in the center of each square. Brush all edges with egg wash.</li>
+        <li>Pull all four corners up over the brie, pinching the seams to seal. The wrap should look like a money-purse with the brie hidden inside.</li>
+        <li>Place each wrapped brie on a parchment-lined half-sheet pan, spaced 3&Prime; apart.</li>
+        <li>Brush exterior with egg wash for golden color when baked.</li>
+        <li>Freeze the entire sheet pan flat for 2 hours, then transfer wrapped wheels to a labeled freezer bag.</li>
+        <li>Label bag with date and contents. Holds 7 days frozen.</li>
+      </ol>
+
+      <h4>Candied pecans &mdash; Tuesday (~30 min, ~4 weeks of inventory)</h4>
+      <ol>
+        <li>Whisk 1 egg white with 1 tbsp water until frothy.</li>
+        <li>Toss 1 lb pecan halves in the egg white mixture.</li>
+        <li>Mix 1/2 cup brown sugar, 1/4 cup white sugar, 1 tsp cinnamon, 1/2 tsp salt, 1/4 tsp cayenne in a separate bowl.</li>
+        <li>Toss coated pecans in the sugar mix until evenly distributed.</li>
+        <li>Spread on parchment-lined half-sheet, bake at 300&deg;F in convection oven for 45 min, stirring every 15 min.</li>
+        <li>Cool completely on the sheet, then break apart. Store in airtight container at room temp.</li>
+      </ol>
+
+      <h4>To order (~25 min total &mdash; 22 min bake + 3 min plate)</h4>
+      <ol>
+        <li>Pull one frozen wrapped brie from freezer; place on parchment-lined quarter sheet pan.</li>
+        <li>Brush again with egg wash for extra golden finish.</li>
+        <li>Bake in convection oven at 375&deg;F for 22 minutes (no need to thaw &mdash; frozen-to-oven is correct).</li>
+        <li>While baking: plate fig jam in 2-oz ramekin, candied pecans in second ramekin, and run 6 baguette slices through panini flat side at 350&deg;F for 90 seconds.</li>
+        <li>Pull brie from oven; let rest 2 minutes (cuts the molten cheese surge).</li>
+        <li>Transfer to plated wood or slate board with the ramekins of jam and pecans, and the grilled bread tucked alongside.</li>
+        <li>Garnish: fresh thyme sprig, sea salt over the brie. Serve immediately &mdash; guest cuts open at the table.</li>
+      </ol>
+
+      <div class="tip-note"><strong>Service note.</strong> The brie en cro&ucirc;te is a 25-minute dish. The server must communicate this at order time: &lsquo;It&rsquo;s baked to order and takes about 25 minutes &mdash; do you want to order something to start?&rsquo; This protects the table experience and pushes a small-plate add-on.</div>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$5.50</strong></span>
+        <span class="cost-item">Food cost % <strong>25%</strong></span>
+        <span class="cost-item">Highest-margin item on the daily menu &mdash; promote through staff training</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Aged Gouda & Chocolate ===== -->
+  <div class="item-card" id="gouda-chocolate">
+    <div class="item-head">
+      <span class="badge">Chocolate-Paired</span>
+      <h3>Aged Gouda &amp; Chocolate <span class="price">$16</span></h3>
+      <div class="meta">5-year aged Dutch gouda with three house bonbons selected to bridge salt and caramel notes.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 60% / Make 40% (chocolate is house)</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Tuesday portion cheese</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Cheese 21+ days; chocolate 30 days</span></div>
+      </div>
+
+      <h4>Ingredients &amp; Sources</h4>
+      <table class="ingredients-table">
+        <thead><tr><th>Ingredient</th><th>Source / Spec</th></tr></thead>
+        <tbody>
+          <tr><td>Beemster XO 5-year aged Gouda</td><td>Reliable Cheese Co. or US Foods &mdash; 2 oz per plate</td></tr>
+          <tr><td>House dark chocolate (70% sea salt)</td><td>Made in house by Chocolate Production Lead &mdash; 1 piece per plate</td></tr>
+          <tr><td>House milk chocolate caramel bonbon</td><td>Made in house &mdash; 1 piece per plate</td></tr>
+          <tr><td>House dark chocolate orange/cherry bonbon</td><td>Made in house &mdash; 1 piece per plate</td></tr>
+          <tr><td>Candied orange peel or dried cherry</td><td>Buy in (Mitica or American Spoon) &mdash; small accent only</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Tuesday (~15 min for the week)</h4>
+      <ol>
+        <li>Pull Beemster XO wheel from reach-in 1 hour ahead to bring to room temp.</li>
+        <li>Cut into 2-oz wedges using a hard cheese knife &mdash; let the cheese show its crystalline structure (do not slice flat).</li>
+        <li>Wrap each wedge in cheese paper. Store in a labeled Cambro on the cheese shelf.</li>
+      </ol>
+
+      <h4>To order (~3 min)</h4>
+      <ol>
+        <li>Pull small wood plate or slate (8&Prime; round).</li>
+        <li>Place gouda wedge at center of plate (or slightly off-center if plate has texture).</li>
+        <li>Pull three chocolates from the FOH chocolate display case: dark sea salt, milk caramel, dark fruit.</li>
+        <li>Arrange chocolates in a triangle near the cheese, leaving small visual gaps.</li>
+        <li>Garnish with one or two candied orange peels or dried cherries (between cheese and chocolate).</li>
+        <li>Optional: a small pour of warmed honey on the side (induction burner, ~30 sec).</li>
+      </ol>
+
+      <div class="tip-note"><strong>Pairing logic to teach servers.</strong> The Beemster XO is butterscotch-rich and crystalline. Dark sea salt chocolate amplifies the salt-and-fat resonance. Milk caramel marries with the gouda&rsquo;s natural caramel notes. The dark fruit chocolate brightens the long aged finish. Train servers to walk through this pairing rationale at the table &mdash; it&rsquo;s the moment that makes the concept click for guests.</div>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$3.80</strong></span>
+        <span class="cost-item">Food cost % <strong>24%</strong></span>
+        <span class="cost-item">Best margin on the daily menu &mdash; promote as entry-level pairing experience</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Olives & Almonds ===== -->
+  <div class="item-card" id="olives-almonds">
+    <div class="item-head">
+      <span class="badge">Small Bites</span>
+      <h3>Olives &amp; Almonds <span class="price">$10</span></h3>
+      <div class="meta">Warmed olives with citrus and chili, alongside rosemary-smoked almonds.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 80% / Make 20% (warming)</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Tuesday marinate olives</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Marinated olives 14 days</span></div>
+      </div>
+
+      <h4>Ingredients &amp; Sources</h4>
+      <table class="ingredients-table">
+        <thead><tr><th>Ingredient</th><th>Source / Spec</th></tr></thead>
+        <tbody>
+          <tr><td>Castelvetrano olives</td><td>Mitica or US Foods &mdash; 3 oz per plate</td></tr>
+          <tr><td>Kalamata olives</td><td>Divina or US Foods &mdash; 2 oz per plate</td></tr>
+          <tr><td>Marcona almonds</td><td>Mitica (3 lb tin) &mdash; 1 oz per plate</td></tr>
+          <tr><td>Olive oil (good quality)</td><td>Filippo Berio Extra Virgin or California Olive Ranch</td></tr>
+          <tr><td>Citrus zest, fennel seed, chili flake, fresh rosemary</td><td>Fresh + pantry ingredients</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Tuesday &mdash; Marinated Olives (~20 min, ~14 days of inventory)</h4>
+      <ol>
+        <li>Drain 1 quart Castelvetrano olives and 1 quart kalamata olives from their brine.</li>
+        <li>Combine in a 2-qt Cambro with 1 cup good olive oil, zest of 2 lemons, zest of 1 orange, 2 tbsp fennel seed, 2 tsp chili flake, and 4 sprigs fresh rosemary.</li>
+        <li>Stir gently to coat. Cover and refrigerate at least 24 hours before service. Flavor improves over 3&ndash;5 days.</li>
+        <li>Label with prep date and 14-day pull date.</li>
+      </ol>
+
+      <h4>Tuesday &mdash; Rosemary Almonds (~20 min, ~30 days of inventory)</h4>
+      <ol>
+        <li>Toss 2 lbs marcona almonds with 2 tbsp olive oil, 2 tbsp finely chopped fresh rosemary, 2 tsp smoked salt, 1 tsp black pepper.</li>
+        <li>Spread on parchment-lined half-sheet pan.</li>
+        <li>Warm in convection oven at 250&deg;F for 8 minutes &mdash; just enough to bloom the rosemary, not enough to roast the almonds further.</li>
+        <li>Cool completely. Store in airtight container at room temp.</li>
+      </ol>
+
+      <h4>To order (~4 min)</h4>
+      <ol>
+        <li>Spoon 5 oz of marinated olives into a small saucepan.</li>
+        <li>Warm on induction at level 3 (low) for 2&ndash;3 minutes &mdash; just enough to release fragrance and warm through, not enough to cook.</li>
+        <li>Transfer warmed olives to a small bowl on a plate.</li>
+        <li>Place 1 oz of rosemary almonds in a separate small ramekin alongside.</li>
+        <li>Garnish bowl with fresh rosemary sprig. Serve immediately while warm.</li>
+      </ol>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$2.20</strong></span>
+        <span class="cost-item">Food cost % <strong>22%</strong></span>
+        <span class="cost-item">Highest-margin item by percentage &mdash; useful as &lsquo;while you wait&rsquo; add-on</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Cacao-Spiced Hummus ===== -->
+  <div class="item-card" id="hummus">
+    <div class="item-head">
+      <span class="badge">Small Bites</span>
+      <h3>Cacao-Spiced Hummus <span class="price">$12</span></h3>
+      <div class="meta">Chickpea hummus with toasted cacao nibs, cumin, smoked paprika. Cacao-infused oil and a piece of dark chocolate to close.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Make 95% / Buy 5%</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Tuesday full batch</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Hummus 5 days; oil 2&ndash;3 weeks</span></div>
+      </div>
+
+      <h4>Ingredients &amp; Sources</h4>
+      <table class="ingredients-table">
+        <thead><tr><th>Ingredient</th><th>Source / Spec</th></tr></thead>
+        <tbody>
+          <tr><td>Chickpeas (canned, premium)</td><td>S&amp;W Premium or Goya &mdash; 4 cans per batch</td></tr>
+          <tr><td>Tahini</td><td>Soom or Seed + Mill &mdash; high-quality matters &mdash; 1 cup per batch</td></tr>
+          <tr><td>Olive oil (good quality)</td><td>Same as Olives &amp; Almonds &mdash; 1/2 cup per batch + finishing</td></tr>
+          <tr><td>Fresh lemons</td><td>1/3 cup juice (3&ndash;4 lemons)</td></tr>
+          <tr><td>Garlic</td><td>4 cloves, blanched 60 seconds first (mellows the bite)</td></tr>
+          <tr><td>Cacao nibs (toasted)</td><td>Videri Chocolate Factory (Raleigh) or Chocolate Alchemy &mdash; 5 tbsp per batch</td></tr>
+          <tr><td>Spices (cumin, smoked paprika, cayenne, salt)</td><td>Penzeys or McCormick &mdash; pantry staples</td></tr>
+          <tr><td>Pita bread</td><td>Loaf or Mediterranean Deli wholesale &mdash; 1 round per order</td></tr>
+          <tr><td>Dark chocolate piece (for plate)</td><td>House-made &mdash; 1 small piece per order</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Tuesday &mdash; Full Batch (~25 min, 30 portions)</h4>
+      <ol>
+        <li>Toast 5 tbsp cacao nibs in a dry pan on the induction burner for 2 minutes until fragrant. Cool.</li>
+        <li>Grind 3 tbsp of the toasted nibs in a spice grinder or coffee grinder until powdery. Reserve 2 tbsp whole nibs for finishing.</li>
+        <li>Blanch 4 garlic cloves in boiling water for 60 seconds on the induction; drain and cool.</li>
+        <li>In the Robot Coupe: blend blanched garlic + 1/3 cup lemon juice for 30 seconds.</li>
+        <li>Add 1 cup tahini and 1 tsp salt; blend 60 seconds until pale and smooth.</li>
+        <li>Drain and rinse 4 cans chickpeas; add to Robot Coupe along with the ground cacao nibs, 1 tbsp cumin, 1 tbsp smoked paprika, 1/2 tsp cayenne.</li>
+        <li>With Robot Coupe running, drizzle in 1/2 cup olive oil and 1/2 cup ICE WATER alternately. Scrape down sides every 30 seconds. Total blend time: 3&ndash;4 minutes for fluffy texture.</li>
+        <li>Taste and adjust salt, lemon, heat. Transfer to two 2-qt Cambro containers.</li>
+        <li>Smooth the top, drizzle with 1 tbsp olive oil to seal, lid on, into the reach-in.</li>
+        <li>Label with prep date and 5-day pull date.</li>
+      </ol>
+
+      <h4>Tuesday &mdash; Cacao-Infused Olive Oil (~30 min including hands-off, holds 2&ndash;3 weeks)</h4>
+      <ol>
+        <li>Combine 1 cup olive oil + 3 tbsp toasted cacao nibs in a small saucepan.</li>
+        <li>Warm on induction at level 2 (~150&deg;F) for 20 minutes &mdash; do not boil.</li>
+        <li>Strain through a fine mesh sieve into a squeeze bottle.</li>
+        <li>Label with prep date. Store at room temp on dry shelving.</li>
+      </ol>
+
+      <h4>To order (~3 min)</h4>
+      <ol>
+        <li>Scoop 4 oz hummus into a shallow bowl. Use the back of a spoon to swirl a small well in the center.</li>
+        <li>Drizzle cacao oil into the well and around the rim.</li>
+        <li>Sprinkle a small pinch of reserved whole cacao nibs and Maldon salt over the surface.</li>
+        <li>Run 1 pita round through the convection oven at 300&deg;F for 2 minutes. Cut into 6 triangles.</li>
+        <li>Plate hummus bowl with warm pita triangles around it. Add one small piece of dark chocolate to the side of the plate (the &lsquo;closing taste&rsquo;).</li>
+      </ol>
+
+      <div class="tip-note"><strong>Quality check before service.</strong> Taste the hummus every Wednesday morning. Garlic intensifies in the fridge over 24 hours; if it&rsquo;s gotten harsh, the next batch should use less garlic. The cacao should taste like &lsquo;a whisper of earth and warmth&rsquo; &mdash; not like chocolate. If it tastes like chocolate hummus, you used too many nibs. Calibrate over the first three batches.</div>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$2.40</strong></span>
+        <span class="cost-item">Food cost % <strong>20%</strong></span>
+        <span class="cost-item">Strong margin &middot; per-batch $24 &divide; 30 portions = $0.80 hummus + $1.60 pita/oil/chocolate</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== SECTION 2: SUNDAY BRUNCH =============== -->
+  <div class="section-banner brunch">
+    <h2>Section 2 &mdash; Sunday Brunch Menu Items</h2>
+    <div class="sub">Sundays only &middot; 8 AM to 2 PM</div>
+  </div>
+
+  <!-- ===== Bagels & Lox ===== -->
+  <div class="item-card brunch" id="bagels-lox">
+    <div class="item-head">
+      <span class="badge">From the Kitchen</span>
+      <h3>Bagels &amp; Lox <span class="price">$15</span></h3>
+      <div class="meta">Everything bagel, whipped dill cream cheese, smoked salmon, capers, red onion, pickled cucumber.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 70% / Make 30%</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Tuesday + Saturday</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Salmon 7 days; cream cheese 5 days</span></div>
+      </div>
+
+      <h4>Ingredients &amp; Sources</h4>
+      <table class="ingredients-table">
+        <thead><tr><th>Ingredient</th><th>Source / Spec</th></tr></thead>
+        <tbody>
+          <tr><td>Everything bagels</td><td>Loaf, Guglhupf, or Ninth Street Bakery &mdash; order Saturday for Sunday &mdash; 1 per order</td></tr>
+          <tr><td>Smoked salmon (cold-smoked, sliced)</td><td>Locals Seafood (Durham) or Acme Smoked Fish via US Foods &mdash; 3 oz per order</td></tr>
+          <tr><td>Cream cheese (full-fat block)</td><td>Philadelphia or Boxcarr &mdash; 4 oz per order (whipped house version)</td></tr>
+          <tr><td>Fresh dill, capers, red onion, English cucumber</td><td>Local farmers&rsquo; market or US Foods produce</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Tuesday &mdash; Quick-Pickled Red Onions &amp; Cucumber (~20 min, holds 2 weeks)</h4>
+      <ol>
+        <li>Slice 2 medium red onions and 2 English cucumbers paper-thin on a mandoline.</li>
+        <li>Combine 1 cup white vinegar + 1 cup water + 2 tbsp sugar + 1 tbsp salt in a saucepan. Heat on induction until sugar dissolves.</li>
+        <li>Pour hot brine over onions in a quart jar; pour cooled brine over cucumbers in a separate jar (cucumbers stay crisp with cool brine).</li>
+        <li>Refrigerate 24 hours before service. Both hold 14 days.</li>
+      </ol>
+
+      <h4>Tuesday &mdash; Whipped Dill Cream Cheese (~10 min, 5 days fresh)</h4>
+      <ol>
+        <li>Pull 2 lbs cream cheese to room temp 1 hour ahead.</li>
+        <li>In Robot Coupe: blend cream cheese + 1/4 cup fresh chopped dill + 2 tbsp lemon juice + 1 tsp white pepper + 1/2 tsp salt for 60 seconds until light and fluffy.</li>
+        <li>Transfer to piping bag (saves portioning time during brunch service); refrigerate.</li>
+      </ol>
+
+      <h4>Saturday afternoon &mdash; Smoked Salmon Portioning (~20 min)</h4>
+      <ol>
+        <li>Receive smoked salmon order from Locals Seafood or pull frozen package.</li>
+        <li>If frozen, thaw overnight in reach-in (Friday &rarr; Saturday).</li>
+        <li>Slice or arrange into 3-oz portions on individual deli paper sheets. Stack in a 2-qt Cambro.</li>
+        <li>Label with date; holds 7 days refrigerated, but should be used within 3 days for best quality.</li>
+      </ol>
+
+      <h4>Sunday &mdash; To order (~3 min)</h4>
+      <ol>
+        <li>Split 1 everything bagel; toast in conveyor toaster (~30 sec).</li>
+        <li>Pipe whipped dill cream cheese onto each bagel half (~1 oz per half).</li>
+        <li>Top each half with 1.5 oz smoked salmon, draped in folds.</li>
+        <li>Garnish with 1 tbsp capers, a few pickled red onion slices, and 3&ndash;4 cucumber slices.</li>
+        <li>Finish with fresh dill sprigs and freshly cracked black pepper.</li>
+        <li>Plate with both halves slightly overlapping; lemon wedge on the side.</li>
+      </ol>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$4.80</strong></span>
+        <span class="cost-item">Food cost % <strong>32%</strong></span>
+        <span class="cost-item">Locals Seafood premium ($0.80/order) buys local-sourcing menu story potential</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Bagels & Cream Cheese ===== -->
+  <div class="item-card brunch" id="bagels-cream-cheese">
+    <div class="item-head">
+      <span class="badge">From the Kitchen</span>
+      <h3>Bagels &amp; Cream Cheese <span class="price">$8</span></h3>
+      <div class="meta">Choice of bagel with whipped cream cheese (plain, scallion, or honey-walnut). Fresh fruit on the side.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 80% / Make 20%</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Tuesday cream cheese flavors</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Cream cheese 5 days</span></div>
+      </div>
+
+      <h4>Tuesday &mdash; Three Cream Cheese Variations (~30 min)</h4>
+      <ol>
+        <li>Make 3 lbs of plain whipped cream cheese (Robot Coupe, see Bagels &amp; Lox recipe &mdash; omit dill).</li>
+        <li>Divide into thirds: 1 lb plain, 1 lb scallion (add 1/2 cup chopped scallions, 1 tsp white pepper), 1 lb honey-walnut (add 3 tbsp honey, 1/2 cup toasted chopped walnuts).</li>
+        <li>Each variant goes into its own piping bag, labeled.</li>
+      </ol>
+
+      <h4>Sunday &mdash; To order (~2 min)</h4>
+      <ol>
+        <li>Toast bagel of guest&rsquo;s choice in conveyor toaster.</li>
+        <li>Pipe selected cream cheese on both halves (~1 oz per half).</li>
+        <li>Plate with a small handful of fresh fruit (~3 oz of berries or melon).</li>
+        <li>Garnish bagel with cracked pepper or sea salt.</li>
+      </ol>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$2.30</strong></span>
+        <span class="cost-item">Food cost % <strong>29%</strong></span>
+        <span class="cost-item">Lowest-priced item on brunch menu &mdash; entry point for budget-conscious guests</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Smoked Salmon Tartine ===== -->
+  <div class="item-card brunch" id="salmon-tartine">
+    <div class="item-head">
+      <span class="badge">From the Kitchen</span>
+      <h3>Smoked Salmon Tartine <span class="price">$15</span></h3>
+      <div class="meta">Toasted sourdough, lemon cr&egrave;me fra&icirc;che, smoked salmon, capers, dill, pickled red onion.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 65% / Make 35%</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Tuesday + Saturday</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Cr&egrave;me fra&icirc;che 14 days</span></div>
+      </div>
+
+      <h4>Tuesday &mdash; Lemon Cr&egrave;me Fra&icirc;che (~5 min, 14 days fresh)</h4>
+      <ol>
+        <li>Combine 2 cups cr&egrave;me fra&icirc;che + zest of 2 lemons + 1 tsp white pepper + 1/2 tsp salt in a small bowl.</li>
+        <li>Whisk gently to incorporate; do not over-mix (will break).</li>
+        <li>Transfer to a 1-qt Cambro and into the reach-in. Holds 14 days.</li>
+      </ol>
+
+      <h4>Sunday &mdash; To order (~3 min)</h4>
+      <ol>
+        <li>Toast 2 thick slices sourdough in conveyor toaster (slightly slower setting than bagels).</li>
+        <li>Spread 1 tbsp lemon cr&egrave;me fra&icirc;che on each toast slice.</li>
+        <li>Drape 1.25 oz smoked salmon over each toast in soft folds.</li>
+        <li>Scatter capers (1 tsp), pickled red onion (4&ndash;5 slices), fresh dill, and microgreens.</li>
+        <li>Plate both tartines side by side; lemon wedge between them.</li>
+        <li>Finish with cracked pepper and a tiny drizzle of good olive oil.</li>
+      </ol>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$4.40</strong></span>
+        <span class="cost-item">Food cost % <strong>29%</strong></span>
+        <span class="cost-item">More upscale-feeling than bagel version; same ingredient base, different presentation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Avocado Toast ===== -->
+  <div class="item-card brunch" id="avocado-toast">
+    <div class="item-head">
+      <span class="badge">From the Kitchen</span>
+      <h3>Avocado Toast <span class="price">$13</span></h3>
+      <div class="meta">Smashed avocado on grilled sourdough with chili crisp, sesame seeds, pickled radish, lemon.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 50% / Make 50%</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Saturday pickle radish; Sunday avocado</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Avocado same-day; pickle 14 days</span></div>
+      </div>
+
+      <h4>Tuesday &mdash; Toasted Sesame Seeds (~10 min, 30 days fresh)</h4>
+      <ol>
+        <li>Spread 1 cup raw sesame seeds on dry pan; toast on induction at level 4 for 5&ndash;7 min, stirring constantly.</li>
+        <li>Cool, transfer to small jar; store at room temp.</li>
+      </ol>
+
+      <h4>Saturday &mdash; Pickled Radish (~15 min, 14 days fresh)</h4>
+      <ol>
+        <li>Slice 1 lb watermelon or red radishes paper-thin.</li>
+        <li>Use same vinegar brine as red onion (Bagels &amp; Lox prep).</li>
+        <li>Refrigerate 24 hours before service.</li>
+      </ol>
+
+      <h4>Sunday &mdash; To order (~4 min)</h4>
+      <ol>
+        <li>Toast 1 thick slice sourdough in conveyor toaster (medium-dark).</li>
+        <li>Halve and pit 1 avocado; scoop into a small bowl. Smash with a fork &mdash; leave some texture, do not pur&eacute;e.</li>
+        <li>Add a squeeze of lemon, a pinch of salt; mix briefly.</li>
+        <li>Spread smashed avocado generously on toast (covering edge to edge).</li>
+        <li>Drizzle 1 tsp chili crisp in a swirl pattern.</li>
+        <li>Sprinkle toasted sesame seeds across the top.</li>
+        <li>Tuck pickled radish slices and microgreens at one corner.</li>
+        <li>Finish with Maldon salt, cracked pepper, and a lemon wedge on the plate.</li>
+      </ol>
+
+      <div class="tip-note"><strong>Avocado quality is everything.</strong> Reject any avocado that is bruised, fibrous, or grey when cut. Buy 25% more than expected demand and accept that some will be discarded &mdash; there is no recovering an avocado-toast that uses a sub-par avocado.</div>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$3.40</strong></span>
+        <span class="cost-item">Food cost % <strong>26%</strong></span>
+        <span class="cost-item">Avocado swing: $1.50/avo = 26% cost; $2.50/avo = 33%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Turkey & Brie Croissant ===== -->
+  <div class="item-card brunch" id="turkey-brie">
+    <div class="item-head">
+      <span class="badge">From the Kitchen</span>
+      <h3>Turkey &amp; Brie Croissant <span class="price">$14</span></h3>
+      <div class="meta">Warm croissant with sliced roast turkey, brie, fig jam, and arugula. Pressed until brie just begins to melt.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 95% / Make 5%</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Tuesday slice turkey</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Turkey 5 days; assembled to order</span></div>
+      </div>
+
+      <h4>Tuesday &mdash; Slice Turkey &amp; Brie (~15 min)</h4>
+      <ol>
+        <li>Slice 2 lbs roast turkey breast on a slicer (or by hand if no slicer) into 1/8&Prime; slices.</li>
+        <li>Layer between deli paper sheets in a 4-qt Cambro.</li>
+        <li>Slice brie into 1/4&Prime; thick wedges from a single wheel; layer in deli paper.</li>
+        <li>Both into the reach-in; label with 5-day pull date.</li>
+      </ol>
+
+      <h4>Sunday &mdash; To order (~5 min)</h4>
+      <ol>
+        <li>Split croissant horizontally; warm both halves in convection oven at 300&deg;F for 90 seconds.</li>
+        <li>Spread 1 tsp fig jam on bottom half.</li>
+        <li>Layer 3 oz turkey in folds, then 1.5 oz brie in slices, then a small handful of arugula.</li>
+        <li>Top with the upper half of croissant.</li>
+        <li>Press in panini press at 350&deg;F for 90 seconds &mdash; just enough to warm and slightly melt the brie.</li>
+        <li>Cut diagonally; plate with a small handful of fresh fruit or pickled vegetables on the side.</li>
+      </ol>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$3.80</strong></span>
+        <span class="cost-item">Food cost % <strong>27%</strong></span>
+        <span class="cost-item">Croissant $1.20 + turkey $1.20 + brie $0.80 + arugula/jam $0.60</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Prosciutto Croissant ===== -->
+  <div class="item-card brunch" id="prosciutto-croissant">
+    <div class="item-head">
+      <span class="badge">From the Kitchen</span>
+      <h3>Prosciutto Croissant <span class="price">$14</span></h3>
+      <div class="meta">Warm croissant with prosciutto di Parma, soft-ripened brie, peppery arugula, a whisper of honey.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 95% / Make 5%</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">No additional prep (uses Tuesday&rsquo;s prosciutto)</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Assembled to order</span></div>
+      </div>
+
+      <h4>Sunday &mdash; To order (~5 min)</h4>
+      <ol>
+        <li>Split croissant; warm both halves in convection oven at 300&deg;F for 90 seconds.</li>
+        <li>Drizzle 1/2 tsp honey on bottom half.</li>
+        <li>Layer 2 oz prosciutto in soft folds, 1 oz sliced brie, and a small handful of arugula.</li>
+        <li>Top with upper half.</li>
+        <li>Press in panini at 350&deg;F for 60 seconds &mdash; shorter than turkey version because prosciutto is thinner and brie melts faster.</li>
+        <li>Cut diagonally; plate with fruit or vegetables.</li>
+      </ol>
+
+      <div class="tip-note"><strong>Operational efficiency.</strong> The Prosciutto Croissant uses the SAME prosciutto already portioned for the daily Charcuterie Board. No additional prep day is needed &mdash; just pull from existing inventory. This is the smartest way to add a menu item: two products, one ingredient stream.</div>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$3.60</strong></span>
+        <span class="cost-item">Food cost % <strong>26%</strong></span>
+        <span class="cost-item">Prosciutto is the cost driver at ~$2.00 per 2-oz portion</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Fruit & Cheese Plate ===== -->
+  <div class="item-card brunch" id="fruit-cheese">
+    <div class="item-head">
+      <span class="badge">To Start or Share</span>
+      <h3>Fruit &amp; Cheese Plate <span class="price">$16</span></h3>
+      <div class="meta">Three rotating cheeses including a warm wedge of brie, seasonal fruit, fig jam, marcona almonds, grilled bread.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 85% / Make 15%</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Tuesday cheese; Sunday morning fruit</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Cheese 7 days; cut fruit 24 hours</span></div>
+      </div>
+
+      <h4>Sunday morning &mdash; Fresh Fruit Cut (~20 min before service)</h4>
+      <ol>
+        <li>Cut seasonal fruit fresh: strawberries halved, melon cubed, grapes off the stem, fig quarters.</li>
+        <li>Mix in a 4-qt Cambro; refrigerate.</li>
+        <li>Holds 24 hours but quality drops fast &mdash; only cut what Sunday will sell.</li>
+      </ol>
+
+      <h4>Sunday &mdash; To order (~5 min)</h4>
+      <ol>
+        <li>Pull a small wedge of brie (1 oz); warm in convection oven at 350&deg;F for 4 min until just softening.</li>
+        <li>While brie warms: plate 1.5 oz of the other two cheeses (one semi-firm, one aged) on a 10&Prime; round wooden board.</li>
+        <li>Add small ramekin of fig jam, a few marcona almonds in a cluster.</li>
+        <li>Pull warm brie; add to board near the other cheeses.</li>
+        <li>Add fresh fruit in clusters (different fruits in different spots, not mixed).</li>
+        <li>Plate 6 grilled baguette slices alongside in a small basket.</li>
+        <li>Garnish with fresh herb sprig.</li>
+      </ol>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$5.20</strong></span>
+        <span class="cost-item">Food cost % <strong>33%</strong></span>
+        <span class="cost-item">Brunch&rsquo;s most generous-feeling plate; warmed brie is the differentiator</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Yogurt Parfait ===== -->
+  <div class="item-card brunch" id="yogurt-parfait">
+    <div class="item-head">
+      <span class="badge">To Start or Share</span>
+      <h3>Yogurt Parfait <span class="price">$11</span></h3>
+      <div class="meta">Greek yogurt, house-made oven-toasted granola, seasonal fruit, local honey, mint.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 70% / Make 30%</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Tuesday granola; Sunday fruit</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Granola 14 days</span></div>
+      </div>
+
+      <h4>Tuesday &mdash; House Granola (~75 min, 14 days fresh)</h4>
+      <ol>
+        <li>Combine 4 cups rolled oats, 1 cup chopped almonds, 1 cup chopped pecans, 1/2 cup pumpkin seeds, 1/2 cup unsweetened coconut flakes, 1 tsp cinnamon, 1/2 tsp salt in large bowl.</li>
+        <li>In a separate bowl, whisk 1/2 cup honey + 1/3 cup olive oil + 1 tsp vanilla.</li>
+        <li>Pour wet over dry; toss thoroughly to coat.</li>
+        <li>Spread evenly on parchment-lined half-sheet pan.</li>
+        <li>Bake in convection oven at 300&deg;F for 35&ndash;40 min, stirring every 12 min for even color.</li>
+        <li>Cool completely on the sheet (granola crisps as it cools).</li>
+        <li>Add 1/2 cup dried cranberries or chopped dried apricots after cooling.</li>
+        <li>Store in airtight container at room temp.</li>
+      </ol>
+
+      <h4>Sunday &mdash; To order (~3 min)</h4>
+      <ol>
+        <li>In an 8-oz glass parfait cup or short tumbler: layer 3 oz Greek yogurt at bottom.</li>
+        <li>Add 1 oz granola in a layer.</li>
+        <li>Add 1 oz fresh fruit in a layer.</li>
+        <li>Repeat: 3 oz yogurt, 0.5 oz granola, 1 oz fruit on top.</li>
+        <li>Drizzle 1 tsp honey across the top.</li>
+        <li>Garnish with a sprig of fresh mint.</li>
+      </ol>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$2.80</strong></span>
+        <span class="cost-item">Food cost % <strong>25%</strong></span>
+        <span class="cost-item">Granola $0.40 + yogurt $0.90 + fruit $0.80</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Chocolate Brioche ===== -->
+  <div class="item-card brunch" id="chocolate-brioche">
+    <div class="item-head">
+      <span class="badge">Something Sweet</span>
+      <h3>Chocolate Brioche <span class="price">$9</span></h3>
+      <div class="meta">Warm brioche filled with our 70% dark chocolate, dusted with powdered sugar.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 80% / Make 20% (chocolate is house)</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Saturday delivery; Sunday warm to order</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Brioche fresh; warm to order</span></div>
+      </div>
+
+      <h4>Sunday &mdash; To order (~5 min)</h4>
+      <ol>
+        <li>Slice brioche into 1/2&Prime; thick slices (2 per order) OR split a small brioche roll horizontally.</li>
+        <li>Spread butter lightly on both cut sides.</li>
+        <li>Place 0.5 oz chopped house dark chocolate on the bottom slice/half.</li>
+        <li>Top with second slice/half (sandwich style).</li>
+        <li>Press in panini at 350&deg;F for 90 seconds &mdash; chocolate melts, brioche toasts golden.</li>
+        <li>Cut diagonally.</li>
+        <li>Plate; dust with powdered sugar through a small fine-mesh sieve.</li>
+        <li>Optional: small pour of warm chocolate sauce on the side (induction, ~30 sec to warm).</li>
+      </ol>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$1.80</strong></span>
+        <span class="cost-item">Food cost % <strong>20%</strong></span>
+        <span class="cost-item">Highest-margin sweet item; uses Tier 1 chocolate inventory</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Chocolate-Dipped Strawberries ===== -->
+  <div class="item-card brunch" id="strawberries">
+    <div class="item-head">
+      <span class="badge">Something Sweet</span>
+      <h3>Chocolate-Dipped Strawberries <span class="price">$10</span></h3>
+      <div class="meta">Fresh strawberries hand-dipped in tempered dark and milk chocolates. Three pieces.</div>
+    </div>
+    <div class="item-body">
+      <div class="buy-make">
+        <div class="bm-cell"><span class="bm-label">Buy / Make</span><span class="bm-val">Buy 50% / Make 50% (chocolate is house)</span></div>
+        <div class="bm-cell"><span class="bm-label">Prep day</span><span class="bm-val">Saturday afternoon</span></div>
+        <div class="bm-cell"><span class="bm-label">Freshness</span><span class="bm-val">Dipped strawberries 24 hours</span></div>
+      </div>
+
+      <h4>Saturday afternoon &mdash; Pre-dip Strawberries (~30 min for 24 berries)</h4>
+      <ol>
+        <li>Wash and dry strawberries thoroughly. Remove any with bruises. Strawberries MUST be completely dry &mdash; water seizes chocolate.</li>
+        <li>Coordinate with Chocolate Production Lead: they temper a small batch of dark and milk chocolate Saturday afternoon.</li>
+        <li>Holding each strawberry by the stem, dip into tempered dark chocolate, leaving the top 1/3 exposed.</li>
+        <li>Place dipped berry on parchment-lined sheet.</li>
+        <li>Drizzle milk chocolate across the dark in thin ribbon for visual contrast.</li>
+        <li>Refrigerate sheet for 30 min until set.</li>
+        <li>Transfer set strawberries to a 2-qt Cambro lined with parchment; refrigerate. Holds 24 hours.</li>
+      </ol>
+
+      <h4>Sunday &mdash; To order (~2 min)</h4>
+      <ol>
+        <li>Place 3 dipped strawberries on a small slate plate or wood plate.</li>
+        <li>Drizzle a small amount of cacao oil around them.</li>
+        <li>Optional garnish: gold leaf, mint sprig, or a single fresh raspberry.</li>
+      </ol>
+
+      <div class="tip-note"><strong>Coordination with Chocolate Production Lead.</strong> The strawberry dipping happens Saturday afternoon &mdash; coordinate this on the production calendar so the chocolatier&rsquo;s tempered batch is ready when needed. Don&rsquo;t try to temper chocolate yourself; it&rsquo;s their craft and they will do it 10x better in 10x less time.</div>
+
+      <div class="cost-row">
+        <span class="cost-item">Food cost <strong>$2.40</strong></span>
+        <span class="cost-item">Food cost % <strong>24%</strong></span>
+        <span class="cost-item">Strawberries $0.60 + chocolate $0.80 + finishing $0.20 &middot; Visually stunning, strong promote item</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== SECTION 3: WEEKLY SCHEDULE =============== -->
+  <div class="section-banner" id="weekly-schedule">
+    <h2>Section 3 &mdash; Weekly Production Schedule</h2>
+    <div class="sub">When each item&rsquo;s components get prepped</div>
+  </div>
+
+  <h3>Tuesday &mdash; Primary Production Day (8 hours)</h3>
+  <ul>
+    <li>Receive cheese &amp; charcuterie deliveries. Inspect, log, store. (30 min)</li>
+    <li>Charcuterie portioning. Prosciutto, soppressata, chef&rsquo;s selection. (30 min)</li>
+    <li>Cheese portioning. Three daily-rotation cheeses + Beemster XO + brie wedges + sliced brie for croissants. (45 min)</li>
+    <li>Sliced turkey for croissants. (15 min)</li>
+    <li>Hummus full batch + cacao oil. Robot Coupe. (50 min)</li>
+    <li>Brie en cro&ucirc;te assembly + freeze. 10&ndash;12 wraps for the week. (75 min)</li>
+    <li>Candied pecans. Convection oven, monthly batch. (30 min)</li>
+    <li>Marinated olives + rosemary almonds. (40 min)</li>
+    <li>Quick-pickled red onion + cucumber. (20 min)</li>
+    <li>Three whipped cream cheese variations. Dill, scallion, honey-walnut. (30 min)</li>
+    <li>Lemon cr&egrave;me fra&icirc;che. (5 min)</li>
+    <li>Toasted sesame seeds. Monthly. (10 min)</li>
+    <li>House granola batch. Convection oven. (75 min, mostly hands-off)</li>
+    <li>Inventory check + Wednesday&rsquo;s order list. (45 min)</li>
+  </ul>
+  <p><em>Total Tuesday: ~7 hours active + lunch + cleanup = full 8-hour day.</em></p>
+
+  <h3>Wednesday &mdash; Finish Day (4 hours)</h3>
+  <ul>
+    <li>Receive produce + bakery delivery. Inspect, log, store. (20 min)</li>
+    <li>Slice fresh fruit for Friday/Saturday daily menu. (15 min)</li>
+    <li>Refresh portion containers; rotate FIFO. (30 min)</li>
+    <li>Wipe-down all stations; deep-clean Robot Coupe. (30 min)</li>
+    <li>Brief FOH on the week&rsquo;s daily menu changes. (15 min)</li>
+    <li>Inventory closeout; Friday/Saturday delivery order placed. (30 min)</li>
+    <li>Buffer time for unexpected items / corrections. (60 min)</li>
+  </ul>
+
+  <h3>Friday or Saturday &mdash; Mid-Week Refresh (6 hours)</h3>
+  <ul>
+    <li>Receive Friday/Saturday delivery (depending on supplier schedules).</li>
+    <li>Re-portion any depleted items (charcuterie, cheese).</li>
+    <li>Quick-pickle radish for Sunday brunch (~15 min).</li>
+    <li>Saturday afternoon: slice and prep all Sunday brunch items not done Tuesday &mdash; turkey if not enough Tuesday yield, brie slices, cucumber pickles refresh.</li>
+    <li>Saturday: smoked salmon delivery; portion to deli paper.</li>
+    <li>Saturday: receive Sunday&rsquo;s bagel/croissant order from bakery; store properly.</li>
+    <li>Saturday: dip strawberries with Chocolate Production Lead.</li>
+  </ul>
+
+  <h3>Sunday &mdash; Brunch Service (9 hours)</h3>
+  <ul>
+    <li><strong>6:00 AM</strong> &mdash; arrive, pre-heat ovens, stage equipment.</li>
+    <li><strong>6:15 AM</strong> &mdash; cut fresh fruit for the day.</li>
+    <li><strong>6:30 AM</strong> &mdash; set up plate-up station, prep avocados to soft-pre-mash stage.</li>
+    <li><strong>7:30 AM</strong> &mdash; staff briefing with helper; review menu, today&rsquo;s specials.</li>
+    <li><strong>8:00 AM</strong> &mdash; service open.</li>
+    <li><strong>8:00 AM &ndash; 2:00 PM</strong> &mdash; service. Plate to order, manage flow, communicate with FOH.</li>
+    <li><strong>2:00 PM &ndash; 2:30 PM</strong> &mdash; breakdown, deep clean, inventory closeout.</li>
+    <li><strong>2:30 PM</strong> &mdash; out the door.</li>
+  </ul>
+
+  <!-- =============== SECTION 4: SUPPLIERS =============== -->
+  <div class="section-banner" id="suppliers">
+    <h2>Section 4 &mdash; Supplier Contact List</h2>
+    <div class="sub">Build these relationships in the 6&ndash;8 weeks before opening</div>
+  </div>
+
+  <p>All contact details below are starting points &mdash; verify and update each supplier&rsquo;s current status, terms, and contact at the time of outreach.</p>
+
+  <h3>Cheese</h3>
+  <ul>
+    <li><strong>Reliable Cheese Company</strong> &mdash; Durham. Specialty cheese distribution. Direct delivery.</li>
+    <li><strong>Boxcarr Handmade Cheese</strong> &mdash; Cedar Grove, NC. Local creamery; visit and meet the cheesemakers.</li>
+    <li><strong>Chapel Hill Creamery</strong> &mdash; local soft cheeses; small allocation.</li>
+    <li><strong>US Foods</strong> &mdash; backbone for commodity cheeses; Boar&rsquo;s Head, Beemster, Marin French.</li>
+  </ul>
+
+  <h3>Charcuterie</h3>
+  <ul>
+    <li><strong>Heritage Foods USA</strong> &mdash; Olli Salumeria, La Quercia, fine cured meats; ships nationally.</li>
+    <li><strong>Reliable Cheese Company</strong> &mdash; also stocks regional Italian-style cured meats.</li>
+    <li><strong>US Foods</strong> &mdash; commodity prosciutto, capicola, soppressata.</li>
+  </ul>
+
+  <h3>Smoked salmon &amp; fish</h3>
+  <ul>
+    <li><strong>Locals Seafood</strong> &mdash; Durham. Premium NC option; supports local-sourcing menu story.</li>
+    <li><strong>Acme Smoked Fish</strong> &mdash; national; available through US Foods or direct.</li>
+    <li><strong>Honey Smoked Fish Co.</strong> &mdash; alternative; Kosher-certified.</li>
+  </ul>
+
+  <h3>Bakery</h3>
+  <ul>
+    <li><strong>Loaf</strong> &mdash; downtown Durham. Bagels, sourdough, baguette, croissants. Top option.</li>
+    <li><strong>Guglhupf</strong> &mdash; Durham. Strong croissant program, German-leaning bakery.</li>
+    <li><strong>Ninth Street Bakery</strong> &mdash; Durham. Classic local bakery; strong sourdough.</li>
+  </ul>
+  <div class="tip-note"><strong>Note.</strong> Build relationships with two of these suppliers, not just one. If one has a bad week, you don&rsquo;t lose the brunch program.</div>
+
+  <h3>Produce</h3>
+  <ul>
+    <li><strong>US Foods</strong> &mdash; commodity produce backbone; weekly delivery.</li>
+    <li><strong>Durham Farmers&rsquo; Market</strong> &mdash; Saturday morning, seasonal additions.</li>
+    <li><strong>Carrboro Farmers&rsquo; Market</strong> &mdash; Saturday morning, supplementary.</li>
+    <li><strong>Eastern Carolina Organics</strong> &mdash; wholesale local organic; weekly delivery.</li>
+  </ul>
+
+  <h3>Specialty / Italian / Mediterranean</h3>
+  <ul>
+    <li><strong>Mitica</strong> &mdash; Spanish/Italian specialty (marcona almonds, olives, jams) via specialty distributors.</li>
+    <li><strong>Maille / Dalmatia / Trois Petits Cochons</strong> &mdash; premium jarred items via US Foods or specialty distributors.</li>
+    <li><strong>Chocolate Alchemy</strong> &mdash; online, raw cacao products including nibs. Backup to Videri.</li>
+    <li><strong>Videri Chocolate Factory</strong> &mdash; Raleigh. Cacao nibs, retail; relationship aligns with chocolate program.</li>
+  </ul>
+
+  <h3>Honey &amp; local</h3>
+  <ul>
+    <li><strong>Bee Downtown</strong> &mdash; Durham. Local rooftop apiary honey; on-brand sourcing story.</li>
+    <li><strong>Carolina Honey Co.</strong> &mdash; regional. Wider distribution.</li>
+  </ul>
+
+  <h3>Yogurt &amp; dairy</h3>
+  <ul>
+    <li><strong>Maple Hill Creamery</strong> &mdash; premium grass-fed Greek yogurt. US Foods.</li>
+    <li><strong>Stonyfield</strong> &mdash; backup. US Foods or Whole Foods Bulk.</li>
+    <li><strong>Vermont Creamery</strong> &mdash; cr&egrave;me fra&icirc;che, fresh goat cheeses. US Foods.</li>
+  </ul>
+
+  <a href="index.html" class="back-link">Back to Floor Plan</a>
+</div>
+
+<footer>
+  <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
+  Durham, NC &middot; Kitchen Production Manual &middot; Version 1.0 &middot; May 2026
+</footer>
+
+</body>
+</html>

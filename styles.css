@@ -1,0 +1,598 @@
+/* =====================================================================
+   THE CACAO ESTATE AT NOVUS — Shared stylesheet
+   Palette: dark green, purple accents, maroon, gray, black, white
+   ===================================================================== */
+
+:root {
+  --green-deep:   #1f3a2e;   /* dominant dark green */
+  --green-darker: #142319;
+  --green-mid:    #2d5642;
+  --purple:       #5b3a7a;   /* purple accent */
+  --purple-soft:  #7d5aa3;
+  --maroon:       #6b1f2a;   /* maroon / dark red */
+  --maroon-soft:  #8a2a36;
+  --gray-100:     #f3f1ed;   /* paper */
+  --gray-300:     #c9c4ba;
+  --gray-500:     #807a70;
+  --gray-700:     #3a3833;
+  --black:        #0d0c0a;
+  --white:        #faf8f4;
+  --shadow:       0 4px 24px rgba(0,0,0,0.18);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Georgia", "Cormorant Garamond", serif;
+  color: var(--gray-700);
+  background: var(--white);
+  line-height: 1.55;
+  font-size: 17px;
+}
+
+/* ---------------- TOP BAR / NAV ---------------- */
+.topbar {
+  background: var(--green-darker);
+  color: var(--white);
+  border-bottom: 3px solid var(--maroon);
+  padding: 14px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  font-family: "Didot", "Cormorant Garamond", "Playfair Display", serif;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-size: 22px;
+  color: var(--gray-100);
+}
+.brand a { color: inherit; text-decoration: none; }
+.brand .accent { color: var(--purple-soft); font-style: italic; }
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+nav a {
+  color: var(--gray-100);
+  text-decoration: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+nav a:hover {
+  background: var(--maroon);
+  border-color: var(--maroon-soft);
+  color: var(--white);
+}
+nav a.active {
+  background: var(--purple);
+  color: var(--white);
+}
+
+/* ---------------- HERO (index) ---------------- */
+.hero {
+  background: linear-gradient(180deg, var(--green-deep) 0%, var(--green-darker) 100%);
+  color: var(--white);
+  padding: 64px 32px 48px;
+  text-align: center;
+  border-bottom: 2px solid var(--purple);
+}
+.hero h1 {
+  font-family: "Didot", "Playfair Display", serif;
+  font-size: 56px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+.hero h1 .em {
+  color: var(--purple-soft);
+  font-style: italic;
+}
+.hero .tagline {
+  font-size: 16px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray-300);
+  margin-bottom: 28px;
+}
+.hero .lede {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 18px;
+  color: var(--gray-100);
+  font-style: italic;
+}
+
+/* ---------------- LAYOUT MAP ---------------- */
+.layout-wrap {
+  max-width: 1200px;
+  margin: 48px auto;
+  padding: 0 24px;
+}
+.layout-title {
+  font-family: "Didot", "Playfair Display", serif;
+  font-size: 30px;
+  color: var(--green-deep);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.layout-sub {
+  text-align: center;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.layout-instructions {
+  background: var(--gray-100);
+  border-left: 4px solid var(--purple);
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  font-style: italic;
+  color: var(--gray-700);
+}
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-300);
+  background: var(--white);
+}
+.map-container img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+/* Overlay clickable areas as absolutely-positioned anchors with % coords */
+.hot {
+  position: absolute;
+  display: block;
+  background: rgba(91, 58, 122, 0.0);
+  border: 2px solid transparent;
+  transition: all 0.18s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+.hot:hover {
+  background: rgba(91, 58, 122, 0.32);
+  border-color: var(--purple-soft);
+  box-shadow: 0 0 0 2px rgba(91, 58, 122, 0.4) inset;
+}
+.hot:hover .hot-label {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.hot-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.92);
+  background: var(--green-darker);
+  color: var(--white);
+  padding: 6px 12px;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.18s ease;
+  pointer-events: none;
+  border: 1px solid var(--purple);
+}
+
+/* ---------------- AREA LEGEND ---------------- */
+.legend {
+  max-width: 1100px;
+  margin: 32px auto 64px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.legend a {
+  display: block;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-left: 4px solid var(--green-mid);
+  padding: 14px 16px;
+  text-decoration: none;
+  color: var(--gray-700);
+  transition: all 0.2s ease;
+}
+.legend a:hover {
+  border-left-color: var(--purple);
+  background: var(--gray-100);
+  transform: translateX(2px);
+}
+.legend a .legend-title {
+  font-family: "Didot", serif;
+  font-size: 17px;
+  color: var(--green-deep);
+  margin-bottom: 4px;
+  display: block;
+}
+.legend a .legend-sub {
+  font-size: 12px;
+  color: var(--gray-500);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---------------- SUB-PAGE LAYOUT ---------------- */
+.subpage-header {
+  background: linear-gradient(180deg, var(--green-deep) 0%, var(--green-mid) 100%);
+  color: var(--white);
+  padding: 48px 32px;
+  border-bottom: 2px solid var(--purple);
+}
+.subpage-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.subpage-header .crumb {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gray-300);
+  margin-bottom: 14px;
+}
+.subpage-header .crumb a {
+  color: var(--purple-soft);
+  text-decoration: none;
+}
+.subpage-header .crumb a:hover { text-decoration: underline; }
+.subpage-header h1 {
+  font-family: "Didot", "Playfair Display", serif;
+  font-size: 44px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.subpage-header .subtitle {
+  font-size: 17px;
+  color: var(--gray-300);
+  font-style: italic;
+}
+
+.subpage-body {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+.subpage-body h2 {
+  font-family: "Didot", "Playfair Display", serif;
+  font-size: 28px;
+  color: var(--green-deep);
+  margin-top: 40px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gray-300);
+}
+.subpage-body h2:first-child { margin-top: 0; }
+
+.subpage-body h3 {
+  font-family: "Didot", serif;
+  font-size: 20px;
+  color: var(--maroon);
+  margin-top: 26px;
+  margin-bottom: 8px;
+}
+
+.subpage-body p {
+  margin-bottom: 14px;
+}
+
+.subpage-body ul, .subpage-body ol {
+  margin: 0 0 18px 22px;
+}
+.subpage-body li { margin-bottom: 6px; }
+
+.callout {
+  background: var(--gray-100);
+  border-left: 4px solid var(--purple);
+  padding: 14px 18px;
+  margin: 18px 0;
+  font-size: 15.5px;
+}
+.callout.warn {
+  border-left-color: var(--maroon);
+  background: rgba(107, 31, 42, 0.06);
+}
+.callout-label {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--purple);
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: block;
+}
+.callout.warn .callout-label { color: var(--maroon); }
+
+/* ---------------- EQUIPMENT CARDS ---------------- */
+.slot {
+  margin: 32px 0;
+  border: 1px solid var(--gray-300);
+  border-top: 4px solid var(--green-mid);
+  background: var(--white);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.slot-header {
+  background: var(--green-darker);
+  color: var(--white);
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.slot-header h3 {
+  font-family: "Didot", serif;
+  color: var(--white);
+  margin: 0;
+  font-size: 20px;
+}
+.slot-header .slot-num {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--purple-soft);
+  align-self: center;
+}
+.slot-body {
+  padding: 18px 22px;
+}
+.slot-body .spec {
+  font-size: 13.5px;
+  color: var(--gray-500);
+  font-style: italic;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--gray-300);
+}
+.slot-body .rec {
+  font-family: "Didot", serif;
+  font-size: 17px;
+  color: var(--maroon);
+  margin-bottom: 10px;
+}
+.slot-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14.5px;
+}
+.slot-body table th, .slot-body table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--gray-300);
+  vertical-align: top;
+}
+.slot-body table th {
+  width: 140px;
+  background: var(--gray-100);
+  color: var(--green-deep);
+  font-weight: 600;
+}
+
+/* ---------------- SUMMARY TABLE ---------------- */
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14.5px;
+  box-shadow: var(--shadow);
+}
+.summary-table th {
+  background: var(--green-darker);
+  color: var(--white);
+  text-align: left;
+  padding: 12px;
+  letter-spacing: 0.06em;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.summary-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--gray-300);
+  background: var(--white);
+}
+.summary-table tr:nth-child(even) td { background: var(--gray-100); }
+.summary-table tr.total td {
+  background: var(--maroon);
+  color: var(--white);
+  font-weight: 700;
+}
+
+/* ---------------- BACK LINK / FOOTER ---------------- */
+.back-link {
+  display: inline-block;
+  margin: 20px 0;
+  padding: 10px 18px;
+  background: var(--purple);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: "Helvetica Neue", sans-serif;
+  transition: all 0.2s ease;
+}
+.back-link:hover { background: var(--maroon); }
+.back-link::before { content: "← "; }
+
+footer {
+  background: var(--black);
+  color: var(--gray-300);
+  padding: 24px 32px;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  border-top: 3px solid var(--purple);
+}
+footer .footer-brand {
+  font-family: "Didot", serif;
+  color: var(--gray-100);
+  font-size: 15px;
+  margin-bottom: 6px;
+  display: block;
+  letter-spacing: 0.15em;
+}
+
+/* ---------------- PLACEHOLDER PAGE ---------------- */
+.placeholder {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 48px 32px;
+  text-align: center;
+}
+.placeholder h2 {
+  font-family: "Didot", serif;
+  font-size: 36px;
+  color: var(--green-deep);
+  margin-bottom: 16px;
+  border: none;
+}
+.placeholder p {
+  color: var(--gray-500);
+  font-size: 17px;
+  font-style: italic;
+}
+.placeholder .badge {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 6px 16px;
+  background: var(--purple);
+  color: var(--white);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 700px) {
+  .topbar { flex-direction: column; align-items: flex-start; padding: 14px 18px; }
+  nav ul { gap: 0; }
+  nav a { padding: 6px 10px; font-size: 12px; }
+  .hero h1 { font-size: 36px; }
+  .subpage-header h1 { font-size: 30px; }
+  .hot-label { font-size: 9px; padding: 4px 8px; }
+}
+
+/* ---------------- DOWNLOAD LINKS ---------------- */
+/* For PDFs, PPTs, and other downloadable files */
+.download-block {
+  max-width: 950px;
+  margin: 24px auto;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-left: 4px solid var(--maroon);
+  padding: 18px 24px;
+  box-shadow: var(--shadow);
+}
+.download-block h3 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 12px;
+  border: none;
+  padding: 0;
+}
+.download-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  margin: 6px 0;
+  background: var(--gray-100);
+  border: 1px solid transparent;
+  border-left: 3px solid var(--purple);
+  text-decoration: none;
+  color: var(--green-deep);
+  transition: all 0.18s ease;
+}
+.download-link:hover {
+  background: var(--white);
+  border-color: var(--maroon);
+  border-left-color: var(--maroon);
+  transform: translateX(3px);
+}
+.download-link .file-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 46px;
+  background: var(--maroon);
+  color: var(--white);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+  flex-shrink: 0;
+  position: relative;
+}
+.download-link .file-icon.pdf { background: var(--maroon); }
+.download-link .file-icon.pptx { background: var(--purple); }
+/* folded-corner effect */
+.download-link .file-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 0 8px 8px 0;
+  border-color: transparent var(--white) transparent transparent;
+}
+.download-link .file-meta {
+  flex: 1;
+  min-width: 0;
+}
+.download-link .file-name {
+  font-family: "Didot", "Playfair Display", serif;
+  font-size: 16px;
+  color: var(--green-deep);
+  margin-bottom: 2px;
+}
+.download-link .file-desc {
+  font-size: 12.5px;
+  color: var(--gray-500);
+  font-style: italic;
+}
+.download-link .file-arrow {
+  color: var(--purple);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.download-link:hover .file-arrow { color: var(--maroon); }
