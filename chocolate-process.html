@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chocolate Creation Process &mdash; The Cacao Estate at NOVUS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Page-specific tweaks */
+  .tier-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    margin: 24px 0 32px;
+  }
+  @media (max-width: 900px) { .tier-grid { grid-template-columns: 1fr; } }
+  .tier-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    padding: 20px 22px;
+    border-top: 6px solid var(--gray-300);
+  }
+  .tier-card.tier-1 { border-top-color: var(--green-mid); }
+  .tier-card.tier-2 { border-top-color: var(--purple); }
+  .tier-card.tier-3 { border-top-color: var(--maroon); }
+  .tier-card .tier-num {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 4px;
+  }
+  .tier-card h3 {
+    font-family: "Didot", serif;
+    font-size: 20px;
+    color: var(--green-deep);
+    margin: 0 0 8px;
+    padding: 0;
+    border: none;
+  }
+  .tier-card .difficulty {
+    display: inline-block;
+    background: var(--gray-100);
+    padding: 3px 10px;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: var(--gray-700);
+    border-radius: 2px;
+  }
+  .tier-card.tier-1 .difficulty { background: #d8e8df; color: var(--green-deep); }
+  .tier-card.tier-2 .difficulty { background: #e4d8ef; color: var(--purple); }
+  .tier-card.tier-3 .difficulty { background: #f0d4d8; color: var(--maroon); }
+  .tier-card p { margin-bottom: 10px; font-size: 14px; line-height: 1.55; }
+  .tier-card p:last-child { margin-bottom: 0; }
+  .tier-card .label { font-weight: 700; color: var(--green-deep); }
+  .tier-card.tier-3 .label, .tier-card.tier-3 .label { color: var(--maroon); }
+
+  .callout-decision {
+    background: #e8f1ec;
+    border-left: 4px solid var(--green-deep);
+    padding: 16px 22px;
+    margin: 24px 0;
+  }
+  .callout-decision .label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .callout-decision p { margin: 0; }
+
+  .step-list {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    margin: 18px 0;
+  }
+  .step-list li {
+    counter-increment: step;
+    padding: 10px 0 10px 50px;
+    border-bottom: 1px dotted var(--gray-300);
+    position: relative;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-list li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 32px;
+    height: 32px;
+    background: var(--purple);
+    color: var(--white);
+    border-radius: 50%;
+    font-family: "Didot", serif;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-list .step-name {
+    font-family: "Didot", serif;
+    font-weight: 700;
+    color: var(--maroon);
+    font-size: 16px;
+  }
+
+  table.time-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 14.5px;
+  }
+  table.time-table th, table.time-table td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-300);
+    vertical-align: top;
+  }
+  table.time-table th {
+    background: var(--green-darker);
+    color: var(--white);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  table.time-table tr:nth-child(even) td { background: var(--gray-100); }
+  table.time-table td.total {
+    background: var(--maroon) !important;
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  .supplier-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 18px 0 28px;
+  }
+  @media (max-width: 800px) { .supplier-grid { grid-template-columns: 1fr; } }
+  .supplier-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-left: 4px solid var(--purple);
+    padding: 16px 20px;
+  }
+  .supplier-card.recommended { border-left-color: var(--green-mid); background: #f6faf7; }
+  .supplier-card h4 {
+    font-family: "Didot", serif;
+    font-size: 18px;
+    color: var(--green-deep);
+    margin: 0 0 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .supplier-card .badge {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    color: var(--white);
+    background: var(--gray-500);
+  }
+  .supplier-card.recommended .badge { background: var(--green-deep); }
+  .supplier-card .price {
+    color: var(--maroon);
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .supplier-card p { font-size: 13.5px; line-height: 1.5; margin-bottom: 6px; }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    margin: 20px 0;
+  }
+  @media (max-width: 900px) { .three-col { grid-template-columns: 1fr; } }
+  .option-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-top: 5px solid var(--purple);
+    padding: 18px 22px;
+  }
+  .option-card h4 {
+    font-family: "Didot", serif;
+    font-size: 18px;
+    color: var(--green-deep);
+    margin: 0 0 10px;
+  }
+  .option-card p { font-size: 14px; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html">The Cacao Estate <span class="accent">at NOVUS</span></a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="wine.html">Wine</a></li>
+      <li><a href="food-production.html">Food Production</a></li>
+      <li><a href="employees.html">Employees</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="chocolate-production.html" class="active">Chocolate Production</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="subpage-header">
+  <div class="subpage-header-inner">
+    <div class="crumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; <a href="chocolate-production.html">Chocolate Production</a> &nbsp;&rsaquo;&nbsp; Creation Process</div>
+    <h1>Chocolate Creation Process</h1>
+    <p class="subtitle">Tiers of production &middot; production math &middot; suppliers &middot; mold strategy</p>
+  </div>
+</section>
+
+<div class="subpage-body">
+
+  <a href="chocolate-production.html" class="back-link">Back to Chocolate Production</a>
+
+  <h2>Three Tiers of Production</h2>
+  <p>Chocolate making sits on a spectrum from melt-and-mold (anyone can learn it in a weekend) to bean-to-bar (a craft you spend years getting right). Cacao Cellars operates at Tier 1 &mdash; the right tier for a wine bar where chocolate is one of two stars rather than the sole production focus.</p>
+
+  <div class="tier-grid">
+    <div class="tier-card tier-1">
+      <div class="tier-num">Tier 1</div>
+      <h3>Melt &amp; Mold</h3>
+      <div class="difficulty">Difficulty 2/10</div>
+      <p><span class="label">Process:</span> Buy high-end couverture (Callebaut and Valrhona callets), melt it, temper it, add inclusions like sea salt or lavender, and pour into custom molds.</p>
+      <p><span class="label">Why it works:</span> Very little space (tabletop tempering machine or double boiler), silent, no mess of raw beans. Focus shifts to branding and pairings.</p>
+    </div>
+
+    <div class="tier-card tier-2">
+      <div class="tier-num">Tier 2</div>
+      <h3>Custom Blend (Refining)</h3>
+      <div class="difficulty">Difficulty 5/10</div>
+      <p><span class="label">Process:</span> Buy pre-cracked cacao nibs. Run them through a Melanger (stone grinder) with sweetener and cocoa butter for 24&ndash;48 hours until silky smooth.</p>
+      <p><span class="label">Caveat:</span> Melangers hum constantly. In a 700-1,800 sq ft space, you'd need a back room or sound-dampened cabinet to keep noise from disrupting the lounge vibe.</p>
+    </div>
+
+    <div class="tier-card tier-3">
+      <div class="tier-num">Tier 3</div>
+      <h3>Bean-to-Bar (Full Production)</h3>
+      <div class="difficulty">Difficulty 9/10</div>
+      <p><span class="label">Process:</span> Start with raw, fermented cacao beans. Sort, roast, crack, and winnow before grinding.</p>
+      <p><span class="label">Caveat:</span> Winnowing is dusty and noisy. Roasting smells amazing but can be intense in a small space. Too industrial for a wine bar of this size.</p>
+    </div>
+  </div>
+
+  <div class="callout-decision">
+    <span class="label">Decision &middot; Cacao Cellars runs Tier 1</span>
+    <p>Tier 1 is technique-driven rather than ingredient-driven. We are not formulating chocolate, so we don't need bean-to-bar education. What we do need to nail, and nail repeatedly, is tempering across all five cocoa-butter crystal forms, polycarbonate molding workflow, finishing techniques (colored cocoa butter, transfer sheets, hand finishes), production scaling to 100&ndash;150 pieces per night across 4&ndash;6 varieties without quality drift, and shelf life / food safety in a wine-bar setting where temperature and humidity vary.</p>
+  </div>
+
+  <h2>The Bean-to-Bar Process (Reference)</h2>
+  <p>For context only &mdash; this is the full Tier 3 journey that our Tier 1 work skips by buying pre-made couverture. Useful as background when explaining the craft to guests.</p>
+
+  <ol class="step-list">
+    <li><span class="step-name">Roasting</span> &mdash; develops flavor precursors, similar to coffee.</li>
+    <li><span class="step-name">Winnowing</span> &mdash; cracking the beans and using air to blow away the papery skins, leaving "nibs."</li>
+    <li><span class="step-name">Melanging (Grinding)</span> &mdash; nibs go into a stone grinder. After ~2 hours, they turn into a liquid called "chocolate liquor." This is when sugar and milk powder are added.</li>
+    <li><span class="step-name">Conching</span> &mdash; the machine continues to grind for 24+ hours to round out flavors and remove acidic off-notes.</li>
+    <li><span class="step-name">Tempering</span> &mdash; raising and lowering temperature (115&deg;F &rarr; 80&deg;F &rarr; 90&deg;F) to ensure the chocolate has snap and shine.</li>
+    <li><span class="step-name">Molding</span> &mdash; pouring into molds and using a vibrating table to pop air bubbles.</li>
+  </ol>
+
+  <h2>Production Math &mdash; The Honest Time Breakdown</h2>
+  <p>Built from actual task time, not ideal time. One person, Tier 1 chocolate, 150 bars in 6 batches of 25.</p>
+
+  <h3>Setup and prep &mdash; 20&ndash;30 minutes</h3>
+  <p>Before the first pour happens you're setting up your workspace, laying out molds, checking that your tempering surface is at the right temperature, getting your melter loaded with chocolate discs, and doing your handwashing and sanitation routine. Fixed regardless of how many bars you make &mdash; happens once per production day.</p>
+
+  <h3>Per batch cycle</h3>
+  <table class="time-table">
+    <thead><tr><th>Step</th><th>Time</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Melt discs to working temperature</td><td>15&ndash;20 min</td><td>Cannot rush without scorching</td></tr>
+      <tr><td>Temper</td><td>10&ndash;15 min</td><td>Table tempering or machine</td></tr>
+      <tr><td>Pour and fill 25 molds</td><td>5&ndash;8 min</td><td>Including tapping and scraping</td></tr>
+      <tr><td>Cooling and setting</td><td>20&ndash;30 min</td><td>Refrigerator at 55&ndash;60&deg;F (dead time for that batch)</td></tr>
+      <tr><td>Unmolding</td><td>5&ndash;10 min</td><td>If properly tempered, releases cleanly</td></tr>
+      <tr><td>Packaging and labeling</td><td>10&ndash;15 min</td><td>Per 25 bars; depends on wrapping method</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The real total with overlapping tasks</h3>
+  <p>A skilled single operator running batches in parallel &mdash; melting batch 2 while batch 1 cools, unmolding batch 1 while batch 2 tempers &mdash; can realistically produce 150 bars in <strong>5.5 to 7.5 hours of active production time</strong>. Add 30 minutes for setup and 30&ndash;45 minutes for cleanup, and a realistic full production day for one person is <strong>6.5 to 9 hours</strong>.</p>
+
+  <div class="three-col">
+    <div class="option-card">
+      <h4>Push toward 9 hours</h4>
+      <p>Hand tempering rather than machine, temperature inconsistencies in the room causing re-tempering, mold releases that don't go cleanly, equipment issues compounding across 6 batches, physical fatigue by batch 4 or 5.</p>
+    </div>
+    <div class="option-card">
+      <h4>Push toward 5.5 hours</h4>
+      <p>Tempering machine eliminates the most time-variable step. Pre-cleaned molds staged the night before. A second fridge so you're never waiting for cooling space. And simply doing it every day &mdash; the learning curve is real.</p>
+    </div>
+    <div class="option-card">
+      <h4>Squares vs. bars</h4>
+      <p>250 squares from 5&ndash;6 sheet molds in rotation: <strong>2 to 2.5 hours</strong> for a practiced operator. 50 full bars across 3 sizes: <strong>3 to 3.5 hours</strong>. With overlap, combined production day is <strong>6 to 7 hours</strong>.</p>
+    </div>
+  </div>
+
+  <h2>4 Flavor Profiles &mdash; What It Actually Means</h2>
+  <p>Each flavor profile is a separate production run. You cannot temper 4 different chocolates simultaneously with one person &mdash; each batch needs to be completed, equipment cleaned, and the next profile started. Cross-contamination between profiles is both a food quality issue and potentially an allergen issue.</p>
+
+  <h3>The sequencing rule</h3>
+  <p><strong>Lightest to darkest.</strong> White chocolate first, milk chocolate second, dark chocolate last. Darker chocolate residue contaminates lighter chocolate visually and flavor-wise; light residue in a dark run is essentially invisible and flavor-neutral.</p>
+
+  <h3>Revised production day for 4 profiles</h3>
+  <table class="time-table">
+    <thead><tr><th>Phase</th><th>Time</th></tr></thead>
+    <tbody>
+      <tr><td>Production time across 4 profiles</td><td>6&ndash;7 hours</td></tr>
+      <tr><td>Changeovers (20&ndash;35 min &times; 3)</td><td>1&ndash;1.75 hours</td></tr>
+      <tr><td>Setup and cleanup</td><td>1&ndash;1.25 hours</td></tr>
+      <tr><td class="total">Total for one person</td><td class="total">8 to 10 hours</td></tr>
+    </tbody>
+  </table>
+  <p>That is a full workday with very little margin. A single person producing 4 flavor profiles daily at target volume will feel rushed, and quality will suffer by profile 3 and 4 due to fatigue.</p>
+
+  <h3>Three practical solutions</h3>
+  <div class="three-col">
+    <div class="option-card">
+      <h4>Dedicate days to profiles</h4>
+      <p>Mon/Tue produce profiles 1&amp;2, Wed/Thu produce 3&amp;4. Build 2&ndash;3 days of inventory per profile and rotate. Production day drops to 4&ndash;5 hours. Requires more finished-product cold storage but is far more sustainable for one person.</p>
+    </div>
+    <div class="option-card">
+      <h4>Hire a part-time assistant</h4>
+      <p>Their job is washing tools, cleaning molds, staging the next profile's equipment, and packaging finished product while the lead focuses on tempering and pouring. Compresses production day back to 6&ndash;7 hours.</p>
+    </div>
+    <div class="option-card">
+      <h4>Run 2 profiles per day, rotating</h4>
+      <p>Accept that not all 4 are available every day. "Today's chocolate flight features our sea salt dark and raspberry milk" reads as a feature, not a limitation &mdash; and creates rotation dynamics that work well in a wine bar.</p>
+    </div>
+  </div>
+
+  <h2>Mold Investment for 4 Profiles</h2>
+  <p>To run profiles efficiently you ideally want <strong>dedicated molds per profile</strong> &mdash; molds that never touch another flavor &mdash; rather than cleaning and reusing the same molds between profiles. Chocolate residue in mold cavities is nearly impossible to fully eliminate with a quick wash, and flavor transfer between a chili dark and a white chocolate is a serious quality problem.</p>
+
+  <table class="time-table">
+    <thead><tr><th>Format</th><th>Math</th><th>Budget</th></tr></thead>
+    <tbody>
+      <tr><td>Square sheet molds (49 cavities each)</td><td>5&ndash;6 sheets per profile &times; 4 profiles = 20&ndash;24 sheets at $15&ndash;35 each</td><td>$400&ndash;$600</td></tr>
+      <tr><td>Bar mold trays (3 bar sizes)</td><td>3 trays per profile per size = 36 trays at $20&ndash;50 each</td><td>$800&ndash;$1,500</td></tr>
+      <tr><td class="total">Total dedicated mold investment</td><td class="total">All formats &times; 4 profiles</td><td class="total">$1,200&ndash;$2,100</td></tr>
+    </tbody>
+  </table>
+  <p>Have this number in the equipment budget from the start, not discovered after everything else is spent.</p>
+
+  <h2>Cost per 1&Prime; Square</h2>
+  <p>Assuming 1&ndash;2 squares paired with each glass:</p>
+  <ul>
+    <li><strong>Labor:</strong> 700 squares in 7 hours at $25/hr + cleanup = ~$225, or <strong>$0.32 per square</strong></li>
+    <li><strong>Ingredients:</strong> 18 lbs of chocolate at $12&ndash;$18/lb = $216, + $50 flavorings = <strong>$0.36 per square</strong></li>
+    <li><strong>Total: roughly $0.75 per square</strong></li>
+  </ul>
+
+  <h2>Chocolate Suppliers Strategy</h2>
+  <p><strong>Start with Callebaut, add Valrhona as the premium line.</strong> Callebaut is the industry workhorse with unparalleled workability and balanced taste. You can walk into a Restaurant Depot in Raleigh/Durham with your business license and pick up 22 lb bags without a special account &mdash; eliminates supply chain risk in year one. The 811 dark and 823 milk are the two SKUs every professional chocolatier knows &mdash; they temper predictably.</p>
+
+  <div class="supplier-grid">
+    <div class="supplier-card recommended">
+      <h4>Callebaut <span class="badge">Best for Launch</span></h4>
+      <div class="price">$4&ndash;$6 / lb wholesale &middot; 11&ndash;22 lb bags</div>
+      <p><strong>SKUs:</strong> 811 dark, 823 milk, W2 white</p>
+      <p><strong>Where to buy:</strong> WebstaurantStore, Restaurant Depot (Raleigh/Durham)</p>
+      <p>Easy to source. Consistent temper. Widely distributed. Pairs well with wine.</p>
+    </div>
+    <div class="supplier-card recommended">
+      <h4>Valrhona <span class="badge">Premium Tier</span></h4>
+      <div class="price">$8&ndash;$12 / lb wholesale &middot; min order ~$500</div>
+      <p><strong>SKUs:</strong> Guanaja 70%, Jivara 40% milk</p>
+      <p><strong>Where to buy:</strong> Valrhona Pro, World Wide Chocolate</p>
+      <p>Top-shelf brand. Single-origin options. Premium pricing power. Sommelier credibility &mdash; "Valrhona Guanaja 70% paired with a Bordeaux" is a story guests will pay for.</p>
+    </div>
+    <div class="supplier-card">
+      <h4>Guittard <span class="badge">Worth a Look</span></h4>
+      <div class="price">$4.50&ndash;$6 / lb wholesale &middot; 10&ndash;50 lb min</div>
+      <p><strong>SKUs:</strong> E. Guittard line, Sentiment wafers</p>
+      <p><strong>Where to buy:</strong> Royal Wholesale, local bakery supply</p>
+      <p>American-made (San Francisco, est. 1868). Heritage brand. High cocoa butter. Wine bar branding.</p>
+    </div>
+    <div class="supplier-card">
+      <h4>Cacao Barry <span class="badge">Scale-up</span></h4>
+      <div class="price">$5&ndash;$9 / lb wholesale &middot; varies by distributor</div>
+      <p><strong>SKUs:</strong> Ocoa 70%, Lactée 35% milk</p>
+      <p><strong>Where to buy:</strong> Webstaurant, Restaurant Depot</p>
+      <p>Origin lines available. Consistent quality. Good for ganaches.</p>
+    </div>
+  </div>
+
+  <p>Once stable, introduce one or two Valrhona single-origin lines as the premium offering. That price differential &mdash; Callebaut at everyday production cost, Valrhona as the premium pairing item &mdash; gives natural menu tiering.</p>
+
+  <h2>Wellness Strategy &mdash; "Functional Chocolate"</h2>
+  <p>Flavors to be added when moulding: <strong>sea salt, raspberries, orange</strong>. Mold strategy includes a <strong>Durham Bull</strong> custom mold for local-pride retail pieces.</p>
+
+  <h2>Allergen Documentation</h2>
+  <p>With 4 profiles, you'll almost certainly have allergen variation &mdash; nuts in one, dairy differences, varying soy lecithin content. Durham County Environmental Health will expect written allergen documentation for each profile available at the point of sale. Build that documentation habit into the recipe development process from day one rather than retrofitting later.</p>
+
+  <h2>Video Instruction &amp; Reference</h2>
+  <ul>
+    <li><strong>Step 1 &mdash; Full molding process (Part 1, steps 1&ndash;4):</strong> mold prep through tempering</li>
+    <li><strong>Step 1 (Part 2, steps 5&ndash;9):</strong> pouring through unmolding</li>
+    <li><strong>Step 2 &mdash; Chocovision tempering machine operation:</strong> current and detailed tutorial, plus a full review video worth watching before purchase</li>
+    <li><strong>Step 3 &mdash; Commercial production line context:</strong> moulding line, tempering through cooling</li>
+    <li><strong>Bonus &mdash; Chocolate Alchemy science reference:</strong> the best written resource for understanding Type V crystal science before touching any equipment</li>
+  </ul>
+
+  <h2>Related Pages</h2>
+  <p>For training programs and education pathway, see <a href="chocolate-training.html">Chocolate Training</a>. For suppliers and accessories, see <a href="chocolate-vendors.html">Chocolate Vendors</a>. For the drinking-chocolate program, see <a href="chocolate-beverages.html">Chocolate Beverages</a>. For the chocolate prep room layout and equipment, see <a href="chocolate-prep.html">Chocolate Prep Area</a>.</p>
+
+  <a href="chocolate-production.html" class="back-link">Back to Chocolate Production</a>
+</div>
+
+<footer>
+  <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
+  Durham, NC &middot; Chocolate Creation Process &middot; May 2026
+</footer>
+
+</body>
+</html>

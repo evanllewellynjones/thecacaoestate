@@ -218,6 +218,247 @@
     margin-top: 4px;
     font-style: italic;
   }
+
+  /* =====================================================================
+     CONCEPT GALLERY — four-photo grid showing the build
+     ===================================================================== */
+  .concept-wrap {
+    background: var(--gray-100);
+    padding: 64px 24px 72px;
+    border-top: 1px solid var(--gray-300);
+    border-bottom: 1px solid var(--gray-300);
+  }
+  .concept-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .concept-eyebrow {
+    text-align: center;
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 10px;
+  }
+  .concept-title {
+    text-align: center;
+    font-family: "Didot", "Playfair Display", serif;
+    font-size: 38px;
+    color: var(--green-deep);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .concept-title .em { color: var(--maroon); font-style: italic; }
+  .concept-lede {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 44px;
+    color: var(--gray-700);
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* Photo grid */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .concept-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    box-shadow: var(--shadow);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .concept-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  }
+
+  .concept-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--gray-100);
+  }
+  .concept-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .concept-card:hover .concept-photo img {
+    transform: scale(1.04);
+  }
+
+  /* Color overlay accent — subtle tint on hover that hints at brand */
+  .concept-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(31,58,46,0) 60%, rgba(31,58,46,0.45) 100%);
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+
+  .concept-caption {
+    padding: 18px 22px 20px;
+    border-top: 3px solid var(--purple);
+  }
+  .concept-card:nth-child(1) .concept-caption { border-top-color: var(--maroon); }
+  .concept-card:nth-child(2) .concept-caption { border-top-color: var(--purple); }
+  .concept-card:nth-child(3) .concept-caption { border-top-color: var(--green-mid); }
+  .concept-card:nth-child(4) .concept-caption { border-top-color: var(--maroon-soft); }
+
+  .concept-caption .label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .concept-caption h3 {
+    font-family: "Didot", "Playfair Display", serif;
+    font-size: 22px;
+    color: var(--green-deep);
+    font-weight: 500;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .concept-caption p {
+    color: var(--gray-700);
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Brand-strip caption beneath grid */
+  .concept-footnote {
+    margin-top: 40px;
+    text-align: center;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+  }
+  .concept-footnote .dot {
+    color: var(--maroon);
+    margin: 0 10px;
+  }
+
+  /* Responsive — single column on tablet & smaller */
+  @media (max-width: 880px) {
+    .concept-grid { grid-template-columns: 1fr; gap: 18px; }
+    .concept-title { font-size: 30px; }
+    .concept-wrap { padding: 48px 16px 56px; }
+  }
+
+  /* =====================================================================
+     OPERATIONS SECTION — Software, Liquor & Music Licenses
+     ===================================================================== */
+  .ops-wrap {
+    background: var(--white);
+    padding: 64px 24px 56px;
+    border-bottom: 1px solid var(--gray-300);
+  }
+  .ops-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .ops-eyebrow {
+    text-align: center;
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 10px;
+  }
+  .ops-title {
+    text-align: center;
+    font-family: "Didot", "Playfair Display", serif;
+    font-size: 36px;
+    color: var(--green-deep);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .ops-title .em { color: var(--maroon); font-style: italic; }
+  .ops-lede {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 36px;
+    color: var(--gray-700);
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .ops-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  @media (max-width: 800px) {
+    .ops-grid { grid-template-columns: 1fr; }
+    .ops-title { font-size: 28px; }
+    .ops-wrap { padding: 48px 16px 44px; }
+  }
+  .ops-card {
+    display: block;
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-top: 6px solid var(--purple);
+    padding: 28px 32px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow);
+    transition: all 0.25s ease;
+  }
+  .ops-card:hover {
+    border-top-color: var(--maroon);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+  }
+  .ops-card .ops-tag {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .ops-card h3 {
+    font-family: "Didot", "Playfair Display", serif;
+    font-size: 24px;
+    color: var(--green-deep);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .ops-card p {
+    color: var(--gray-700);
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .ops-card .ops-cta {
+    color: var(--purple);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .ops-card:hover .ops-cta { color: var(--maroon); }
 </style>
 </head>
 <body>
@@ -243,6 +484,98 @@
   <h1>The Cacao Estate <span class="em">at NOVUS</span></h1>
   <div class="tagline">Wine &middot; Chocolate &middot; Pairings &middot; Durham, NC</div>
   <p class="lede">A 1,683 sq ft wine and chocolate bar built around Tier&nbsp;1 chocolate production, a curated wine program, and Sunday brunch. Click any room in the layout below to explore its design.</p>
+</section>
+
+<!-- =============== CONCEPT GALLERY =============== -->
+<section class="concept-wrap">
+  <div class="concept-inner">
+    <div class="concept-eyebrow">The Concept</div>
+    <h2 class="concept-title">A Wine &amp; Chocolate Bar <span class="em">in Durham</span></h2>
+    <p class="concept-lede">Salvaged brick, hand-carved Balinese wood, a glass-walled chocolate atelier, and a wine program built around the pairing flight. The atmosphere we&rsquo;re building toward, room by room.</p>
+
+    <div class="concept-grid">
+
+      <!-- Wine Bar -->
+      <div class="concept-card">
+        <div class="concept-photo">
+          <img src="images/wine-bar.jpg" alt="Wine bar interior with exposed brick, illuminated bottle shelves, communal teak tables, and rattan barstools">
+        </div>
+        <div class="concept-caption">
+          <span class="label">The Front of House</span>
+          <h3>The Wine Bar</h3>
+          <p>Exposed brick, an 18-foot bar with a backlit bottle wall, communal teak tables, and rattan stools. Eight bar seats facing the chocolate atelier through a viewing window.</p>
+        </div>
+      </div>
+
+      <!-- Chocolatier -->
+      <div class="concept-card">
+        <div class="concept-photo">
+          <img src="images/chocolatier.jpg" alt="Chocolatier at work in a glass-walled production room, with tempered chocolate molds, a hand-carved Balinese doorway alongside">
+        </div>
+        <div class="concept-caption">
+          <span class="label">Tier 1 Production</span>
+          <h3>The Chocolate Atelier</h3>
+          <p>A glass-walled prep room visible from the dining floor. Tier 1 production &mdash; melting, tempering, molding, and packaging &mdash; happening in plain view of every guest.</p>
+        </div>
+      </div>
+
+      <!-- Pairings -->
+      <div class="concept-card">
+        <div class="concept-photo">
+          <img src="images/pairings.jpg" alt="Wine and chocolate pairing flight: three wines beside four tempered bonbons on a wooden board atop a teak table">
+        </div>
+        <div class="concept-caption">
+          <span class="label">The Signature</span>
+          <h3>Pairings &amp; Tasting Flights</h3>
+          <p>Three or four wines poured beside an equal number of bonbons, each pairing chosen to bring out what neither does alone. The signature experience of the room.</p>
+        </div>
+      </div>
+
+      <!-- Patio -->
+      <div class="concept-card">
+        <div class="concept-photo">
+          <img src="images/patio.jpg" alt="Outdoor patio at dusk with brick walls, lush plants, café tables, and a hand-carved Balinese entry doorway">
+        </div>
+        <div class="concept-caption">
+          <span class="label">Outdoor Seating</span>
+          <h3>The Patio</h3>
+          <p>Salvaged-brick walls, low ambient lighting, café tables and lush plantings, with the carved Balinese doorway as the threshold between street and room.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="concept-footnote">
+      Wine <span class="dot">&middot;</span> Chocolate <span class="dot">&middot;</span> Pairings <span class="dot">&middot;</span> Brunch
+    </div>
+  </div>
+</section>
+
+<!-- =============== OPERATIONS =============== -->
+<section class="ops-wrap">
+  <div class="ops-inner">
+    <div class="ops-eyebrow">Operations</div>
+    <h2 class="ops-title">Running the <span class="em">Business</span></h2>
+    <p class="ops-lede">The systems and licenses behind the room &mdash; what makes opening day possible and the months after sustainable.</p>
+
+    <div class="ops-grid">
+
+      <a class="ops-card" href="software.html">
+        <span class="ops-tag">POS &middot; e-commerce &middot; accounting</span>
+        <h3>Software Stack</h3>
+        <p>Three best-in-class systems connected by middleware: Toast for cafe operations and tipped wages, Shopify for retail and online sales, QuickBooks Online for books and tax. Toast wins the Lightspeed comparison because Shopify already handles the retail strength Lightspeed would otherwise provide &mdash; what's left is the operational backbone, where Toast's restaurant DNA matters most. Budget $7,500 upfront, $5,000/year ongoing.</p>
+        <span class="ops-cta">View software stack &rsaquo;</span>
+      </a>
+
+      <a class="ops-card" href="liquor-license.html">
+        <span class="ops-tag">ABC &middot; music licensing &middot; Durham contacts</span>
+        <h3>Liquor &amp; Music Licenses</h3>
+        <p>NC ABC permitting through Vickie West (NC ABC Consulting Services) at $1,200; 4&ndash;6 weeks after lease signing. ASCAP and BMI music licensing required even if we only play original music or the radio. Three consultants under review, Durham Police Department local liaison identified. Total ~$4,000 to get licensed, ~$2,500 annually thereafter.</p>
+        <span class="ops-cta">View licensing pathway &rsaquo;</span>
+      </a>
+
+    </div>
+  </div>
 </section>
 
 <!-- =============== LAYOUT =============== -->
@@ -623,27 +956,6 @@
     </aside>
 
   </div>
-</section>
-
-<!-- =============== ARCHITECT SCHEMATICS (PDF DOWNLOADS) =============== -->
-<section class="download-block">
-  <h3>Architect Schematics &mdash; Construction Documents</h3>
-  <a class="download-link" href="A-101a__GROUND_FLOOR_PLAN_-_a_Rev_13_markup.pdf" target="_blank">
-    <span class="file-icon pdf">PDF</span>
-    <span class="file-meta">
-      <span class="file-name">Ground Floor Plan &mdash; Area A (Architectural)</span>
-      <span class="file-desc">A-101a Rev 13 &middot; LS3P &middot; Bulletin 30 &middot; with RFI markups &middot; 1.5 MB</span>
-    </span>
-    <span class="file-arrow">Open &rsaquo;</span>
-  </a>
-  <a class="download-link" href="E-101A__ELECTRICAL_POWER_GROUND_FLOOR_PLAN_-_AREA_A_Rev_6_markup.pdf" target="_blank">
-    <span class="file-icon pdf">PDF</span>
-    <span class="file-meta">
-      <span class="file-name">Electrical Power Ground Floor Plan &mdash; Area A</span>
-      <span class="file-desc">E-101A Rev 6 &middot; Newcomb &amp; Boyd / LS3P &middot; Bulletin 21 &middot; with RFI markups &middot; 4.7 MB</span>
-    </span>
-    <span class="file-arrow">Open &rsaquo;</span>
-  </a>
 </section>
 
 <!-- =============== LEGEND =============== -->

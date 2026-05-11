@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chocolate Beverages &mdash; The Cacao Estate at NOVUS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .equipment-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-left: 5px solid var(--purple);
+    padding: 22px 26px;
+    margin: 14px 0;
+  }
+  .equipment-card.warn { border-left-color: var(--maroon); background: #fcf6f5; }
+  .equipment-card.yes  { border-left-color: var(--green-mid); background: #f6faf7; }
+  .equipment-card h3 {
+    font-family: "Didot", serif;
+    font-size: 22px;
+    color: var(--green-deep);
+    margin: 0 0 6px;
+    padding: 0;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .equipment-card .price-badge {
+    color: var(--maroon);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--gray-100);
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+  .equipment-card .pre-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 4px;
+    display: block;
+  }
+  .equipment-card.warn .pre-label { color: var(--maroon); }
+  .equipment-card.yes .pre-label  { color: var(--green-deep); }
+  .equipment-card p { margin-bottom: 10px; line-height: 1.6; }
+
+  .yes-no-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 18px 0;
+  }
+  @media (max-width: 800px) { .yes-no-grid { grid-template-columns: 1fr; } }
+  .choice-card {
+    padding: 18px 22px;
+    border: 1px solid var(--gray-300);
+    border-top: 5px solid var(--gray-500);
+  }
+  .choice-card.no { border-top-color: var(--maroon); background: #fcf6f5; }
+  .choice-card.yes { border-top-color: var(--green-mid); background: #f6faf7; }
+  .choice-card .verdict {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .choice-card.no .verdict  { color: var(--maroon); }
+  .choice-card.yes .verdict { color: var(--green-deep); }
+  .choice-card h4 {
+    font-family: "Didot", serif;
+    font-size: 18px;
+    color: var(--green-deep);
+    margin: 0 0 8px;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 18px 0 28px;
+  }
+  @media (max-width: 800px) { .menu-grid { grid-template-columns: 1fr; } }
+  .menu-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    padding: 18px 22px;
+    border-top: 5px solid var(--purple);
+  }
+  .menu-card.signature { border-top-color: var(--maroon); }
+  .menu-card h4 {
+    font-family: "Didot", serif;
+    font-size: 20px;
+    color: var(--green-deep);
+    margin: 0 0 4px;
+  }
+  .menu-card.signature h4 { color: var(--maroon); }
+  .menu-card .style {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 10px;
+  }
+  .menu-card p { font-size: 14px; line-height: 1.55; margin: 0; }
+
+  .opening-callout {
+    background: linear-gradient(135deg, var(--green-darker) 0%, var(--green-deep) 100%);
+    color: var(--white);
+    padding: 28px 32px;
+    margin: 28px 0;
+    border-left: 4px solid var(--purple);
+  }
+  .opening-callout h2 {
+    color: var(--gray-100);
+    border: none;
+    padding: 0;
+    margin-top: 0;
+  }
+  .opening-callout p { color: var(--gray-100); margin-bottom: 0; }
+  .opening-callout strong { color: var(--white); }
+  .opening-callout em { color: var(--purple-soft); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html">The Cacao Estate <span class="accent">at NOVUS</span></a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="wine.html">Wine</a></li>
+      <li><a href="food-production.html">Food Production</a></li>
+      <li><a href="employees.html">Employees</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="chocolate-production.html" class="active">Chocolate Production</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="subpage-header">
+  <div class="subpage-header-inner">
+    <div class="crumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; <a href="chocolate-production.html">Chocolate Production</a> &nbsp;&rsaquo;&nbsp; Beverages</div>
+    <h1>Chocolate Beverages</h1>
+    <p class="subtitle">No espresso machine, no apology &middot; three pieces of equipment, a complete drinking-chocolate program</p>
+  </div>
+</section>
+
+<div class="subpage-body">
+
+  <a href="chocolate-production.html" class="back-link">Back to Chocolate Production</a>
+
+  <div class="opening-callout">
+    <h2>The Premise</h2>
+    <p>Without an espresso machine you cannot make a true mocha &mdash; a mocha is espresso plus chocolate plus steamed milk. <strong>However</strong> you can make an excellent mocha-style drink using strong brewed coffee plus your own house-made hot chocolate base plus steamed milk from a standalone milk frother. On a wine and chocolate bar menu you can legitimately call it a <em>"Chocolate Caf&eacute;"</em> or <em>"Dark Mocha"</em> and the quality will be excellent &mdash; arguably better than a mediocre espresso machine would produce. <strong>The house-made chocolate base is the star of the drink anyway.</strong></p>
+  </div>
+
+  <h2>The Three Pieces of Equipment</h2>
+
+  <div class="equipment-card">
+    <span class="pre-label">Equipment 1 &middot; Coffee</span>
+    <h3>Commercial Batch Brewer <span class="price-badge">$400&ndash;$800</span></h3>
+    <p>A <strong>FETCO CBS-1231</strong> or similar single-station batch brewer is ideal for low-to-medium volume locations like cafes and wine bars. It brews into airpots or thermal servers that keep coffee hot for hours without a warming plate scorching it. FETCO is the industry standard that coffee professionals consistently recommend.</p>
+    <p>The FETCO CBS-1221 can produce 112 eight-ounce cups per hour with a six-minute brew cycle &mdash; more than enough for a wine bar where coffee is a supporting item, not the main business.</p>
+    <p><strong>Pair with a Bunn G3 burr grinder</strong> ($300&ndash;$500). Fresh-ground coffee matters more than the brewer itself.</p>
+  </div>
+
+  <div class="equipment-card">
+    <span class="pre-label">Equipment 2 &middot; Drinking Chocolate</span>
+    <h3>Liquid Drinking Chocolate Dispenser <span class="price-badge">$400&ndash;$1,200</span></h3>
+    <p>This is where the concept gets interesting. There are two completely different approaches that produce very different products.</p>
+
+    <div class="yes-no-grid">
+      <div class="choice-card no">
+        <div class="verdict">&times; Skip</div>
+        <h4>Powder-based dispenser</h4>
+        <p>Mixes powder with hot water automatically. These are what you see at hotel breakfast buffets. <strong>Avoid these.</strong> They contradict everything the concept is built on.</p>
+      </div>
+      <div class="choice-card yes">
+        <div class="verdict">&#10003; Spec</div>
+        <h4>Liquid chocolate dispenser</h4>
+        <p>Purpose-built for real melted chocolate. Load it with actual chocolate &mdash; our own Callebaut or Valrhona couverture &mdash; mixed with hot milk or cream. Holds it at serving temperature, keeps it stirred and smooth.</p>
+      </div>
+    </div>
+
+    <p>The <strong>SPM Lola series</strong> comes in 3-liter and 6-liter models with a transparent bowl that stimulates impulse purchases and creates strong visual appeal &mdash; compact enough for the bar counter. A 5-liter commercial drinking chocolate dispenser runs $400&ndash;$900 depending on brand and features. Units from chocolatetemperingmachines.com are available in black, white, and silver finishes &mdash; worth checking for aesthetic fit with the bar design.</p>
+
+    <p><em>This is where the concept gets genuinely exciting.</em> Loaded with a Valrhona-based drinking chocolate, the dispenser serves what is essentially a liquid version of the tasting-flight chocolate &mdash; a fully branded, artisan hot chocolate that no coffee shop can replicate.</p>
+  </div>
+
+  <div class="equipment-card">
+    <span class="pre-label">Equipment 3 &middot; Milk</span>
+    <h3>Commercial Milk Frother / Steam Wand <span class="price-badge">$150&ndash;$400</span></h3>
+    <p>For steaming and frothing milk for the mocha-style drinks and for topping hot chocolates. A standalone electric milk frother or a small countertop steam wand unit handles light commercial volume.</p>
+    <p>Specific units to look at: <strong>Breville Milk Caf&eacute; commercial</strong> or the <strong>Nespresso Aeroccino Pro</strong>. For higher volume look at a dedicated countertop electric steam pitcher from Bellwether or a small standalone steam wand. Plug into a standard outlet &mdash; no plumbing required.</p>
+  </div>
+
+  <h2>The Beverage Menu This Equipment Builds</h2>
+  <p>What we can serve on opening day with the three pieces of equipment above:</p>
+
+  <div class="menu-grid">
+
+    <div class="menu-card signature">
+      <h4>House Drinking Chocolate</h4>
+      <div class="style">The Signature &middot; European-style</div>
+      <p>Pure Valrhona or Callebaut melted chocolate served in a small cup, European style. This is the signature drink. Nothing on the menu tells our story better. Serve in a 4 oz demitasse with a chocolate square on the saucer.</p>
+    </div>
+
+    <div class="menu-card">
+      <h4>Dark Mocha</h4>
+      <div class="style">Coffee + chocolate + steamed milk</div>
+      <p>Strong batch-brewed coffee combined with our house chocolate base, finished with steamed milk. Not technically an espresso drink but delicious and honest.</p>
+    </div>
+
+    <div class="menu-card">
+      <h4>Regular Coffee</h4>
+      <div class="style">Drip &middot; clean execution</div>
+      <p>Straightforward drip coffee from quality beans, served properly in good cups. Simple, clean, well-executed.</p>
+    </div>
+
+    <div class="menu-card">
+      <h4>Spiced Chocolate</h4>
+      <div class="style">Seasonal rotation</div>
+      <p>Our drinking chocolate base with a seasonal spice addition &mdash; smoked chili, cardamom, or orange &mdash; that rotates with the chocolate tasting flight profiles. Creates a direct pairing story between the drink and the flight.</p>
+    </div>
+
+    <div class="menu-card">
+      <h4>White Hot Chocolate</h4>
+      <div class="style">Separate batch &middot; Valrhona Ivoire</div>
+      <p>A separate batch in the dispenser using Valrhona Ivoire white chocolate. Completely different flavor profile from the dark. Very popular &mdash; especially on the Sunday brunch menu.</p>
+    </div>
+
+    <div class="menu-card">
+      <h4>Tea Service</h4>
+      <div class="style">No additional equipment</div>
+      <p>The batch brewer has a hot water spout that handles loose-leaf tea service at no additional equipment cost. Worth a small curated tea list &mdash; especially for brunch.</p>
+    </div>
+
+  </div>
+
+  <h2>Why This Equipment Stack Wins</h2>
+  <ul>
+    <li><strong>Lower capital cost</strong> &mdash; full stack is $950&ndash;$2,400 vs. $8,000&ndash;$15,000 for a commercial espresso machine and grinder.</li>
+    <li><strong>Lower training burden</strong> &mdash; no espresso pull technique to learn, no daily calibration, no specialized hire required.</li>
+    <li><strong>The chocolate dispenser is on-brand</strong> &mdash; an espresso machine is a coffee shop signal. A drinking chocolate dispenser is a chocolate bar signal.</li>
+    <li><strong>Quality is genuinely high</strong> &mdash; a mediocre espresso machine produces mediocre espresso. Our setup produces an excellent house drinking chocolate that nobody else in Durham can replicate.</li>
+    <li><strong>Compact footprint</strong> &mdash; all three units fit in the back-bar coffee/hot-water/induction slot already planned in the bar layout.</li>
+  </ul>
+
+  <h2>Related Pages</h2>
+  <p>For the back-bar equipment slot where this stack lives, see <a href="bar.html">the Bar page</a>. For the food menu including beverages on the customer-facing side, see <a href="menu.html">Menu</a>. For chocolate suppliers (the couverture going into the drinking chocolate), see <a href="chocolate-vendors.html">Chocolate Vendors</a>.</p>
+
+  <a href="chocolate-production.html" class="back-link">Back to Chocolate Production</a>
+</div>
+
+<footer>
+  <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
+  Durham, NC &middot; Chocolate Beverages &middot; May 2026
+</footer>
+
+</body>
+</html>

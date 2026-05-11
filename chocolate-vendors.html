@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chocolate Vendors &mdash; The Cacao Estate at NOVUS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .vendor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 18px 0 28px;
+  }
+  @media (max-width: 800px) { .vendor-grid { grid-template-columns: 1fr; } }
+  .vendor-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-left: 4px solid var(--purple);
+    padding: 18px 22px;
+  }
+  .vendor-card.local { border-left-color: var(--green-mid); }
+  .vendor-card.premium { border-left-color: var(--maroon); }
+  .vendor-card h4 {
+    font-family: "Didot", serif;
+    font-size: 18px;
+    color: var(--green-deep);
+    margin: 0 0 4px;
+  }
+  .vendor-card .url {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    color: var(--purple);
+    margin-bottom: 10px;
+    word-break: break-all;
+  }
+  .vendor-card .best-for {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--gray-700);
+  }
+  .vendor-card .best-for strong { color: var(--maroon); }
+
+  .pairing-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    padding: 22px 26px;
+    margin: 14px 0;
+    border-top: 5px solid var(--purple);
+  }
+  .pairing-card.white { border-top-color: #d4af37; }
+  .pairing-card.milk  { border-top-color: var(--purple); }
+  .pairing-card.dark  { border-top-color: var(--maroon); }
+  .pairing-card.spice { border-top-color: var(--green-mid); }
+  .pairing-card h3 {
+    font-family: "Didot", serif;
+    font-size: 22px;
+    color: var(--green-deep);
+    margin: 0 0 6px;
+    padding: 0;
+    border: none;
+  }
+  .pairing-card .lede {
+    font-size: 14.5px;
+    color: var(--gray-700);
+    font-style: italic;
+    margin-bottom: 12px;
+    line-height: 1.55;
+  }
+  .pairing-card ul { margin: 0 0 0 22px; }
+  .pairing-card li { margin-bottom: 6px; line-height: 1.55; }
+  .pairing-card .label {
+    font-weight: 700;
+    color: var(--maroon);
+  }
+
+  table.caffeine {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 14.5px;
+  }
+  table.caffeine th, table.caffeine td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-300);
+  }
+  table.caffeine th {
+    background: var(--green-darker);
+    color: var(--white);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  table.caffeine tr:nth-child(even) td { background: var(--gray-100); }
+
+  .inspiration-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    margin: 18px 0;
+  }
+  @media (max-width: 900px) { .inspiration-grid { grid-template-columns: 1fr; } }
+  .inspiration-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-top: 5px solid var(--maroon);
+    padding: 18px 22px;
+  }
+  .inspiration-card h4 {
+    font-family: "Didot", serif;
+    font-size: 18px;
+    color: var(--green-deep);
+    margin: 0 0 8px;
+  }
+  .inspiration-card .vibe, .inspiration-card .takeaway {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 8px;
+  }
+  .inspiration-card .vibe strong, .inspiration-card .takeaway strong {
+    color: var(--maroon);
+  }
+
+  .indonesia-callout {
+    background: linear-gradient(180deg, #f5f2ec 0%, var(--white) 100%);
+    border-left: 4px solid var(--green-mid);
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+  .indonesia-callout h3 {
+    font-family: "Didot", serif;
+    color: var(--green-deep);
+    margin-top: 0;
+  }
+  .indonesia-callout .stat {
+    color: var(--maroon);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html">The Cacao Estate <span class="accent">at NOVUS</span></a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="wine.html">Wine</a></li>
+      <li><a href="food-production.html">Food Production</a></li>
+      <li><a href="employees.html">Employees</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="chocolate-production.html" class="active">Chocolate Production</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="subpage-header">
+  <div class="subpage-header-inner">
+    <div class="crumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; <a href="chocolate-production.html">Chocolate Production</a> &nbsp;&rsaquo;&nbsp; Vendors</div>
+    <h1>Chocolate Vendors</h1>
+    <p class="subtitle">Suppliers &middot; private label &middot; accessories &middot; pairing reference</p>
+  </div>
+</section>
+
+<div class="subpage-body">
+
+  <a href="chocolate-production.html" class="back-link">Back to Chocolate Production</a>
+
+  <h2>Local &amp; Regional Artisans</h2>
+  <p>NC and surrounding-state makers we want relationships with &mdash; for wholesale partnerships, retail-library sourcing, and the local-pride story that pairs with wine bar regulars.</p>
+
+  <div class="vendor-grid">
+    <div class="vendor-card local">
+      <h4>Videri Chocolate Factory</h4>
+      <div class="url">viderichocolatefactory.com</div>
+      <p class="best-for"><strong>Best for:</strong> Local Raleigh-based bean-to-bar chocolate, professional wholesale partnerships, and bonbons.</p>
+    </div>
+    <div class="vendor-card local">
+      <h4>Brasstown Craft Chocolate</h4>
+      <div class="url">brasstownchocolate.com</div>
+      <p class="best-for"><strong>Best for:</strong> Award-winning single-origin bars from Winston-Salem &mdash; perfect for terroir-focused wine pairings.</p>
+    </div>
+    <div class="vendor-card local">
+      <h4>GlamBerries by Angela</h4>
+      <div class="url">glamberriesnc.com</div>
+      <p class="best-for"><strong>Best for:</strong> High-end chocolate-covered strawberries and designer confections for the local Raleigh-Durham area.</p>
+    </div>
+    <div class="vendor-card local">
+      <h4>French Broad Chocolates</h4>
+      <div class="url">Asheville, NC</div>
+      <p class="best-for"><strong>Best for:</strong> Sustainability and craft. Artisan gift sets, potential wholesale-custom options for local businesses seeking a premium aesthetic.</p>
+    </div>
+  </div>
+
+  <h2>Premium &amp; National Suppliers</h2>
+
+  <div class="vendor-grid">
+    <div class="vendor-card premium">
+      <h4>Bar &amp; Cocoa</h4>
+      <div class="url">barandcocoa.com</div>
+      <p class="best-for"><strong>Best for:</strong> Sourcing a massive variety of ethically traded craft chocolate from over 50 makers worldwide for the retail "library."</p>
+    </div>
+    <div class="vendor-card premium">
+      <h4>Guittard Chocolate</h4>
+      <div class="url">guittard.com</div>
+      <p class="best-for"><strong>Best for:</strong> High-quality drinking chocolate and professional-grade baking supplies used by many top pastry chefs.</p>
+    </div>
+    <div class="vendor-card premium">
+      <h4>Cacao &amp; Cardamom</h4>
+      <div class="url">cacaoandcardamom.com</div>
+      <p class="best-for"><strong>Best for:</strong> Visually stunning, hand-painted artisan truffles and high-end gift sets.</p>
+    </div>
+    <div class="vendor-card premium">
+      <h4>Lindt Excellence (Wholesale)</h4>
+      <div class="url">lindtusa.com</div>
+      <p class="best-for"><strong>Best for:</strong> Purchasing consistent, high-percentage dark chocolate in cases for high-volume wine pairing flights.</p>
+    </div>
+  </div>
+
+  <h2>Private Label Options</h2>
+  <p>For the Cacao Cellars branded bar product &mdash; sold retail at the FOH display case and as the take-home component of pairing flights.</p>
+
+  <div class="vendor-grid">
+    <div class="vendor-card">
+      <h4>Videri Chocolate Factory (Raleigh)</h4>
+      <p class="best-for">Custom stickered bars for orders of <strong>100 or more</strong>. Choose from their signature flavors (Classic Dark, Sea Salt, or Dark Milk) and apply your own designed stickers to their black or white pouches.</p>
+    </div>
+    <div class="vendor-card">
+      <h4>Tony's Chocolonely</h4>
+      <p class="best-for"><strong>Customize the entire wrapper</strong> for their "small choco bars" (min 240) or "big bars" (from 5 units). 100% Fairtrade and ethically sourced &mdash; a high-end, mission-driven brand.</p>
+    </div>
+    <div class="vendor-card">
+      <h4>Chocomize</h4>
+      <p class="best-for">Specializes in <strong>branded corporate gifts</strong>. Full-size 3.5oz chocolate bars with fully customized sleeves (front and back); imprint chocolate bars with truffles where your logo is printed directly on the chocolate.</p>
+    </div>
+    <div class="vendor-card">
+      <h4>4imprint</h4>
+      <p class="best-for">Reliable source for bulk promotional items. 125 personalized molded chocolate bars where both the wrapper and the chocolate itself can be customized with your logo.</p>
+    </div>
+  </div>
+
+  <h2>Caffeine &amp; Chocolate Reference</h2>
+  <p>For staff training and guest questions. Worth knowing for the late-night pairing menu and for the brunch service &mdash; some guests are caffeine-sensitive.</p>
+
+  <table class="caffeine">
+    <thead><tr><th>Chocolate Type</th><th>Caffeine Content</th><th>Coffee Equivalent</th></tr></thead>
+    <tbody>
+      <tr><td>Dark chocolate (70&ndash;85%)</td><td>12&ndash;30 mg per oz</td><td>About 1/4 cup of brewed coffee</td></tr>
+      <tr><td>Milk chocolate</td><td>3&ndash;10 mg per oz</td><td>Negligible</td></tr>
+      <tr><td>White chocolate</td><td>0 mg per oz</td><td>Caffeine-free</td></tr>
+      <tr><td>Brewed coffee (8 oz)</td><td>95&ndash;200 mg</td><td>The reference point</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Pairings Reference</h2>
+  <p>The pairing framework that drives the BTG list selection and the chocolate-flight design. Each profile below corresponds to one or more signature pieces in the chocolate program.</p>
+
+  <div class="pairing-card white">
+    <h3>White Chocolate &amp; Sweet or Sparkling Wines</h3>
+    <p class="lede">Since white chocolate contains no cocoa solids, it is buttery and mellow. It pairs best with wines that have fruity or floral notes and enough acidity to cut through the fat.</p>
+    <ul>
+      <li><span class="label">Best pairings:</span> Moscato d'Asti, Ice Wine, or a fruity Ros&eacute;.</li>
+      <li><span class="label">Why it works:</span> The sugar in the wine matches the sweetness of the chocolate, while the fruitiness enhances the vanilla notes.</li>
+      <li><span class="label">Product idea:</span> A white chocolate bar with hints of vanilla or fruit &mdash; a very approachable starting point for a flight.</li>
+    </ul>
+  </div>
+
+  <div class="pairing-card milk">
+    <h3>Milk Chocolate &amp; Medium-Bodied Reds</h3>
+    <p class="lede">Milk chocolate has higher sugar content and dairy creaminess. It needs a wine that is silky and not too tannic, otherwise the wine will taste "thin."</p>
+    <ul>
+      <li><span class="label">Best pairings:</span> Pinot Noir, Merlot, or a Ruby Port.</li>
+      <li><span class="label">Why it works:</span> Ripe red fruit flavors in Pinot Noir complement the dairy without the puckering feel of heavy tannins.</li>
+      <li><span class="label">Product idea:</span> A high-quality milk chocolate bar with a higher cocoa percentage (around 40%) &mdash; more sophisticated than standard candy-grade.</li>
+    </ul>
+  </div>
+
+  <div class="pairing-card dark">
+    <h3>Dark Chocolate &amp; Bold, Tannic Reds</h3>
+    <p class="lede">Dark chocolate (70%+) is intense and bitter. It requires a wine with significant "heft" and structure to stand up to it.</p>
+    <ul>
+      <li><span class="label">Best pairings:</span> Cabernet Sauvignon, Zinfandel, or Syrah.</li>
+      <li><span class="label">Why it works:</span> These wines have their own strong tannins and dark fruit profiles (blackberry, plum) that can bridge the bitterness of the cacao.</li>
+      <li><span class="label">Product idea:</span> An 85% extra dark chocolate bar is a classic choice for a bold Cabernet flight.</li>
+    </ul>
+  </div>
+
+  <div class="pairing-card spice">
+    <h3>Specialty Pairings &mdash; Sea Salt &amp; Spice</h3>
+    <p class="lede">Adding a "bridge" ingredient like sea salt or chili can make pairing much easier &mdash; widening the wines a single chocolate can match.</p>
+    <ul>
+      <li><span class="label">Best pairings:</span> Sea salt chocolate with Chardonnay; chili-infused chocolate with a spicy Syrah.</li>
+      <li><span class="label">Why it works:</span> Salt acts as a flavor enhancer for both the wine and the chocolate, often softening the perception of tannins.</li>
+      <li><span class="label">Product idea:</span> A sea salt dark chocolate bar &mdash; often the most popular item on a pairing menu because it works with such a wide variety of wines.</li>
+    </ul>
+  </div>
+
+  <h2>Accessories &amp; Atmosphere</h2>
+  <ul>
+    <li><strong>Slate boards:</strong> A Crate &amp; Barrel slate cheese board provides a dark, moody background that makes the rich colors of chocolate and wine pop. Soapstone chalk lets staff write wine vintage and chocolate origin directly on the board.</li>
+    <li><strong>Tasting glasses:</strong> For thick drinking chocolate, Fellow Stagg tasting glasses are a sophisticated choice. Their flared lip is designed to spread liquid evenly across the palate, helping guests catch subtle notes of berry or tobacco in high-end cacao.</li>
+    <li><strong>Floating oak shelves:</strong> Light-colored wood keeps the small space feeling airy and bright. Perfect for displaying a curated "Chocolate Library" without adding visual bulk.</li>
+    <li><strong>Warm-dim LED pendants:</strong> Mimic the behavior of incandescent bulbs, becoming warmer in color as they dim. Creates the "glowy" evening atmosphere essential for a wine bar.</li>
+    <li><strong>Acoustic moss panels:</strong> Lush green aesthetic for a wellness-focused space, while significantly reducing echo in a small, crowded room.</li>
+  </ul>
+
+  <h2>Inspiration &mdash; The "Chocolate Restaurant" Masters</h2>
+  <p>Concepts to study, not copy. Each has something specific worth borrowing.</p>
+
+  <div class="inspiration-grid">
+    <div class="inspiration-card">
+      <h4>Max Brenner</h4>
+      <p class="vibe"><strong>Vibe:</strong> The "Bald Man." Gold standard for a full-service chocolate restaurant. Uses "chocolate pipes" running through the ceiling for an industrial, immersive feel.</p>
+      <p class="takeaway"><strong>Takeaway:</strong> The Theatre of Chocolate &mdash; giant vats of swirling chocolate, over-the-top presentation.</p>
+    </div>
+    <div class="inspiration-card">
+      <h4>Venchi (us.venchi.com)</h4>
+      <p class="vibe"><strong>Vibe:</strong> Italian luxury brand &mdash; "jewelry store" feel for chocolate. NYC locations feature a Pick &amp; Mix wall and a chocolate fountain.</p>
+      <p class="takeaway"><strong>Takeaway:</strong> Chocolate can be marketed as a luxury fashion accessory. Fits the "modern organic" aesthetic.</p>
+    </div>
+    <div class="inspiration-card">
+      <h4>Li-Lac Chocolates</h4>
+      <p class="vibe"><strong>Vibe:</strong> Manhattan's oldest chocolate house (since 1923). Leans heavily into history and the "Old New York" narrative.</p>
+      <p class="takeaway"><strong>Takeaway:</strong> Heritage and storytelling are powerful tools for justifying premium price points.</p>
+    </div>
+  </div>
+
+  <div class="indonesia-callout">
+    <h3>Indonesia &amp; Chocolate &mdash; Signage with History</h3>
+    <p>Indonesia is one of the <span class="stat">world's largest producers of cacao</span>, typically ranking in the top three globally (alongside Ivory Coast and Ghana). While historically much of the crop was exported as raw beans or used for industrial chocolate, there has been a massive shift toward <strong>high-end, bean-to-bar chocolate making</strong> within the country over the last decade.</p>
+    <p><strong>Flavor profile:</strong> Unlike West African chocolate, which is often "earthy," Indonesian cacao &mdash; especially from regions like <strong>Java, Bali, and Sulawesi</strong> &mdash; is famous for its <strong>high acidity and fruity, citrusy notes</strong>.</p>
+    <p><strong>Wellness angle:</strong> Indonesian single-origin dark chocolate is rich in antioxidants and aligns with a "clean label" ethos.</p>
+    <p><strong>Key brands to know:</strong> Krakakoa, Mason Chocolates (Bali), and Junglegold. They focus heavily on sustainability and direct trade with farmers.</p>
+    <p>This is the basis for the Indonesia-and-chocolate signage in the FOH retail area &mdash; ties to the Bali-carved doorway and entryway aesthetic of the room.</p>
+  </div>
+
+  <h2>Related Pages</h2>
+  <p>For the creation process and production math, see <a href="chocolate-process.html">Chocolate Creation Process</a>. For training and education programs, see <a href="chocolate-training.html">Chocolate Training</a>. For the drinking-chocolate beverage program, see <a href="chocolate-beverages.html">Chocolate Beverages</a>.</p>
+
+  <a href="chocolate-production.html" class="back-link">Back to Chocolate Production</a>
+</div>
+
+<footer>
+  <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
+  Durham, NC &middot; Chocolate Vendors &middot; May 2026
+</footer>
+
+</body>
+</html>

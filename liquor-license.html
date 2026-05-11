@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Liquor &amp; Music Licenses &mdash; The Cacao Estate at NOVUS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .summary-banner {
+    background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+    color: var(--white);
+    padding: 28px 32px;
+    margin: 0 0 28px;
+    border-left: 4px solid var(--purple);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 800px) {
+    .summary-banner { grid-template-columns: 1fr; }
+  }
+  .summary-banner .stat-block .stat-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray-300);
+    margin-bottom: 6px;
+  }
+  .summary-banner .stat-block .stat-value {
+    font-family: "Didot", serif;
+    font-size: 28px;
+    color: var(--white);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .summary-banner .stat-block .stat-note {
+    font-size: 13px;
+    color: var(--gray-100);
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .contact-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-left: 5px solid var(--maroon);
+    padding: 20px 24px;
+    margin: 14px 0;
+  }
+  .contact-card .role {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 4px;
+  }
+  .contact-card h4 {
+    font-family: "Didot", serif;
+    font-size: 20px;
+    color: var(--green-deep);
+    margin: 0 0 4px;
+  }
+  .contact-card .org {
+    color: var(--gray-700);
+    font-style: italic;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  .contact-card .contact-details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    font-size: 14px;
+  }
+  .contact-card .contact-details dt {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--purple);
+    align-self: center;
+  }
+  .contact-card .contact-details dd {
+    margin: 0;
+    color: var(--gray-700);
+  }
+
+  .consultant-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    margin: 18px 0 28px;
+  }
+  @media (max-width: 900px) { .consultant-grid { grid-template-columns: 1fr; } }
+  .consultant-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-top: 5px solid var(--purple);
+    padding: 20px 24px;
+  }
+  .consultant-card.lead { border-top-color: var(--green-mid); background: #f6faf7; }
+  .consultant-card h4 {
+    font-family: "Didot", serif;
+    font-size: 20px;
+    color: var(--green-deep);
+    margin: 0 0 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .consultant-card .badge {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    color: var(--white);
+    background: var(--gray-500);
+  }
+  .consultant-card.lead .badge { background: var(--green-deep); }
+  .consultant-card .status {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--maroon);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .consultant-card p { font-size: 13.5px; line-height: 1.55; margin-bottom: 8px; }
+  .consultant-card .contact-line {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 13px;
+    margin-top: 10px;
+    color: var(--green-deep);
+    font-weight: 700;
+  }
+
+  .music-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    margin: 18px 0 24px;
+  }
+  @media (max-width: 900px) { .music-grid { grid-template-columns: 1fr; } }
+  .music-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-left: 4px solid var(--purple);
+    padding: 16px 20px;
+  }
+  .music-card.required { border-left-color: var(--maroon); }
+  .music-card.optional { border-left-color: var(--gray-500); }
+  .music-card h4 {
+    font-family: "Didot", serif;
+    font-size: 20px;
+    color: var(--green-deep);
+    margin: 0 0 4px;
+  }
+  .music-card .verdict {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .music-card.required .verdict { color: var(--maroon); }
+  .music-card.optional .verdict { color: var(--gray-500); }
+  .music-card p { font-size: 13.5px; line-height: 1.5; margin: 0 0 6px; }
+  .music-card .focus {
+    font-style: italic;
+    color: var(--gray-500);
+    font-size: 12px;
+  }
+  .music-card .links {
+    margin-top: 10px;
+    font-size: 12px;
+    word-break: break-all;
+  }
+  .music-card .links a {
+    display: block;
+    color: var(--purple);
+    margin-bottom: 4px;
+    text-decoration: none;
+  }
+  .music-card .links a:hover { color: var(--maroon); text-decoration: underline; }
+
+  .key-callout {
+    background: var(--gray-100);
+    border-left: 4px solid var(--purple);
+    padding: 18px 24px;
+    margin: 18px 0;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html">The Cacao Estate <span class="accent">at NOVUS</span></a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="wine.html">Wine</a></li>
+      <li><a href="food-production.html">Food Production</a></li>
+      <li><a href="employees.html">Employees</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="chocolate-production.html">Chocolate Production</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="subpage-header">
+  <div class="subpage-header-inner">
+    <div class="crumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; Operations &nbsp;&rsaquo;&nbsp; Liquor &amp; Music Licenses</div>
+    <h1>Liquor &amp; Music Licenses</h1>
+    <p class="subtitle">NC ABC permitting &middot; ASCAP, BMI, SESAC &middot; Durham contacts</p>
+  </div>
+</section>
+
+<div class="subpage-body">
+
+  <a href="index.html" class="back-link">Back to Home</a>
+
+  <h2>Summary Numbers</h2>
+
+  <div class="summary-banner">
+    <div class="stat-block">
+      <div class="stat-label">Lead Consultant Fee</div>
+      <div class="stat-value">$1,200</div>
+      <div class="stat-note">Vickie West &mdash; NC ABC Consulting Services</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-label">Total to Get Licensed</div>
+      <div class="stat-value">~$4,000</div>
+      <div class="stat-note">All-in including state fees, ABC permits, music licensing setup</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-label">Ongoing Annual</div>
+      <div class="stat-value">~$2,500</div>
+      <div class="stat-note">Renewals plus ASCAP/BMI annual royalties</div>
+    </div>
+  </div>
+
+  <h2>NC ABC Liquor License</h2>
+  <p>Approximately <strong>4&ndash;6 weeks after lease signing</strong> to obtain &mdash; assuming the application is submitted promptly and Durham Police Department local review is on standard timeline. The right move is engaging a consultant who has navigated the process before; doing it solo adds weeks of avoidable back-and-forth.</p>
+
+  <h3>Consultants Under Review</h3>
+
+  <div class="consultant-grid">
+
+    <div class="consultant-card lead">
+      <h4>Vickie West <span class="badge">Recommended</span></h4>
+      <div class="status">Sent email requesting meeting &middot; 11/23</div>
+      <p><strong>Firm:</strong> NC ABC Consulting Services Permit Specialists</p>
+      <p>Founder Vickie West has <strong>over three decades of experience at the NC ABC Commission</strong>.</p>
+      <p><strong>Focus:</strong> Retail permits, special one-time permits (nonprofit), and personalized assistance with the entire process.</p>
+      <div class="contact-line">(919) 274-3416</div>
+    </div>
+
+    <div class="consultant-card">
+      <h4>Alcohol Management <span class="badge">Reviewing</span></h4>
+      <div class="status">Sent email requesting meeting &middot; 11/23</div>
+      <p><strong>Focus:</strong> "Turnkey" ABC permitting services, responsible beverage service training, and risk management consulting.</p>
+      <p>Worth meeting because they bundle responsible-service training into the engagement &mdash; useful for onboarding the FOH staff at opening.</p>
+    </div>
+
+    <div class="consultant-card">
+      <h4>Bill Cox <span class="badge">Reviewing</span></h4>
+      <div class="status">Sent email requesting meeting &middot; 11/23</div>
+      <p><strong>Firm:</strong> Rawls, Scheer, Clary &amp; Mingo</p>
+      <p>ABC Case Manager and Consultant. Specializes in ABC law, licensing, compliance, and defending against violations &mdash; <strong>over 20 years of experience</strong>.</p>
+      <p>Based in Charlotte, statewide services. Best fit if we anticipate complexity or want a law firm relationship from the start.</p>
+    </div>
+
+  </div>
+
+  <h2>Durham-Specific Local Contact</h2>
+  <p>For questions about the local review and sign-off process in Durham specifically, the designated liaison with the Durham Police Department:</p>
+
+  <div class="contact-card">
+    <div class="role">Local Government Contact &middot; General Permit Questions</div>
+    <h4>Officer Andrew Wilkinson</h4>
+    <div class="org">Durham Police Department &mdash; handles local review of the ABC application</div>
+    <dl class="contact-details">
+      <dt>Phone</dt><dd>(919) 560-4322 ext. 29173</dd>
+      <dt>Email</dt><dd>Wilkinson@durhamnc.gov</dd>
+    </dl>
+  </div>
+
+  <h2>Music Licenses</h2>
+  <p>This is genuinely surprising the first time you encounter it: <strong>even if you only play original music, you still need a license.</strong> Even playing the radio publicly in a commercial venue requires licensing. The three U.S. performance rights organizations cover essentially all commercial music, and most bars license at least the two big ones.</p>
+
+  <div class="music-grid">
+
+    <div class="music-card required">
+      <h4>ASCAP</h4>
+      <div class="verdict">Required</div>
+      <p>Covers the largest catalog of pop, rock, country, hip-hop, and contemporary repertoire.</p>
+      <p class="focus">Annual fee scales with venue size and music use (live, recorded, both).</p>
+      <div class="links">
+        <a href="http://www.ascap.com/users/licensefinder">ascap.com/users/licensefinder</a>
+        <a href="https://www.ascap.com/onwards-rates-reports-forms/bgt-rate.pdf">BGT rate sheet (PDF)</a>
+      </div>
+    </div>
+
+    <div class="music-card required">
+      <h4>BMI</h4>
+      <div class="verdict">Required</div>
+      <p>Different catalog than ASCAP &mdash; overlaps slightly but covers many artists not in ASCAP. Most bars license both.</p>
+      <p class="focus">Similar fee structure to ASCAP &mdash; budget for both.</p>
+      <div class="links">
+        <a href="https://www.bmi.com/licensing">bmi.com/licensing</a>
+      </div>
+    </div>
+
+    <div class="music-card optional">
+      <h4>SESAC</h4>
+      <div class="verdict">Optional &middot; review</div>
+      <p>Mainly classical and European repertoire, but also some country, gospel, and indie. May be okay to skip if our music programming doesn't lean classical.</p>
+      <p class="focus">Reviewed case-by-case once the music programming is set.</p>
+      <div class="links">
+        <a href="https://www.sesac.com/music-licensing">sesac.com/music-licensing</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="key-callout">
+    Even original music played live requires public-performance licensing. Even playing the radio aloud in the bar requires licensing. The performance-rights system covers <em>any</em> commercial public performance of copyrighted work, which in 2026 is essentially all music. Build ASCAP + BMI fees into the operating budget as a fixed annual line.
+  </div>
+
+  <h2>Sequencing &amp; Timeline</h2>
+  <ol>
+    <li><strong>Week 0 &mdash; Lease signing.</strong> The 4&ndash;6 week clock starts.</li>
+    <li><strong>Week 1 &mdash; Engage consultant.</strong> Vickie West is the lead. Application package gets prepared.</li>
+    <li><strong>Weeks 2&ndash;3 &mdash; State application submitted.</strong> Durham Police local review runs in parallel (Officer Wilkinson liaison).</li>
+    <li><strong>Weeks 4&ndash;6 &mdash; License issued.</strong> Need this in hand <em>before</em> any liquor delivery is accepted on premise.</li>
+    <li><strong>Pre-opening &mdash; ASCAP + BMI licenses signed.</strong> Annual fees set up before doors open, before music is played.</li>
+    <li><strong>Opening day &mdash; All license certificates posted</strong> as required by NC code (visible to patrons and inspectors).</li>
+  </ol>
+
+  <h2>Related Pages</h2>
+  <p>For the WYE-era Letter of Intent that triggers the ABC clock when executed, see the LOI archive in the project files. For software systems that will track liquor sales for ABC reporting compliance, see <a href="software.html">Software Stack</a>.</p>
+
+  <a href="index.html" class="back-link">Back to Home</a>
+</div>
+
+<footer>
+  <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
+  Durham, NC &middot; Liquor &amp; Music Licenses &middot; May 2026
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chocolate Training &mdash; The Cacao Estate at NOVUS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 18px 0;
+  }
+  @media (max-width: 800px) { .skill-grid { grid-template-columns: 1fr; } }
+  .skill-card {
+    background: var(--gray-100);
+    border-left: 4px solid var(--purple);
+    padding: 14px 18px;
+  }
+  .skill-card h4 {
+    font-family: "Didot", serif;
+    font-size: 16px;
+    color: var(--green-deep);
+    margin: 0 0 4px;
+  }
+  .skill-card p { font-size: 13.5px; line-height: 1.5; margin: 0; }
+
+  .pathway-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+  }
+  .pathway-table th, .pathway-table td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--gray-300);
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .pathway-table th {
+    background: var(--green-darker);
+    color: var(--white);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .pathway-table tr:nth-child(even) td { background: var(--gray-100); }
+  .pathway-table td.month-cell {
+    background: var(--purple) !important;
+    color: var(--white);
+    font-family: "Didot", serif;
+    font-weight: 700;
+    font-size: 16px;
+    width: 90px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .pathway-table td .action {
+    font-family: "Didot", serif;
+    font-size: 16px;
+    color: var(--maroon);
+    font-weight: 700;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 14.5px;
+  }
+  .budget-table th, .budget-table td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-300);
+  }
+  .budget-table th {
+    background: var(--green-darker);
+    color: var(--white);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .budget-table tr:nth-child(even) td { background: var(--gray-100); }
+  .budget-table td.cost-cell { text-align: right; color: var(--maroon); font-weight: 700; }
+  .budget-table tr.total td {
+    background: var(--maroon) !important;
+    color: var(--white);
+    font-weight: 700;
+  }
+  .budget-table tr.total td.cost-cell { color: var(--white); }
+
+  .program-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-top: 5px solid var(--purple);
+    padding: 22px 26px;
+    margin: 14px 0;
+  }
+  .program-card.recommended { border-top-color: var(--green-mid); background: #f6faf7; }
+  .program-card h3 {
+    font-family: "Didot", serif;
+    font-size: 22px;
+    color: var(--green-deep);
+    margin: 0 0 6px;
+    padding: 0;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .program-card .badge {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    color: var(--white);
+    background: var(--gray-500);
+  }
+  .program-card.recommended .badge { background: var(--green-deep); }
+  .program-card .program-meta {
+    color: var(--gray-500);
+    font-style: italic;
+    font-size: 13.5px;
+    margin-bottom: 12px;
+  }
+  .program-card .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    background: var(--gray-100);
+    padding: 10px 14px;
+    margin: 10px 0 14px;
+    font-size: 13px;
+  }
+  .program-card .meta-row .meta-item .meta-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--purple);
+    display: block;
+  }
+  .program-card .meta-row .meta-item .meta-val {
+    font-weight: 700;
+    color: var(--green-deep);
+  }
+  .program-card ul { margin: 8px 0 0 22px; }
+  .program-card li { margin-bottom: 6px; line-height: 1.55; }
+
+  .local-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 18px 0;
+  }
+  @media (max-width: 900px) { .local-grid { grid-template-columns: 1fr; } }
+  .local-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-left: 4px solid var(--maroon);
+    padding: 14px 18px;
+  }
+  .local-card h4 {
+    font-family: "Didot", serif;
+    font-size: 16px;
+    color: var(--green-deep);
+    margin: 0 0 4px;
+  }
+  .local-card p { font-size: 13.5px; line-height: 1.5; margin: 0; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html">The Cacao Estate <span class="accent">at NOVUS</span></a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="wine.html">Wine</a></li>
+      <li><a href="food-production.html">Food Production</a></li>
+      <li><a href="employees.html">Employees</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="chocolate-production.html" class="active">Chocolate Production</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="subpage-header">
+  <div class="subpage-header-inner">
+    <div class="crumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; <a href="chocolate-production.html">Chocolate Production</a> &nbsp;&rsaquo;&nbsp; Training</div>
+    <h1>Chocolate Training</h1>
+    <p class="subtitle">6-month education pathway &middot; programs &middot; budget</p>
+  </div>
+</section>
+
+<div class="subpage-body">
+
+  <a href="chocolate-production.html" class="back-link">Back to Chocolate Production</a>
+
+  <h2>What Tier 1 Work Actually Demands</h2>
+  <p>Tier 1 chocolate work &mdash; melting Callebaut and Valrhona callets, tempering, molding, and finishing &mdash; is <strong>technique-driven rather than ingredient-driven</strong>. We are not formulating chocolate, so we don't need bean-to-bar education. What we do need to nail, and nail repeatedly:</p>
+
+  <div class="skill-grid">
+    <div class="skill-card">
+      <h4>Tempering across all five cocoa-butter crystal forms</h4>
+      <p>The science of why your bonbons snap and shine. Type V crystal is the goal &mdash; everything else fails.</p>
+    </div>
+    <div class="skill-card">
+      <h4>Polycarbonate molding workflow</h4>
+      <p>Coating, capping, releasing &mdash; without blooms or air pockets.</p>
+    </div>
+    <div class="skill-card">
+      <h4>Finishing techniques</h4>
+      <p>Colored cocoa butter, transfer sheets, hand finishes (sea salt, espresso bean, lavender).</p>
+    </div>
+    <div class="skill-card">
+      <h4>Production scaling</h4>
+      <p>100&ndash;150 pieces per night across 4&ndash;6 varieties without quality drift.</p>
+    </div>
+    <div class="skill-card">
+      <h4>Shelf life &amp; food safety</h4>
+      <p>In a wine-bar setting where temperature and humidity vary daily.</p>
+    </div>
+    <div class="skill-card">
+      <h4>The Callebaut workflow specifically</h4>
+      <p>Brand-specific quirks of 811 dark, 823 milk, and W2 white &mdash; the SKUs we'll actually be running.</p>
+    </div>
+  </div>
+
+  <h2>6-Month Training Pathway</h2>
+  <p>Designed to run alongside the build-out, so the Chocolate Production Lead is launch-ready when doors open. Low-commitment workshop first to confirm fit, then progressively deeper investment.</p>
+
+  <table class="pathway-table">
+    <thead>
+      <tr><th>Month</th><th>Action &amp; Why</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="month-cell">Month 1</td>
+        <td>
+          <span class="action">Secret Chocolatier Tempering Workshop (Charlotte day trip)</span>
+          Low commitment. Confirms you can temper before investing deeper. Already booked: <strong>May 23rd, 2 PM, 2 tickets</strong>.
+        </td>
+      </tr>
+      <tr>
+        <td class="month-cell">Month 2</td>
+        <td>
+          <span class="action">Enroll in &Eacute;cole Chocolat Professional Chocolatier Program</span>
+          Runs in the background through buildout. Covers business, sourcing, packaging. 100% online, ~3 months, $750.
+        </td>
+      </tr>
+      <tr>
+        <td class="month-cell">Month 2&ndash;3</td>
+        <td>
+          <span class="action">Videri Factory Tour (half day in Raleigh)</span>
+          See an NC operation. Take notes on layout, packaging, retail presentation.
+        </td>
+      </tr>
+      <tr>
+        <td class="month-cell">Month 3 or 4</td>
+        <td>
+          <span class="action">Callebaut Discovering Chocolate (3 days, Chicago)</span>
+          Locks in production craft on the exact brand we'll use. Translates one-to-one into the shop.
+        </td>
+      </tr>
+      <tr>
+        <td class="month-cell">Month 5</td>
+        <td>
+          <span class="action">Finish &Eacute;cole Chocolat coursework + Business Plan module</span>
+          Aligns the chocolate program with the wider Cacao Cellars business.
+        </td>
+      </tr>
+      <tr>
+        <td class="month-cell">Month 6 (pre-open)</td>
+        <td>
+          <span class="action">One refresher day at Callebaut Academy or Secret Chocolatier intensive</span>
+          Sharpens technique right before opening, when stakes are highest.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Rough Budget</h2>
+  <table class="budget-table">
+    <thead><tr><th>Item</th><th style="text-align:right;">Estimated cost</th></tr></thead>
+    <tbody>
+      <tr><td>Secret Chocolatier tempering workshop</td><td class="cost-cell">$95&ndash;$150</td></tr>
+      <tr><td>&Eacute;cole Chocolat Professional Chocolatier Program (+ ~$200 supplies)</td><td class="cost-cell">$2,500&ndash;$3,500</td></tr>
+      <tr><td>Callebaut Discovering Chocolate (tuition)</td><td class="cost-cell">$1,200&ndash;$1,800</td></tr>
+      <tr><td>Travel (flight, hotel, meals &mdash; Chicago, 3 nights)</td><td class="cost-cell">$800&ndash;$1,200</td></tr>
+      <tr><td>Videri tour</td><td class="cost-cell">Under $20</td></tr>
+      <tr class="total"><td>Total range</td><td class="cost-cell">$4,800&ndash;$7,000</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The Real Educational Programs</h2>
+
+  <div class="program-card recommended">
+    <h3>Callebaut Chocolate Academy &mdash; Chicago <span class="badge">Primary Track</span></h3>
+    <p class="program-meta">Hands-on, in-person, brand-aligned with our primary supplier.</p>
+    <p>Callebaut runs the official Chocolate Academy network, and Chicago is the only U.S. in-person location. Because Callebaut is the primary supplier, training in their facility means the chocolate, equipment, and techniques learned translate one-to-one into the shop.</p>
+
+    <div class="meta-row">
+      <div class="meta-item">
+        <span class="meta-label">Course to start</span>
+        <span class="meta-val">Discovering Chocolate</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Format</span>
+        <span class="meta-val">3-day hands-on</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Class size</span>
+        <span class="meta-val">8&ndash;12 people</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Hours</span>
+        <span class="meta-val">8 AM &ndash; 5 PM, full days</span>
+      </div>
+    </div>
+
+    <p><strong>Discovering Chocolate</strong> walks through crystallization, molded pieces, dipped pieces, sealing molded chocolates, and a brief introduction to sugar confectionery. Designed exactly for emerging professionals.</p>
+    <p><strong>Follow-on: Chocolate 101.</strong> Beginner-to-refresher class for chocolatiers and industry veterans. Useful as a re-up before opening or for training a second hire.</p>
+  </div>
+
+  <div class="program-card recommended">
+    <h3>&Eacute;cole Chocolat &mdash; Professional Chocolatier Program <span class="badge">Online Track</span></h3>
+    <p class="program-meta">100% online &middot; 3 months &middot; $750 &middot; sessions start January &amp; September only</p>
+    <p>&Eacute;cole Chocolat is the professional online school for chocolatiers (not chocolate makers). The <strong>Professional Chocolatier Program</strong> covers 40+ techniques and recipes, plus the chemistry of chocolate, supplier sourcing, equipment, packaging, and an optional Business Plan module.</p>
+    <p>This one teaches how to <strong>run a chocolate operation well</strong> &mdash; sourcing, equipment, market positioning, shelf life. Several open items in the Project Summary (mold supplier selection, shelf-life library, packaging) are addressed here.</p>
+  </div>
+
+  <div class="program-card">
+    <h3>The Secret Chocolatier &mdash; Charlotte, NC <span class="badge">Entry Point</span></h3>
+    <p class="program-meta">~$95&ndash;$150 &middot; tickets booked May 23rd, 2 PM</p>
+    <p><strong>Chocolate Tempering Workshop</strong> is a focused beginner class &mdash; the lowest-commitment way to confirm tempering is something the operator enjoys before deeper investment. Also runs a chocolate-and-wine pairing event worth attending.</p>
+    <p><strong>Status:</strong> 2 tickets already booked for May 23rd, 2 PM.</p>
+  </div>
+
+  <div class="program-card">
+    <h3>Institute of Culinary Education (ICE) &mdash; New York</h3>
+    <p class="program-meta">2-day workshops &middot; The Chocolate Lab</p>
+    <p>ICE runs The Chocolate Lab under Creative Director Michael Laiskonis. Their two-day workshops include a hands-on bean-to-bar experience and a separate session focused on tempering, molding, decoration, and finished confections.</p>
+    <p><strong>Caveat:</strong> The bean-to-bar component is more than we need for Tier 1 work. The tempering/molding/finishing session is the relevant one.</p>
+  </div>
+
+  <h2>Two Things Worth Doing Alongside Formal Training</h2>
+  <ol>
+    <li><strong>Read Greweling's <em>Chocolates and Confections</em></strong> &mdash; the bible of the craft. <em>Ordered May 1.</em></li>
+    <li><strong>Build a relationship with the Callebaut sales rep early.</strong> Once you have a Callebaut account, you get access to free online tutorials, the Shelf Life Library, and direct chef support. Several of their courses are restricted to existing customers, and the rep can sometimes get you into sessions that aren't otherwise advertised. Worth doing before finalizing the chocolate menu so they can advise on the specific 823, W2, and 70% products we've spec'd.</li>
+  </ol>
+
+  <h2>Local Chocolatiers</h2>
+  <p>NC and surrounding options worth knowing &mdash; useful for staff training, second-hire onboarding, or a quick refresher.</p>
+
+  <div class="local-grid">
+    <div class="local-card">
+      <h4>Asheville Chocolate &mdash; Asheville, NC</h4>
+      <p>In-state option. 90-minute hands-on classes covering dipping, piping, decorating, and custom barks. Really just a party event &mdash; not professional training.</p>
+    </div>
+    <div class="local-card">
+      <h4>The Chocolate Boutique &mdash; Raleigh</h4>
+      <p>Local to us. Primarily oriented toward parties and groups (1,200+ molds available).</p>
+    </div>
+    <div class="local-card">
+      <h4>Videri Chocolate Factory &mdash; Raleigh</h4>
+      <p>327 W. Davie Street, Suite 100. 10 AM&ndash;6 PM daily. Not a class &mdash; a 30&ndash;40 minute factory tour ending with a bonbon. Useful as a half-hour study trip to see a working NC chocolate operation and take notes on layout, packaging, and retail presentation.</p>
+    </div>
+  </div>
+
+  <h2>Related Pages</h2>
+  <p>For the Chocolate Production Lead job posting and hire profile, see <a href="job-chocolatier.html">the chocolatier posting</a>. For the creation process and production math, see <a href="chocolate-process.html">Chocolate Creation Process</a>. For suppliers, see <a href="chocolate-vendors.html">Chocolate Vendors</a>.</p>
+
+  <a href="chocolate-production.html" class="back-link">Back to Chocolate Production</a>
+</div>
+
+<footer>
+  <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
+  Durham, NC &middot; Chocolate Training &middot; May 2026
+</footer>
+
+</body>
+</html>

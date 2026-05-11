@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Software Stack &mdash; The Cacao Estate at NOVUS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Three-layer stack diagram */
+  .stack-diagram {
+    max-width: 900px;
+    margin: 24px auto 32px;
+  }
+  .layer {
+    margin-bottom: 18px;
+  }
+  .layer-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--purple);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .layer-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .layer-cards.single { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+  @media (max-width: 700px) {
+    .layer-cards { grid-template-columns: 1fr; }
+  }
+  .stack-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-top: 6px solid var(--purple);
+    padding: 18px 22px;
+    box-shadow: var(--shadow);
+  }
+  .stack-card.toast    { border-top-color: var(--maroon); }
+  .stack-card.shopify  { border-top-color: var(--green-mid); }
+  .stack-card.qb       { border-top-color: var(--purple); }
+  .stack-card h3 {
+    font-family: "Didot", serif;
+    font-size: 22px;
+    color: var(--green-deep);
+    margin: 0 0 4px;
+    padding: 0;
+    border: none;
+  }
+  .stack-card .stack-tag {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 12px;
+  }
+  .stack-card ul { margin: 0 0 0 18px; padding: 0; }
+  .stack-card li { font-size: 13.5px; line-height: 1.55; margin-bottom: 4px; }
+
+  .connector {
+    text-align: center;
+    margin: 6px 0;
+  }
+  .connector .arrow {
+    font-size: 26px;
+    color: var(--purple);
+    line-height: 1;
+  }
+  .connector .conn-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    color: var(--gray-500);
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .cost-callout {
+    background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-soft) 100%);
+    color: var(--white);
+    padding: 24px 30px;
+    margin: 24px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .cost-callout .cost-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray-100);
+    margin-bottom: 4px;
+  }
+  .cost-callout .cost-value {
+    font-family: "Didot", serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .cost-callout .cost-note {
+    font-size: 14px;
+    color: var(--gray-100);
+    font-style: italic;
+    max-width: 320px;
+    text-align: right;
+  }
+
+  /* Comparison table */
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 14px;
+  }
+  table.compare th, table.compare td {
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--gray-300);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  table.compare th {
+    background: var(--green-darker);
+    color: var(--white);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  table.compare th.aspect-col { background: var(--gray-700); }
+  table.compare tr:nth-child(even) td { background: var(--gray-100); }
+  table.compare td.aspect {
+    background: var(--gray-100);
+    font-weight: 700;
+    color: var(--green-deep);
+    width: 18%;
+  }
+  table.compare tr:nth-child(even) td.aspect { background: #e8e5dc; }
+
+  .lightspeed-header { color: var(--purple); }
+  .toast-header { color: var(--maroon); }
+
+  .verdict-box {
+    background: var(--gray-100);
+    border-left: 4px solid var(--green-deep);
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .verdict-box h3 {
+    font-family: "Didot", serif;
+    color: var(--green-deep);
+    margin-top: 0;
+  }
+  .verdict-box .why {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 4px;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html">The Cacao Estate <span class="accent">at NOVUS</span></a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="wine.html">Wine</a></li>
+      <li><a href="food-production.html">Food Production</a></li>
+      <li><a href="employees.html">Employees</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="chocolate-production.html">Chocolate Production</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="subpage-header">
+  <div class="subpage-header-inner">
+    <div class="crumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; Operations &nbsp;&rsaquo;&nbsp; Software</div>
+    <h1>Software Stack</h1>
+    <p class="subtitle">POS &middot; e-commerce &middot; accounting &middot; loyalty</p>
+  </div>
+</section>
+
+<div class="subpage-body">
+
+  <a href="index.html" class="back-link">Back to Home</a>
+
+  <h2>The Three-Layer Stack</h2>
+  <p>Three best-in-class systems, each doing what they do best, connected by a lightweight middleware app. The cleanest architecture for a hybrid business that is simultaneously a wine bar, a chocolate cafe, and a retail shop.</p>
+
+  <div class="stack-diagram">
+
+    <div class="layer">
+      <div class="layer-label">Sales &amp; Operations Layer</div>
+      <div class="layer-cards">
+        <div class="stack-card toast">
+          <h3>Toast POS</h3>
+          <div class="stack-tag">Caf&eacute; sales &middot; F&amp;B inventory</div>
+          <ul>
+            <li>Caf&eacute; sales</li>
+            <li>Food &amp; beverage inventory</li>
+            <li>Staff &amp; tips management</li>
+            <li>Table management</li>
+          </ul>
+        </div>
+        <div class="stack-card shopify">
+          <h3>Shopify</h3>
+          <div class="stack-tag">Online store &middot; retail gifts</div>
+          <ul>
+            <li>Online store</li>
+            <li>Retail gifts inventory</li>
+            <li>Customer data</li>
+            <li>Marketing &amp; email</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector">
+      <div class="arrow">&darr;</div>
+      <div class="conn-label">Shogo or similar connector app</div>
+      <div class="arrow">&darr;</div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-label">Accounting Layer</div>
+      <div class="layer-cards single">
+        <div class="stack-card qb">
+          <h3>QuickBooks Online</h3>
+          <div class="stack-tag">Final books &middot; tax compliance</div>
+          <ul>
+            <li>Final books &amp; reconciliation</li>
+            <li>P&amp;L reporting</li>
+            <li>Tax preparation</li>
+            <li>Payroll</li>
+            <li>COGS tracking</li>
+            <li>Cash flow management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Why This Stack Works</h2>
+  <ul>
+    <li><strong>Toast handles what it's best at</strong> &mdash; caf&eacute; operations, tipped wages, kitchen workflow, and food &amp; beverage cost tracking.</li>
+    <li><strong>Shopify handles what it's best at</strong> &mdash; online sales, retail inventory, customer profiles, and marketing.</li>
+    <li><strong>QuickBooks handles what it's best at</strong> &mdash; clean financials, tax compliance, payroll, and reporting.</li>
+  </ul>
+
+  <div class="cost-callout">
+    <div>
+      <div class="cost-label">Toast &mdash; Restaurant / Retail Hybrid</div>
+      <div class="cost-value">$7,500 upfront</div>
+    </div>
+    <div class="cost-note">Then ~$5,000/year ongoing.<br/>Toast has a Restaurant/Retail hybrid system that handles both bar/caf&eacute; ops and retail merchandise within one platform.</div>
+  </div>
+
+  <h2>Loyalty Program</h2>
+  <p>Toast's loyalty program works across both <strong>Caf&eacute; &amp; Bakery</strong> and <strong>Bar / Lounge</strong> service modes &mdash; meaning a guest who buys a chocolate flight on Sunday brunch and a wine flight Saturday evening accumulates points across both occasions. That cross-daypart accumulation is harder to replicate with separate POS systems.</p>
+
+  <h2>Lightspeed vs. Toast &mdash; Why Toast Wins for This Concept</h2>
+  <p>Both are real contenders. Lightspeed has genuine strengths for the retail side &mdash; matrix inventory, multi-location flexibility, deep analytics across segments. But Toast wins on the operational backbone, and operations is the riskier side of the business.</p>
+
+  <h3 class="lightspeed-header">Where Lightspeed Has an Edge</h3>
+  <table class="compare">
+    <thead>
+      <tr>
+        <th class="aspect-col">Aspect</th>
+        <th>Lightspeed Advantage</th>
+        <th>Why It Matters</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="aspect">Hybrid Operations</td>
+        <td>Lightspeed Restaurant &amp; Retail manages bar/coffee transactions (Restaurant) while providing advanced retail features. One platform spans both modalities natively.</td>
+        <td>Less complexity across the two halves of the business.</td>
+      </tr>
+      <tr>
+        <td class="aspect">Retail &amp; Inventory</td>
+        <td>Industry-leading inventory management, including <strong>matrix inventory</strong> (for T-shirts, mugs, etc., with variants like size/color).</td>
+        <td>Essential for selling complex retail items alongside simple coffee/bar modifiers. Accurate separation of retail merchandise from beverage ingredients.</td>
+      </tr>
+      <tr>
+        <td class="aspect">Scalability &amp; Flexibility</td>
+        <td>Built for growing businesses and multi-location management. iPad-based system with hardware flexibility.</td>
+        <td>Highly configurable for different workflows (quick coffee counter, detailed sit-down bar service, retail purchase).</td>
+      </tr>
+      <tr>
+        <td class="aspect">Analytics</td>
+        <td>Deep, detailed reporting beyond simple sales &mdash; profit margins, COGS, and inventory turnover.</td>
+        <td>Accurately analyze the profitability of coffee, bar, and retail segments independently.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="toast-header">Where Toast Wins &mdash; And Why It's the Choice</h3>
+  <table class="compare">
+    <thead>
+      <tr>
+        <th class="aspect-col">Aspect</th>
+        <th>Toast Advantage</th>
+        <th>Why It's a Top Contender</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="aspect">FOH / BOH Integration</td>
+        <td>Purpose-built for foodservice. Native Kitchen Display System (KDS), handheld Toast Go devices, and menu coursing are unmatched for managing a busy bar/coffee rush.</td>
+        <td>Unbeatable speed and accuracy for the coffee counter and bar service &mdash; the highest-volume transactions on the floor.</td>
+      </tr>
+      <tr>
+        <td class="aspect">Integrated Ecosystem</td>
+        <td>All key functions (POS, online ordering, KDS, payroll, team management) are built natively by Toast, reducing the risk of third-party integration failure.</td>
+        <td>Single source of support and billing for nearly all operational tech needs &mdash; truly a "complete system."</td>
+      </tr>
+      <tr>
+        <td class="aspect">Durability</td>
+        <td>Proprietary restaurant-grade hardware designed to withstand spills and heat &mdash; the wear environment of an actual bar.</td>
+        <td>Lower total cost of ownership over time due to less hardware failure.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="verdict-box">
+    <h3>The Verdict</h3>
+    <span class="why">Decision logic</span>
+    <p>Lightspeed's retail strengths are real, but Shopify handles retail in this architecture &mdash; with deeper e-commerce capabilities than Lightspeed's native retail features. That removes Lightspeed's biggest advantage. What's left is the operational backbone, and Toast's purpose-built foodservice DNA (KDS, Toast Go handhelds, restaurant-grade hardware) is meaningfully better than Lightspeed Restaurant for a high-volume bar/caf&eacute; floor. <strong>Toast for ops, Shopify for retail, QuickBooks for books.</strong></p>
+  </div>
+
+  <h2>Related Pages</h2>
+  <p>For the liquor licensing pathway and music licensing requirements, see <a href="liquor-license.html">Liquor &amp; Music Licenses</a>.</p>
+
+  <a href="index.html" class="back-link">Back to Home</a>
+</div>
+
+<footer>
+  <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
+  Durham, NC &middot; Software Stack &middot; May 2026
+</footer>
+
+</body>
+</html>
