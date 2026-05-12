@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Operations &mdash; The Cacao Estate at NOVUS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .topic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 950px;
+    margin: 32px auto;
+  }
+  @media (max-width: 800px) {
+    .topic-grid { grid-template-columns: 1fr; }
+  }
+  .topic-card {
+    display: block;
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-top: 6px solid var(--purple);
+    padding: 28px 32px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+  }
+  .topic-card:hover {
+    border-top-color: var(--maroon);
+    transform: translateY(-3px);
+  }
+  .topic-card .topic-pre {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 6px;
+  }
+  .topic-card h3 {
+    font-family: "Didot", "Playfair Display", serif;
+    font-size: 24px;
+    color: var(--green-deep);
+    margin-bottom: 10px;
+    border: none;
+    padding: 0;
+  }
+  .topic-card .topic-summary {
+    color: var(--gray-700);
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .topic-card .topic-cta {
+    color: var(--purple);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .topic-card:hover .topic-cta { color: var(--maroon); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html">The Cacao Estate <span class="accent">at NOVUS</span></a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="wine.html">Wine</a></li>
+      <li><a href="food-production.html">Food Prod.</a></li>
+      <li><a href="employees.html">Employees</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="operations.html" class="active">Operations</a></li>
+      <li><a href="chocolate-production.html">Choc. Prod.</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="subpage-header">
+  <div class="subpage-header-inner">
+    <div class="crumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; Operations</div>
+    <h1>Operations</h1>
+    <p class="subtitle">Software stack &middot; liquor &amp; music licensing &middot; the systems behind the room</p>
+  </div>
+</section>
+
+<div class="subpage-body">
+
+  <a href="index.html" class="back-link">Back to Floor Plan</a>
+
+  <h2>Overview</h2>
+  <p>The operational backbone of Cacao Cellars: the software stack that handles sales, inventory, and books, and the licensing pathway that lets us serve alcohol and play music legally. Both are essential and both have a fixed cost &mdash; understanding what each costs to set up and what each costs to run is part of getting opening day right.</p>
+
+  <p>The software stack is <strong>Toast + Shopify + QuickBooks</strong>, connected by a lightweight middleware app (Shogo or similar). Each tool does what it's best at &mdash; Toast for cafe operations and tipped wages, Shopify for retail and online sales, QuickBooks for clean books and tax compliance. Total cost ~$7,500 upfront and $5,000/year ongoing.</p>
+
+  <p>Licensing breaks into two tracks: <strong>NC ABC permits</strong> (run through a consultant like Vickie West, ~$1,200 fee, 4&ndash;6 weeks after lease signing) and <strong>performance-rights music licensing</strong> (ASCAP and BMI required even for original music or just playing the radio aloud). Total ~$4,000 to get licensed at opening, ~$2,500 annually thereafter.</p>
+
+  <div class="topic-grid">
+
+    <a class="topic-card" href="software.html">
+      <div class="topic-pre">POS &middot; e-commerce &middot; accounting &middot; loyalty</div>
+      <h3>Software Stack</h3>
+      <p class="topic-summary">Three best-in-class systems connected by middleware: Toast for cafe operations, tipped wages, kitchen workflow, and food &amp; beverage cost tracking; Shopify for online sales, retail inventory, customer profiles, and marketing; QuickBooks Online for final books, payroll, P&amp;L reporting, and tax. The Lightspeed vs. Toast comparison and why Toast wins for this concept.</p>
+      <span class="topic-cta">View software stack &rsaquo;</span>
+    </a>
+
+    <a class="topic-card" href="liquor-license.html">
+      <div class="topic-pre">NC ABC &middot; ASCAP &middot; BMI &middot; Durham contacts</div>
+      <h3>Liquor &amp; Music Licenses</h3>
+      <p class="topic-summary">NC ABC permitting pathway with three consultants under review (Vickie West recommended), Durham Police Department local liaison Officer Andrew Wilkinson identified for general permit questions. Music licensing landscape &mdash; ASCAP and BMI required even for original music or just playing the radio, SESAC optional and reviewed case-by-case. 4&ndash;6 week timeline from lease signing.</p>
+      <span class="topic-cta">View licensing pathway &rsaquo;</span>
+    </a>
+
+  </div>
+
+  <h2>Sequencing</h2>
+  <p>Both tracks start at lease signing and run in parallel. Software contracts can be signed earlier (Toast onboarding takes 4&ndash;6 weeks itself) and Shopify can be set up at any time. Liquor licensing is the harder constraint &mdash; we cannot accept alcohol delivery without it, and the timeline does not compress no matter how prepared we are.</p>
+
+  <ol>
+    <li><strong>Week 0 &mdash; Lease signing.</strong> Both clocks start.</li>
+    <li><strong>Weeks 1&ndash;2 &mdash; Software contracts.</strong> Toast hardware order, Shopify store setup, QuickBooks Online subscription, middleware connector configuration.</li>
+    <li><strong>Weeks 1&ndash;6 &mdash; ABC licensing.</strong> Consultant engaged, application submitted, Durham PD local review.</li>
+    <li><strong>Pre-opening &mdash; Music licensing signed.</strong> ASCAP and BMI annual fees set up before any music plays.</li>
+    <li><strong>Opening day &mdash; All license certificates posted as required by NC code.</strong></li>
+  </ol>
+
+  <h2>Related Pages</h2>
+  <p>For the wider business view including financial model and project summary, see the project files. Hiring decisions (which staff need what software access, who is named on the ABC application) are covered in <a href="employees.html">Employees</a>.</p>
+
+  <a href="index.html" class="back-link">Back to Floor Plan</a>
+</div>
+
+<footer>
+  <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
+  Durham, NC &middot; Operations &middot; May 2026
+</footer>
+
+</body>
+</html>

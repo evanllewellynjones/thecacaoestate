@@ -62,20 +62,21 @@ body {
 nav ul {
   list-style: none;
   display: flex;
-  gap: 4px;
+  gap: 2px;
   flex-wrap: wrap;
 }
 nav a {
   color: var(--gray-100);
   text-decoration: none;
-  padding: 8px 14px;
-  font-size: 14px;
+  padding: 7px 11px;
+  font-size: 13px;
   font-family: "Helvetica Neue", "Arial", sans-serif;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 2px;
   transition: all 0.2s ease;
   border: 1px solid transparent;
+  white-space: nowrap;
 }
 nav a:hover {
   background: var(--maroon);
@@ -91,32 +92,32 @@ nav a.active {
 .hero {
   background: linear-gradient(180deg, var(--green-deep) 0%, var(--green-darker) 100%);
   color: var(--white);
-  padding: 64px 32px 48px;
+  padding: 40px 32px 32px;
   text-align: center;
   border-bottom: 2px solid var(--purple);
 }
 .hero h1 {
   font-family: "Didot", "Playfair Display", serif;
-  font-size: 56px;
+  font-size: 44px;
   font-weight: 400;
   letter-spacing: 0.02em;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .hero h1 .em {
   color: var(--purple-soft);
   font-style: italic;
 }
 .hero .tagline {
-  font-size: 16px;
-  letter-spacing: 0.3em;
+  font-size: 14px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--gray-300);
-  margin-bottom: 28px;
+  margin-bottom: 18px;
 }
 .hero .lede {
   max-width: 720px;
   margin: 0 auto;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--gray-100);
   font-style: italic;
 }
@@ -244,7 +245,7 @@ nav a.active {
 .subpage-header {
   background: linear-gradient(180deg, var(--green-deep) 0%, var(--green-mid) 100%);
   color: var(--white);
-  padding: 48px 32px;
+  padding: 28px 32px 26px;
   border-bottom: 2px solid var(--purple);
 }
 .subpage-header-inner {
@@ -252,11 +253,11 @@ nav a.active {
   margin: 0 auto;
 }
 .subpage-header .crumb {
-  font-size: 12px;
-  letter-spacing: 0.25em;
+  font-size: 11px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gray-300);
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 .subpage-header .crumb a {
   color: var(--purple-soft);
@@ -265,12 +266,13 @@ nav a.active {
 .subpage-header .crumb a:hover { text-decoration: underline; }
 .subpage-header h1 {
   font-family: "Didot", "Playfair Display", serif;
-  font-size: 44px;
+  font-size: 32px;
   font-weight: 400;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
+  line-height: 1.15;
 }
 .subpage-header .subtitle {
-  font-size: 17px;
+  font-size: 14px;
   color: var(--gray-300);
   font-style: italic;
 }
@@ -278,7 +280,7 @@ nav a.active {
 .subpage-body {
   max-width: 950px;
   margin: 0 auto;
-  padding: 48px 32px 80px;
+  padding: 28px 32px 80px;
 }
 
 .subpage-body h2 {
@@ -495,104 +497,16 @@ footer .footer-brand {
 
 /* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 700px) {
-  .topbar { flex-direction: column; align-items: flex-start; padding: 14px 18px; }
-  nav ul { gap: 0; }
-  nav a { padding: 6px 10px; font-size: 12px; }
-  .hero h1 { font-size: 36px; }
-  .subpage-header h1 { font-size: 30px; }
+  .topbar { flex-direction: column; align-items: flex-start; padding: 12px 18px; gap: 10px; }
+  nav ul { gap: 2px; }
+  nav a { padding: 5px 9px; font-size: 11px; letter-spacing: 0.08em; }
+  .hero { padding: 28px 18px 24px; }
+  .hero h1 { font-size: 30px; }
+  .hero .tagline { font-size: 12px; letter-spacing: 0.22em; }
+  .hero .lede { font-size: 14px; }
+  .subpage-header { padding: 22px 18px 20px; }
+  .subpage-header h1 { font-size: 24px; }
+  .subpage-header .subtitle { font-size: 13px; }
+  .subpage-body { padding: 20px 18px 60px; }
   .hot-label { font-size: 9px; padding: 4px 8px; }
 }
-
-/* ---------------- DOWNLOAD LINKS ---------------- */
-/* For PDFs, PPTs, and other downloadable files */
-.download-block {
-  max-width: 950px;
-  margin: 24px auto;
-  background: var(--white);
-  border: 1px solid var(--gray-300);
-  border-left: 4px solid var(--maroon);
-  padding: 18px 24px;
-  box-shadow: var(--shadow);
-}
-.download-block h3 {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--purple);
-  margin-bottom: 12px;
-  border: none;
-  padding: 0;
-}
-.download-link {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 14px;
-  margin: 6px 0;
-  background: var(--gray-100);
-  border: 1px solid transparent;
-  border-left: 3px solid var(--purple);
-  text-decoration: none;
-  color: var(--green-deep);
-  transition: all 0.18s ease;
-}
-.download-link:hover {
-  background: var(--white);
-  border-color: var(--maroon);
-  border-left-color: var(--maroon);
-  transform: translateX(3px);
-}
-.download-link .file-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 46px;
-  background: var(--maroon);
-  color: var(--white);
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  border-radius: 2px;
-  flex-shrink: 0;
-  position: relative;
-}
-.download-link .file-icon.pdf { background: var(--maroon); }
-.download-link .file-icon.pptx { background: var(--purple); }
-/* folded-corner effect */
-.download-link .file-icon::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-style: solid;
-  border-width: 0 8px 8px 0;
-  border-color: transparent var(--white) transparent transparent;
-}
-.download-link .file-meta {
-  flex: 1;
-  min-width: 0;
-}
-.download-link .file-name {
-  font-family: "Didot", "Playfair Display", serif;
-  font-size: 16px;
-  color: var(--green-deep);
-  margin-bottom: 2px;
-}
-.download-link .file-desc {
-  font-size: 12.5px;
-  color: var(--gray-500);
-  font-style: italic;
-}
-.download-link .file-arrow {
-  color: var(--purple);
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 600;
-  flex-shrink: 0;
-}
-.download-link:hover .file-arrow { color: var(--maroon); }
