@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wine Preservation Equipment &mdash; The Cacao Estate at NOVUS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Comparison table — three product columns, label left */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 14px;
+    box-shadow: var(--shadow);
+    background: var(--white);
+  }
+  .compare-table thead th {
+    background: var(--green-darker);
+    color: var(--white);
+    text-align: left;
+    padding: 14px 12px;
+    font-family: "Didot", "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    border-bottom: 3px solid var(--purple);
+    vertical-align: bottom;
+  }
+  .compare-table thead th.spec-col {
+    background: var(--gray-700);
+    color: var(--gray-100);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    width: 170px;
+  }
+  .compare-table thead th .sub {
+    display: block;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--purple-soft);
+    margin-top: 6px;
+    font-weight: 400;
+    padding-top: 6px;
+    border-top: 1px solid rgba(125, 90, 163, 0.3);
+  }
+  .compare-table tbody th {
+    background: var(--gray-100);
+    color: var(--green-deep);
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 700;
+    font-size: 13.5px;
+    border-bottom: 1px solid var(--gray-300);
+    border-right: 1px solid var(--gray-300);
+    width: 170px;
+  }
+  .compare-table tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--gray-300);
+    border-right: 1px solid var(--gray-300);
+    vertical-align: top;
+    color: var(--gray-700);
+  }
+  .compare-table tbody tr:last-child th,
+  .compare-table tbody tr:last-child td { border-bottom: none; }
+  .compare-table td.note-cell {
+    background: rgba(91, 58, 122, 0.05);
+    color: var(--purple);
+    font-style: italic;
+    font-size: 13px;
+    width: 220px;
+    border-right: none;
+  }
+  .compare-table tbody .rec-col {
+    background: rgba(45, 86, 66, 0.04);
+  }
+  .compare-table thead th.rec-col {
+    background: var(--green-deep);
+    border-bottom: 3px solid var(--purple-soft);
+    box-shadow: inset 0 0 0 1px rgba(125, 90, 163, 0.4);
+  }
+
+  /* Recommendation banner */
+  .rec-banner {
+    background: linear-gradient(180deg, rgba(45,86,66,0.08) 0%, rgba(45,86,66,0.04) 100%);
+    border-left: 4px solid var(--green-mid);
+    padding: 18px 22px;
+    margin: 18px 0 32px;
+  }
+  .rec-banner .rec-label {
+    display: block;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .rec-banner p { margin-bottom: 0; font-size: 16px; }
+  .rec-banner strong { color: var(--green-deep); }
+
+  /* Cost summary table */
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: var(--shadow);
+    font-size: 14.5px;
+  }
+  .cost-table th {
+    background: var(--green-darker);
+    color: var(--white);
+    text-align: left;
+    padding: 12px 14px;
+    font-family: "Didot", serif;
+    font-weight: 500;
+  }
+  .cost-table th.num { text-align: right; }
+  .cost-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--gray-300);
+    vertical-align: top;
+  }
+  .cost-table td.num { text-align: right; font-family: "Helvetica Neue", sans-serif; }
+  .cost-table tr:last-child td {
+    background: var(--gray-100);
+    font-weight: 700;
+    color: var(--green-deep);
+    border-bottom: none;
+    border-top: 2px solid var(--purple);
+  }
+
+  /* Two-column info box for at-a-glance */
+  .quick-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0 28px;
+  }
+  .quick-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-top: 4px solid var(--maroon);
+    padding: 18px 20px;
+  }
+  .quick-card .qc-eyebrow {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--maroon);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .quick-card h4 {
+    font-family: "Didot", serif;
+    color: var(--green-deep);
+    font-size: 19px;
+    margin-bottom: 8px;
+    margin-top: 0;
+  }
+  .quick-card p { font-size: 14.5px; margin-bottom: 0; }
+
+  @media (max-width: 720px) {
+    .quick-grid { grid-template-columns: 1fr; }
+    .compare-table { font-size: 12.5px; }
+    .compare-table tbody th, .compare-table thead th.spec-col { width: 110px; font-size: 11.5px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html">The Cacao Estate <span class="accent">at NOVUS</span></a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="wine.html" class="active">Wine</a></li>
+      <li><a href="food-production.html">Food Production</a></li>
+      <li><a href="employees.html">Employees</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="chocolate-production.html">Chocolate Production</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="subpage-header">
+  <div class="subpage-header-inner">
+    <div class="crumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; <a href="wine.html">Wine</a> &nbsp;&rsaquo;&nbsp; Preservation Equipment</div>
+    <h1>Wine Preservation Equipment</h1>
+    <p class="subtitle">Napa Tech WineStation models &middot; Coravin Pivot vs. Timeless &middot; April 2026</p>
+  </div>
+</section>
+
+<div class="subpage-body">
+
+  <a href="wine.html" class="back-link">Back to Wine</a>
+
+  <p>This sheet supports the open decisions in &sect;13 of the Project Summary Vol. II &mdash; the white/ros&eacute; dispenser model and the red wine preservation system. All prices are estimates based on April 2026 list pricing and should be confirmed with the manufacturer or a NC restaurant supply distributor (TriMark, Whaley Foodservice, or similar) before purchase.</p>
+
+  <div class="quick-grid">
+    <div class="quick-card">
+      <div class="qc-eyebrow">Whites &amp; Ros&eacute;</div>
+      <h4>WineStation Pristine Plus 8</h4>
+      <p>8-bottle dual-zone dispenser with 5oz BTG preset, fitting the 30&Prime; front-bar slot. 14&ndash;21 day open-bottle shelf life covers the slowest BTG SKUs.</p>
+    </div>
+    <div class="quick-card">
+      <div class="qc-eyebrow">Red Wines</div>
+      <h4>Coravin Pivot Plus &times; 2</h4>
+      <p>Stopper-based, 3-second pour. 4-week open-bottle shelf life. Faster than Timeless and forgiving for newer staff &mdash; the right tool for working BTG service.</p>
+    </div>
+  </div>
+
+  <h2>Napa Tech WineStation &mdash; Model Comparison</h2>
+  <p>Three models in the WineStation line are realistic candidates for a 1,450 sq ft wine bar. The Pristine Plus 4 is a 4-bottle unit (probably too small), the Pristine Plus 8 is the workhorse 8-bottle model the Project Summary spec is built around, and the Quartet is the heavy-duty commercial model with stronger argon delivery and longer warranty.</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th class="spec-col">Spec</th>
+        <th>WineStation<br>Pristine Plus 4</th>
+        <th class="rec-col">WineStation<br>Pristine Plus 8<span class="sub">Recommended</span></th>
+        <th>WineStation Quartet<br>(commercial)</th>
+        <th>Notes for CC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Bottle capacity</th>
+        <td>4 bottles</td>
+        <td class="rec-col">8 bottles</td>
+        <td>4 bottles per unit (modular, can stack 2)</td>
+        <td class="note-cell">Pristine Plus 8 covers 6&ndash;8 SKUs of whites + ros&eacute; in one footprint</td>
+      </tr>
+      <tr>
+        <th>Footprint (W &times; D &times; H)</th>
+        <td>~16&Prime; &times; 22&Prime; &times; 28&Prime;</td>
+        <td class="rec-col">~30&Prime; &times; 22&Prime; &times; 28&Prime;</td>
+        <td>~16&Prime; &times; 22&Prime; &times; 28&Prime; per unit</td>
+        <td class="note-cell">Front-bar plan allocates 30&Prime; &mdash; Pristine Plus 8 fits as drawn</td>
+      </tr>
+      <tr>
+        <th>Temperature zones</th>
+        <td>Single zone, 45&ndash;65&deg;F</td>
+        <td class="rec-col">Dual zone (4+4)</td>
+        <td>Single zone per unit</td>
+        <td class="note-cell">Dual zone matters: whites at 47&deg;F + ros&eacute;/aromatic whites at 50&ndash;52&deg;F</td>
+      </tr>
+      <tr>
+        <th>Argon system</th>
+        <td>Standard cartridge</td>
+        <td class="rec-col">Standard cartridge</td>
+        <td>Continuous argon line (bulk tank)</td>
+        <td class="note-cell">Bulk argon = lower per-pour cost at volume; cartridge = simpler ops</td>
+      </tr>
+      <tr>
+        <th>Pour control</th>
+        <td>1, 2, 3 oz preset</td>
+        <td class="rec-col">1, 2, 3, 5 oz preset</td>
+        <td>Programmable, includes 5 oz BTG</td>
+        <td class="note-cell">5 oz preset is non-negotiable for BTG service</td>
+      </tr>
+      <tr>
+        <th>Card / access control</th>
+        <td>Optional</td>
+        <td class="rec-col">Optional</td>
+        <td>Built-in</td>
+        <td class="note-cell">Skip &mdash; bartender-controlled service, no self-pour</td>
+      </tr>
+      <tr>
+        <th>Open-bottle shelf life</th>
+        <td>10&ndash;14 days</td>
+        <td class="rec-col">14&ndash;21 days</td>
+        <td>21&ndash;30 days</td>
+        <td class="note-cell">Quartet protects slow-moving SKUs (Vin Santo on a Tuesday)</td>
+      </tr>
+      <tr>
+        <th>List price (Apr 2026)</th>
+        <td>$3,800&ndash;4,500</td>
+        <td class="rec-col"><strong>$5,800&ndash;7,200</strong></td>
+        <td>$9,500&ndash;12,000</td>
+        <td class="note-cell">Pristine Plus 8 is the value pick</td>
+      </tr>
+      <tr>
+        <th>Annual argon + service</th>
+        <td>~$400/yr</td>
+        <td class="rec-col">~$600/yr</td>
+        <td>~$1,200/yr (bulk argon)</td>
+        <td class="note-cell">Budget line item, not equipment line</td>
+      </tr>
+      <tr>
+        <th>Warranty</th>
+        <td>2 years parts</td>
+        <td class="rec-col">2 years parts</td>
+        <td>3 years parts + labor</td>
+        <td class="note-cell">Quartet warranty matters if pushing volume</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rec-banner">
+    <span class="rec-label">Recommendation</span>
+    <p><strong>WineStation Pristine Plus 8.</strong> The Quartet&rsquo;s stronger argon and longer shelf life are real benefits, but at 12&ndash;16 BTG SKUs with reasonable turn rates the Pristine Plus 8&rsquo;s 14&ndash;21 day shelf life is sufficient &mdash; and the $4K capital savings funds the Coravin program plus a year of argon. Revisit the Quartet at year 2 if BTG volume justifies the upgrade.</p>
+  </div>
+
+  <h2>Coravin &mdash; Pivot vs. Timeless for Red BTG Service</h2>
+  <p>Coravin is the right tool for reds because they don&rsquo;t need active temperature control during pour, and a 5&ndash;6 SKU red list with mixed turn rates is poorly served by a 16-bottle Enomatic-class cabinet. The decision is between Coravin Pivot (stopper-based, faster service) and Coravin Timeless (needle-based, longer shelf life).</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th class="spec-col">Spec</th>
+        <th class="rec-col">Coravin Pivot<span class="sub">Recommended</span></th>
+        <th>Coravin Timeless<br>(Model Six)</th>
+        <th>Notes for CC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Mechanism</th>
+        <td class="rec-col">Reusable stopper replaces cork; argon flushes on pour</td>
+        <td>Hollow needle pierces cork; argon replaces extracted volume</td>
+        <td class="note-cell">Pivot is faster; Timeless is the gold standard for shelf life</td>
+      </tr>
+      <tr>
+        <th>Pour speed</th>
+        <td class="rec-col">~3 seconds (similar to a free-pour)</td>
+        <td>~10 seconds (needle flow rate)</td>
+        <td class="note-cell">Pivot wins for Saturday-night BTG rhythm</td>
+      </tr>
+      <tr>
+        <th>Open-bottle shelf life</th>
+        <td class="rec-col">4 weeks under stopper + argon</td>
+        <td>3+ months (cork reseals around needle)</td>
+        <td class="note-cell">4 weeks is more than enough; Timeless&rsquo;s edge is over-spec for BTG</td>
+      </tr>
+      <tr>
+        <th>Per-bottle hardware</th>
+        <td class="rec-col">$20 stopper per bottle (reusable while bottle lasts)</td>
+        <td>No per-bottle hardware (uses original cork)</td>
+        <td class="note-cell">Pivot adds ~$120 ongoing for 6 reds; cheap insurance</td>
+      </tr>
+      <tr>
+        <th>Argon cost per pour</th>
+        <td class="rec-col">~$0.40 per pour (Pivot capsule)</td>
+        <td>~$0.50 per pour (Timeless capsule)</td>
+        <td class="note-cell">Pass through to BTG pricing &mdash; already in margin</td>
+      </tr>
+      <tr>
+        <th>Works with screwcap</th>
+        <td class="rec-col">No (requires cork or Pivot stopper inserted at open)</td>
+        <td>No (needle is for natural cork only)</td>
+        <td class="note-cell">If carrying screwcap reds, plan accordingly</td>
+      </tr>
+      <tr>
+        <th>Works with synthetic cork</th>
+        <td class="rec-col">Yes (Pivot stopper replaces cork at open)</td>
+        <td>Limited (synthetic resists needle, doesn&rsquo;t reseal)</td>
+        <td class="note-cell">Pivot is more flexible for modern wine producers</td>
+      </tr>
+      <tr>
+        <th>Service ergonomics</th>
+        <td class="rec-col">Two-handed, intuitive, fast</td>
+        <td>Needle insertion learning curve, slower</td>
+        <td class="note-cell">Pivot is forgiving for newer staff</td>
+      </tr>
+      <tr>
+        <th>Unit cost</th>
+        <td class="rec-col"><strong>$249 (Pivot Plus, 2-pack capsules incl.)</strong></td>
+        <td>$349 (Model Six, 2-pack capsules incl.)</td>
+        <td class="note-cell">Buy 2 of either &mdash; one in service, one as backup</td>
+      </tr>
+      <tr>
+        <th>Capsule subscription<br>(Coravin Plus)</th>
+        <td class="rec-col">$15/month for 12 capsules (Pivot)</td>
+        <td>$22/month for 12 capsules (Timeless)</td>
+        <td class="note-cell">Subscribe &mdash; never run out mid-service</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rec-banner">
+    <span class="rec-label">Recommendation</span>
+    <p><strong>Coravin Pivot Plus, two units.</strong> Pivot is purpose-built for bar BTG service &mdash; the speed advantage (3 seconds vs. 10) is the difference between fluid service and a bottleneck on a 60-seat Saturday. The 4-week shelf life is more than the slowest red on the list will need. Timeless&rsquo;s longer shelf life is a benefit for a private collector, not a working bar.</p>
+  </div>
+
+  <div class="callout warn">
+    <span class="callout-label">Closure compatibility note</span>
+    Pivot stoppers replace the cork at first open, so for screwcap reds (some New World Pinots, Australian shiraz) you&rsquo;ll either avoid screwcap on the BTG list or use the Coravin screwcap accessory. <strong>Easier to bias the BTG red list toward natural cork closures.</strong>
+  </div>
+
+  <h2>Combined Opening Cost &mdash; Wine Preservation</h2>
+
+  <table class="cost-table">
+    <thead>
+      <tr>
+        <th>Line item</th>
+        <th class="num">Unit cost</th>
+        <th class="num">Qty</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Napa Tech Pristine Plus 8 (front bar)</td>
+        <td class="num">$5,800&ndash;7,200</td>
+        <td class="num">1</td>
+        <td>30&Prime; footprint, dual zone, 5 oz preset for BTG</td>
+      </tr>
+      <tr>
+        <td>Coravin Pivot Plus units</td>
+        <td class="num">$249</td>
+        <td class="num">2</td>
+        <td>One in service, one backup; rotate weekly</td>
+      </tr>
+      <tr>
+        <td>Pivot stoppers (initial set)</td>
+        <td class="num">$20</td>
+        <td class="num">10</td>
+        <td>6 reds in service + 4 spares for swap-outs</td>
+      </tr>
+      <tr>
+        <td>Argon capsules (opening 6-month supply, Pivot)</td>
+        <td class="num">$15/mo subscription</td>
+        <td class="num">6 mo</td>
+        <td>~$90 for 6 months</td>
+      </tr>
+      <tr>
+        <td>Argon for WineStation (opening supply)</td>
+        <td class="num">Included with unit</td>
+        <td class="num">&mdash;</td>
+        <td>Replenish via Napa Tech every 4&ndash;6 months</td>
+      </tr>
+      <tr>
+        <td>Coravin screwcap accessory (optional)</td>
+        <td class="num">$30</td>
+        <td class="num">0&ndash;2</td>
+        <td>Only if BTG red list includes screwcap closures</td>
+      </tr>
+      <tr>
+        <td><strong>Total preservation system (low&ndash;high)</strong></td>
+        <td class="num"><strong>$6,668&ndash;8,068</strong></td>
+        <td class="num">&mdash;</td>
+        <td>Capital + 6 months operating consumables</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>This sits inside the $53,000&ndash;79,000 bar equipment budget in &sect;12 of the Project Summary. Worth a follow-up conversation with a Napa Tech rep to confirm Pristine Plus 8 availability and lead time before committing.</p>
+
+  <div class="callout">
+    <span class="callout-label">Cross-reference</span>
+    The Front Bar equipment doc (April&ndash;May 2026) flagged that a single-unit 8-bottle SKU under the exact name &ldquo;Pristine Plus 8&rdquo; may not be in the current Napa Tech catalog &mdash; the closest alternatives are the Wineemotion OTTO 8-bottle dual-zone or running two Pristine Plus 4 units side-by-side. <strong>Confirm Pristine Plus 8 availability directly with a Napa Tech rep before placing the order.</strong> If unavailable, the Wineemotion OTTO is the recommended substitute and fits the 30&Prime; slot. See the <a href="bar-review.html" style="color:var(--maroon);">Bar Review document</a> for the current resolution.
+  </div>
+
+  <div style="margin-top:48px; padding-top:24px; border-top:1px solid var(--gray-300); text-align:center; color:var(--gray-500); font-style:italic; font-size:14px;">
+    Cacao Cellars &middot; Wine Preservation Equipment Comparison &middot; April 2026
+  </div>
+
+  <a href="wine.html" class="back-link" style="margin-top:32px;">Back to Wine</a>
+</div>
+
+<footer>
+  <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
+  Durham, NC &middot; Wine Preservation &middot; April 2026
+</footer>
+
+</body>
+</html>

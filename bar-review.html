@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Front &amp; Back Bar Review &mdash; The Cacao Estate at NOVUS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Page-local additions for the bar-review layout strip */
+  .bar-strip {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 6px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .bar-strip td {
+    border: 1px solid var(--gray-300);
+    background: var(--gray-100);
+    text-align: center;
+    padding: 14px 6px;
+    font-size: 11.5px;
+    line-height: 1.3;
+    vertical-align: middle;
+    color: var(--gray-700);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .bar-strip td.changed {
+    background: rgba(107, 31, 42, 0.08);
+    color: var(--maroon);
+    border-color: var(--maroon-soft);
+  }
+  .bar-strip td .alloc {
+    display: block;
+    font-size: 10px;
+    color: var(--gray-500);
+    letter-spacing: 0.15em;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .bar-strip td.changed .alloc { color: var(--maroon-soft); }
+  .strip-label {
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin: 24px 0 4px;
+    font-family: "Helvetica Neue", sans-serif;
+  }
+  .strip-caption {
+    font-size: 13px;
+    color: var(--gray-500);
+    font-style: italic;
+    margin-bottom: 22px;
+  }
+  .strip-caption .swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--gray-300);
+    vertical-align: -3px;
+    margin: 0 4px 0 12px;
+  }
+  .strip-caption .swatch.changed { background: rgba(107, 31, 42, 0.12); border-color: var(--maroon-soft); }
+  .strip-caption .swatch.unchanged { background: var(--gray-100); }
+
+  /* Status chips inside summary tables */
+  .chip {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 2px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: "Helvetica Neue", sans-serif;
+  }
+  .chip-ok   { background: rgba(45, 86, 66, 0.12); color: var(--green-deep); }
+  .chip-warn { background: rgba(107, 31, 42, 0.12); color: var(--maroon); }
+  .chip-add  { background: rgba(91, 58, 122, 0.12); color: var(--purple); }
+
+  /* Override summary-table inside delta section to be a bit denser */
+  .delta-table th { font-size: 12.5px; }
+  .delta-table td { font-size: 13.5px; }
+
+  /* Hero strip just under header */
+  .review-headline {
+    background: rgba(91, 58, 122, 0.06);
+    border-left: 4px solid var(--purple);
+    padding: 22px 26px;
+    margin: 0 0 28px;
+  }
+  .review-headline h3 {
+    color: var(--purple) !important;
+    margin-top: 0 !important;
+    font-size: 18px !important;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 14px !important;
+  }
+  .review-headline ol {
+    margin: 0 0 0 22px;
+    padding: 0;
+  }
+  .review-headline ol li {
+    margin-bottom: 8px;
+    font-size: 15.5px;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html">The Cacao Estate <span class="accent">at NOVUS</span></a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="wine.html">Wine</a></li>
+      <li><a href="food-production.html">Food Production</a></li>
+      <li><a href="employees.html">Employees</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="chocolate-production.html">Chocolate Production</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="subpage-header">
+  <div class="subpage-header-inner">
+    <div class="crumb"><a href="index.html">Floor Plan</a> &nbsp;&rsaquo;&nbsp; <a href="bar.html">Bar &amp; Back Bar</a> &nbsp;&rsaquo;&nbsp; Review vs. NOVUS BOH</div>
+    <h1>Front &amp; Back Bar Review</h1>
+    <p class="subtitle">What to add, change, or delete now that Food Prep, Choco Prep, and Wash rooms are spec&rsquo;d &middot; May 11, 2026</p>
+  </div>
+</section>
+
+<div class="subpage-body">
+
+  <a href="index.html" class="back-link">Back to Floor Plan</a>
+
+  <h2>About this review</h2>
+  <p>The Front Bar and Back Bar equipment docs in your hands were written before the May 9 NOVUS layout introduced four BOH rooms with their own equipment: a 12&prime; &times; 10&prime; Chocolate Prep, an 8&prime; &times; 10&prime; Food Prep, a 9&prime; &times; 10&prime; Wash, and a 5&prime; &times; 8&prime; Office. Three of those rooms &mdash; Choco Prep, Food Prep, and Wash &mdash; directly affect what the bar needs to carry.</p>
+  <p>The food menu was also rewritten on May 9 and is now substantially heavier on cold-station composed plates (charcuterie, cheese, brie en cro&ucirc;te, smoked salmon tartine, hummus) plus a real Sunday brunch (bagels, eggs benedict, tartines, parfaits, brioche). That menu lives in the Food Prep room, not on the bar.</p>
+  <p>This document walks the front bar and back bar slot by slot, asks the question &ldquo;is this still right?&rdquo;, and lists every add, change, and delete. Where the answer is &ldquo;no change&rdquo;, that is called out too &mdash; most slots are still right, the BOH additions reduce duplication rather than create it.</p>
+
+  <h2>Headline Findings</h2>
+  <div class="review-headline">
+    <h3>The short version</h3>
+    <ol>
+      <li><strong>No deletions on the front bar.</strong> The 3-comp, glasswasher, hand sink, ice bin, froster, and two refrigeration units all still earn their slots.</li>
+      <li><strong>One change on the front bar</strong> &mdash; repurpose the 48&Prime; dual-zone fridge (Slot 3) entirely to wine. The cold zone no longer needs to carry cocktail mise/dairy; the Food Prep UC fridge does that now.</li>
+      <li><strong>Two changes on the back bar</strong> &mdash; repurpose Reach-in&nbsp;#1 (Slot 5) from charcuterie/mise to cocktail mise and back-up wine, and add a French press to the coffee station (Slot 1) for Sunday brunch.</li>
+      <li><strong>One real addition</strong> &mdash; a Type II hood / no-hood decision in the Food Prep room creates an unrelated knock-on for the bar&rsquo;s Bunn HW2 (it shares an electrical circuit class). Confirm panel capacity with the GC.</li>
+      <li><strong>Net cost impact</strong> &mdash; slightly negative. Reach-in&nbsp;#1 use-case change saves nothing on capital but recovers ~$400/year on cocktail mise spoilage. The French press add is $80&ndash;120.</li>
+    </ol>
+  </div>
+
+  <h2>Front Bar &mdash; Slot-by-Slot Review</h2>
+  <p>Layout reference: 20-foot front bar, west-to-east as bartender sees it. Seven equipment slots plus two millwork slots (clean landing, stem storage).</p>
+
+  <table class="summary-table">
+    <thead>
+      <tr><th style="width:40px;">#</th><th>Slot</th><th style="width:80px;">Allocated</th><th style="width:170px;">Status</th><th>Why</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Hand sink (Krowne HS-1317)</td>
+        <td>12&Prime;</td>
+        <td><span class="chip chip-ok">No change</span></td>
+        <td>NC code requires dedicated bar handwash regardless of BOH hand sinks.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Wine preservation (Wineemotion OTTO 8-bottle)</td>
+        <td>30&Prime;</td>
+        <td><span class="chip chip-ok">No change</span></td>
+        <td>Whites + ros&eacute; BTG dispenser &mdash; the heart of the wine program. Nothing in BOH replaces this.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>48&Prime; dual-zone wine fridge (Perlick HC48RW)</td>
+        <td>48&Prime;</td>
+        <td><span class="chip chip-warn">Change use</span></td>
+        <td>Move both zones to wine. Cold zone no longer needs to carry citrus/dairy/mise &mdash; Food Prep UC fridge does that. See detail below.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Ice bin with cold plate (Krowne 18-24-7)</td>
+        <td>24&Prime;</td>
+        <td><span class="chip chip-ok">No change</span></td>
+        <td>Cocktail ice + dump. Not duplicated anywhere in BOH.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Glass froster (Perlick FR24RT)</td>
+        <td>24&Prime;</td>
+        <td><span class="chip chip-ok">No change</span></td>
+        <td>Stemware chilling. BOH has no stemware refrigeration.</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>3-comp underbar sink (Krowne KR24-33C)</td>
+        <td>36&Prime;</td>
+        <td><span class="chip chip-warn">No change &mdash; read note</span></td>
+        <td>BOH wash room now has a 90&Prime; 3-comp with drainboards. Front bar 3-comp is still NC-required for bar service &mdash; shakers, ice dump, cocktail tool washing.</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>Bar glasswasher (CMA 181GW)</td>
+        <td>24&Prime;</td>
+        <td><span class="chip chip-ok">No change</span></td>
+        <td>Stemware never goes to BOH dishwasher under the operational model &mdash; stays at the bar.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>The one change &mdash; Slot 3 (48&Prime; dual-zone fridge)</h3>
+  <p>The 48&Prime; Perlick HC48RW was originally specified as dual-zone (34&ndash;42&deg;F refrigerator side + 40&ndash;65&deg;F wine side) so it could carry cocktail mise/citrus/dairy on the cold side and bottle-service wine on the wine side. That dual role made sense when the only refrigeration in the entire BOH for non-chocolate items was the wash room (none) and the bar (everything).</p>
+  <p>With the NOVUS Food Prep room now spec&rsquo;d with a dedicated 24&Prime; True TUC-24-HC under-counter refrigerator (33&ndash;38&deg;F) for brunch and hors d&rsquo;oeuvres mise en place, the cold zone on the front-bar fridge is doing duplicate duty. The Food Prep UC fridge is closer to where charcuterie/cheese/brie/smoked salmon get plated, so it makes more sense to hold them there.</p>
+
+  <div class="callout">
+    <span class="callout-label">Recommended change</span>
+    <ul style="margin: 8px 0 0 22px;">
+      <li>Keep the Perlick HC48RW (don&rsquo;t downgrade to True TUC-48; you already paid for the smart compressor and the front-venting).</li>
+      <li>Set both zones to wine-service range. Zone 1 (was 34&ndash;42&deg;F) goes to 40&ndash;45&deg;F &mdash; sparkling, aromatic whites, ros&eacute; backup. Zone 2 (40&ndash;65&deg;F) stays at 50&ndash;55&deg;F for white/ros&eacute; backup at service temp.</li>
+      <li>Net result: ~36 bottles of dedicated wine staging at the front bar, all at service temp. This resolves the May 2 open item &mdash; front-bar 48&Prime; handles sparkling + whites/ros&eacute; backup, back-bar reach-in #2 handles reds. No overlap.</li>
+    </ul>
+  </div>
+
+  <h3>The almost-change &mdash; Slot 6 (3-comp underbar sink)</h3>
+  <p>Worth raising even though the answer is &ldquo;no change&rdquo;. With a 90&Prime; 3-comp + dual drainboards in the wash room, the front bar&rsquo;s 36&Prime; Krowne KR24-33C is no longer doing bulk plate/charcuterie wash. The wash room handles that. So why keep 36&Prime; of 3-comp at the bar?</p>
+  <p>Because NC code still requires a 3-comp at the bar service area for any wares that get washed there &mdash; and the bar will wash a lot. Cocktail shakers, mixing glasses, ice dump, bar tools, the occasional rocks glass that came back with citrus pulp the dishwasher won&rsquo;t reach. The smallest commercial-grade 3-comp underbar sink that exists in catalog is the 36&Prime; Krowne KR24-33C with 10&Prime;-deep bowls. Going smaller means custom fabrication ($2,500&ndash;3,800), longer lead time, and smaller bowls that struggle with Boston-shaker dump duty.</p>
+  <p>Net: keep the 36&Prime; Krowne, same recommendation as before. The point of the BOH 3-comp is that it gets the plate/charcuterie/sheet-pan duty off the bar &mdash; but the bar still keeps its own.</p>
+
+  <h2>Back Bar &mdash; Slot-by-Slot Review</h2>
+  <p>Layout reference: 20-foot back bar, working wall behind the bartender. Five equipment slots plus the 140&Prime; marble/quartz pastry slab (millwork).</p>
+
+  <table class="summary-table">
+    <thead>
+      <tr><th style="width:40px;">#</th><th>Slot</th><th style="width:80px;">Allocated</th><th style="width:170px;">Status</th><th>Why</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Coffee station (Hario + Aeropress + Baratza)</td>
+        <td>12&Prime;</td>
+        <td><span class="chip chip-add">Add French press</span></td>
+        <td>Brunch menu lists French press as a &ldquo;To Sip&rdquo; item &mdash; currently no equipment specified for it. Add a Bodum Chambord 8-cup, ~$50. See detail.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Hot water dispenser (Bunn HW2)</td>
+        <td>12&Prime;</td>
+        <td><span class="chip chip-ok">No change</span></td>
+        <td>Used for hot chocolate, tea, Aeropress, brunch French-press base water. More needed now, not less.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Induction burner (Vollrath 59500P)</td>
+        <td>14&Prime;</td>
+        <td><span class="chip chip-ok">No change &mdash; KEEP</span></td>
+        <td>Even though Food Prep also has a Vollrath 59500P, evening hot chocolate orders during winter happen at the bar in front of the guest. See detail.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Marble / quartz pastry slab (Caesarstone)</td>
+        <td>140&Prime;</td>
+        <td><span class="chip chip-ok">No change</span></td>
+        <td>The visual centerpiece + chocolate flight plating + cocktail prep. Irreplaceable.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Reach-in #1 (Perlick HC24RS)</td>
+        <td>24&Prime;</td>
+        <td><span class="chip chip-warn">Change use</span></td>
+        <td>Repurpose from charcuterie/mise to cocktail mise + wine backup. Charcuterie now lives in Food Prep. See detail.</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Reach-in #2 (Perlick HP24WS)</td>
+        <td>24&Prime;</td>
+        <td><span class="chip chip-ok">No change</span></td>
+        <td>Reds at 58&deg;F + Coravin. Closest fridge to the bartender&rsquo;s working hand. Stays.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>The first change &mdash; Slot 1 (add French press to coffee station)</h3>
+  <p>The May 9 brunch menu, under &ldquo;To Sip&rdquo;, lists &ldquo;French press&rdquo; alongside cold brew, mimosas, bellini, and sparkling. That is a real menu commitment, but the back bar coffee station as currently specified does not include a French press. Cold brew is covered by the Hario Mizudashi; single-cup hot coffee is covered by the Aeropress; but two-to-four-person French press service for a brunch table requires an actual French press.</p>
+  <p>This is a $50&ndash;100 add, not a major capital decision. Specifying it now is cleaner than discovering the gap on opening Sunday.</p>
+
+  <div class="slot">
+    <div class="slot-header">
+      <h3>Bodum Chambord French press (Brunch addition)</h3>
+      <span class="slot-num">Slot 1 add</span>
+    </div>
+    <div class="slot-body">
+      <div class="spec">Back-bar coffee station &middot; 4&Prime; diameter footprint &middot; no electrical, no plumbing</div>
+      <div class="rec">Recommended &mdash; Bodum Chambord 8-cup (1.5L) French press &times; 2</div>
+      <table>
+        <tr><th>Model</th><td>Bodum Chambord 8-cup (1.5L), copper or chrome trim to match the back-bar finish</td></tr>
+        <tr><th>Price (est.)</th><td>$50&ndash;80 per unit. Buy two &mdash; one in service, one in rotation / backup. Total $100&ndash;160.</td></tr>
+        <tr><th>Footprint</th><td>4&Prime; diameter &times; 9&Prime; tall. Lives on the marble slab between service or in under-counter shelving. Does not require new bar real estate.</td></tr>
+        <tr><th>Coffee</th><td>Use the same coarse-grind setting on the Baratza Encore already at the coffee station. One grinder serves all three brewing methods (cold brew, Aeropress, French press) at different grind settings.</td></tr>
+        <tr><th>Water</th><td>The Bunn HW2 dispenses at 200&deg;F &mdash; perfect for French press. No additional water source needed.</td></tr>
+        <tr><th>Why this one</th><td>The Chambord is the canonical French press &mdash; borosilicate glass beaker, stainless mesh, copper or chrome trim. Fits the warm/wood Bali aesthetic of the back bar. Bodum sells spare parts (mesh, glass beaker) for the inevitable replacement.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h3>The second change &mdash; Slot 5 (Reach-in #1, repurpose)</h3>
+  <p>Reach-in #1 was originally specified as a 24&Prime; Perlick HC24RS holding charcuterie, cheese, prepped fruit, garnishes, and any cocktail mise needing refrigeration. The operational logic was: bartender plates chocolate flights and small cheese/charcuterie at the bar, needs immediate access to those ingredients.</p>
+  <p>That logic has changed. The May 9 Food Prep room takes over all charcuterie and cheese plating. Cheese boards, charcuterie boards, brie en cro&ucirc;te, smoked salmon tartine, hummus, fruit &amp; cheese plates &mdash; all assembled in Food Prep, run to the table by FOH. The bartender does not plate these. Charcuterie and cheese now live in the Food Prep UC fridge, not at the bar.</p>
+  <p>What does the bartender still need at hand? Cocktail mise &mdash; citrus (lemons, oranges for peel and juice), garnishes (mint, fresh rosemary, fennel fronds), cocktail dairy (heavy cream for the rare cream cocktail, half-and-half for after-dinner coffee), opened cordials and syrups, prepped pre-batched cocktails for a busy night. Plus the chocolate-pairing items the bartender does still plate at the marble slab: the bonbons themselves (which live in the front-of-house chocolate display case), and any side accompaniments the chocolatier preps.</p>
+
+  <div class="callout">
+    <span class="callout-label">Recommended new use</span>
+    <ul style="margin: 8px 0 0 22px;">
+      <li>Rename Reach-in #1 from &ldquo;charcuterie / mise en place&rdquo; to &ldquo;cocktail mise + wine backup&rdquo;.</li>
+      <li>Top shelf: citrus, fresh herbs, cocktail dairy (cream, half-and-half), pre-batched cocktail mixes for service.</li>
+      <li>Bottom shelf: 4&ndash;6 bottles of wine backup &mdash; specifically the sparkling and aromatic whites that get pulled into the OTTO dispenser as bottles run dry mid-service. This is the &ldquo;closed BTG backup stock&rdquo; use case from the Physical Bar PDF, which currently has no clean home.</li>
+      <li>Keep the equipment unchanged &mdash; Perlick HC24RS is the right unit. The use case shift doesn&rsquo;t require a different fridge. The 33&ndash;42&deg;F range covers both citrus/dairy (38&deg;F) and short-term wine staging (40&ndash;45&deg;F for whites).</li>
+    </ul>
+  </div>
+
+  <h4 style="color:var(--maroon); font-family:Didot,serif; font-size:18px; margin-top:18px;">What this resolves</h4>
+  <p>Three things:</p>
+  <ul>
+    <li>Cocktail mise has a real home, instead of fighting for space with charcuterie.</li>
+    <li>Front-bar wine fridge (Slot 3) is freed to be wine-only, simplifying its job.</li>
+    <li>The &ldquo;closed BTG backup stock&rdquo; question raised in the May 3 Physical Bar PDF is answered: backup whites/ros&eacute; live in the back-bar reach-in&nbsp;#1, swapped into the OTTO dispenser when an open bottle runs dry.</li>
+  </ul>
+
+  <h3>The keep-don&rsquo;t-cut decision &mdash; Slot 3 (back-bar induction burner)</h3>
+  <p>Worth flagging because the Food Prep room now has its own Vollrath 59500P induction burner (Slot 6 in the Food Prep equipment spec). Why pay for two of the same unit?</p>
+  <p>Three reasons keep the back-bar one:</p>
+  <ul>
+    <li>Evening hot chocolate orders happen Wed&ndash;Sat 5pm&ndash;midnight, when the Food Prep room is closed. The kitchen is dark; the bar is on.</li>
+    <li>In-front-of-guest preparation is part of the experience. Heating milk for a winter hot chocolate at the marble slab, in view of the guest, is theater. Walking to the BOH to do it is service-line death.</li>
+    <li>Tableside warming &mdash; mulled wine in November, warmed cognac for the rare neat-spirit order, melted butter for tableside chocolate work &mdash; all live at the bar.</li>
+  </ul>
+  <p>Two of the same unit is correct here. They serve different shifts. Don&rsquo;t cut it.</p>
+
+  <h2>Knock-on Items Worth Flagging</h2>
+  <p>Three things that aren&rsquo;t direct bar equipment changes but affect bar planning given the NOVUS BOH additions.</p>
+
+  <h3>1. Electrical panel capacity &mdash; confirm with GC</h3>
+  <p>The Food Prep room adds six dedicated 15A circuits + one 30A circuit + one 240V mini-split circuit. The Chocolate Prep room already has its mini-split, dehumidifier, tempering machine, two UC fridges, and reach-in. The Wash room has the dishwasher (30A/208V), hot water heater, hand sink, mop sink. The Bar has seven powered units already &mdash; OTTO (240V), HC48RW, ice bin (drain only), froster, 3-comp (drain only), glasswasher (240V/hot water), plus the back bar&rsquo;s Bunn HW2, induction burner, two reach-ins.</p>
+  <p>That is a real electrical load aggregating into the panel. Worth confirming with the GC&rsquo;s electrical sub that the panel capacity is sufficient &mdash; and specifically that the back-bar Bunn HW2 doesn&rsquo;t end up on a shared circuit with the front-bar OTTO. Both are continuously-energized appliances; sharing a circuit with peak draw on both will trip breakers.</p>
+
+  <h3>2. Sparkling preservation for brunch &mdash; bar handles it, kitchen doesn&rsquo;t</h3>
+  <p>The brunch menu features mimosas and bellini, both of which need sparkling wine as the base. Sparkling preservation is in the front-bar wine fridge under stoppers (per Vol. II &sect;7 and the May 2 session). The Food Prep room has no wine refrigeration &mdash; and shouldn&rsquo;t. So all brunch sparkling service flows through the bar.</p>
+  <p>Operationally this means: brunch order ticket fires &ldquo;Mimosa&rdquo; at table 4, bartender pulls the sparkling from the front-bar fridge, pours orange juice from the Food Prep UC fridge (or staged at the bar in a half-gallon carafe at start of service), and runs the drink. Standard wine-bar workflow, nothing exotic. Just worth being explicit that the brunch sparkling path is bar &rarr; table, not kitchen &rarr; table.</p>
+  <p>Implication: stage one Champagne flute rack on the back-bar marble slab at brunch service start, pre-frosted. Have one or two carafes of OJ and one of peach pur&eacute;e (for bellini) prepped in Food Prep and staged on the back bar at 8am.</p>
+
+  <h3>3. Espresso machine at Food Prep &mdash; still deferred</h3>
+  <p>The Vol. II &sect;13 open-items list flagged the espresso machine question &mdash; bar or food prep room, or skip entirely. The current state of the documents is:</p>
+  <ul>
+    <li>Back bar coffee program: Aeropress (hot single-cup) + Hario cold brew + (new) French press. No espresso.</li>
+    <li>Food Prep room: no espresso planned at opening, decision deferred 3 months.</li>
+    <li>Brunch menu: cold brew, French press, but no cappuccino or espresso-based drinks.</li>
+  </ul>
+  <p>The May 9 brunch menu doesn&rsquo;t list any espresso-based drinks (no cappuccino, no latte, no espresso martini despite the Cacao Martini being on the evening menu). This is consistent &mdash; the no-espresso position is held. Revisit at 3 months post-opening based on actual brunch demand. No action needed now.</p>
+
+  <h2>Updated Buy-List &mdash; What to Add to the Order</h2>
+  <p>The vast majority of the bar equipment list is unchanged. This table shows only the deltas from the current Front Bar and Back Bar docs.</p>
+
+  <table class="summary-table delta-table">
+    <thead>
+      <tr>
+        <th style="width:110px;">Action</th>
+        <th>Item</th>
+        <th>What changes</th>
+        <th style="width:130px;">Capital impact</th>
+        <th style="width:130px;">Decision owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="chip chip-add">Add</span></td>
+        <td>Bodum Chambord 8-cup French press &times; 2</td>
+        <td>Brunch &ldquo;To Sip&rdquo; menu lists French press; not previously equipped.</td>
+        <td>+$100&ndash;160</td>
+        <td>Bartender / GM</td>
+      </tr>
+      <tr>
+        <td><span class="chip chip-warn">Change use</span></td>
+        <td>Slot 3 (front bar) &mdash; Perlick HC48RW 48&Prime; dual-zone</td>
+        <td>Both zones to wine service temps (40&ndash;45&deg;F + 50&ndash;55&deg;F). No cocktail mise here.</td>
+        <td>$0 &mdash; software setting</td>
+        <td>GM / Bev Director</td>
+      </tr>
+      <tr>
+        <td><span class="chip chip-warn">Change use</span></td>
+        <td>Slot 5 (back bar) &mdash; Perlick HC24RS 24&Prime; UC fridge</td>
+        <td>Repurpose from charcuterie/mise to cocktail mise + wine backup. Same equipment.</td>
+        <td>$0 &mdash; operational</td>
+        <td>GM / Bev Director</td>
+      </tr>
+      <tr>
+        <td><span class="chip" style="background:rgba(192,160,89,0.18); color:#7a5f1c;">Confirm</span></td>
+        <td>Electrical panel sizing across all rooms</td>
+        <td>BOH adds 8+ circuits including 30A and 240V. Verify panel and circuit assignments &mdash; bar Bunn HW2 must not share with bar OTTO.</td>
+        <td>$0&ndash;4,000</td>
+        <td>GC / electrical</td>
+      </tr>
+      <tr>
+        <td><span class="chip" style="background:rgba(192,160,89,0.18); color:#7a5f1c;">Confirm</span></td>
+        <td>Front-bar / back-bar wine fridge double-count (open since May 2)</td>
+        <td>This document resolves the double-count: front-bar = sparkling/whites/ros&eacute;, back-bar = reds. Sign off needed.</td>
+        <td>$0 &mdash; both units already in buy-list</td>
+        <td>GM / Bev Director</td>
+      </tr>
+      <tr>
+        <td><span class="chip chip-ok">No change</span></td>
+        <td>Slot 6 (front bar) &mdash; Krowne KR24-33C 36&Prime; 3-comp</td>
+        <td>BOH 3-comp absorbs plate/charcuterie volume, but bar 3-comp still NC code-required for shaker / ice / tool wash.</td>
+        <td>$0</td>
+        <td>&mdash;</td>
+      </tr>
+      <tr>
+        <td><span class="chip chip-ok">No change</span></td>
+        <td>Slot 3 (back bar) &mdash; Vollrath 59500P induction</td>
+        <td>Yes the Food Prep room has the same unit, but the back-bar one serves Wed&ndash;Sat evening hot chocolate / tableside warming when Food Prep is dark.</td>
+        <td>$0</td>
+        <td>&mdash;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Net capital impact</h3>
+  <p>$100&ndash;160 added (French press &times; 2). Zero deletions. Two use-case changes that cost nothing. One electrical confirmation that may or may not require a panel upgrade depending on what the GC discovers.</p>
+  <p>The front + back bar combined equipment line in the Vol. II &sect;12 budget was $53,000&ndash;79,000. The current buy-list totals $43,025&ndash;54,565 (per the Back Bar doc summary). Adding the French press brings it to $43,125&ndash;54,725. Comfortably inside budget, $25K of headroom in the line for smallwares and contingency.</p>
+
+  <h2>Items Still to Confirm Before Placing Orders</h2>
+  <p>Carrying forward from the original docs plus what this review adds:</p>
+
+  <h3>From the original docs (still open)</h3>
+  <ul>
+    <li>Front-bar Slot 7: CMA 181GW requires a hot-water line run to the bar. Confirm feasibility with GC; fall back to 181VL if cost-prohibitive.</li>
+    <li>Back-bar Slot 4 (pastry slab): material decision quartz vs. marble vs. soapstone. Visit Triangle Marble &amp; Granite, Cosmos Granite, or NorthState Stone.</li>
+    <li>Glass-door vs. solid-door on back-bar Slot 5 &mdash; depends on lighting design. Now even more relevant since this slot is changing to cocktail mise + wine backup (less visually compelling than charcuterie display).</li>
+    <li>Get dealer quotes from two of: TriMark USA, Whaley Foodservice (NC), and a Krowne authorized dealer. List prices are starting points; 10&ndash;25% off list is realistic.</li>
+  </ul>
+
+  <h3>New from this review</h3>
+  <ul>
+    <li>Electrical panel capacity &mdash; confirm with GC&rsquo;s electrical sub that BOH + bar combined load is supportable. Specifically verify the Bunn HW2 and the OTTO are on independent circuits.</li>
+    <li>Sign-off from GM/Beverage Director on the wine fridge assignment (front-bar = sparkling/whites/ros&eacute;; back-bar = reds). This resolves the May 2 open item.</li>
+    <li>Sign-off from GM/Beverage Director on the cocktail mise vs. wine backup split for back-bar Reach-in #1.</li>
+    <li>French press &times; 2 (Bodum Chambord 8-cup) &mdash; add to opening smallwares list.</li>
+  </ul>
+
+  <h2>Visual Summary &mdash; What Changed Where</h2>
+
+  <div class="strip-label">Front bar &mdash; 20-foot, west to east</div>
+  <table class="bar-strip">
+    <tr>
+      <td>Hand sink<span class="alloc">12&Prime;</span></td>
+      <td>Wine pres.<span class="alloc">30&Prime;</span></td>
+      <td class="changed">Wine fridge<br>(now wine-only)<span class="alloc">48&Prime;</span></td>
+      <td>Ice bin<span class="alloc">24&Prime;</span></td>
+      <td>Glass froster<span class="alloc">24&Prime;</span></td>
+      <td>3-comp sink<span class="alloc">36&Prime;</span></td>
+      <td>Glasswasher<span class="alloc">24&Prime;</span></td>
+      <td>Clean landing<span class="alloc">12&Prime;</span></td>
+      <td>Stem storage<span class="alloc">24&Prime;</span></td>
+    </tr>
+  </table>
+  <p class="strip-caption"><span class="swatch unchanged"></span> unchanged <span class="swatch changed"></span> use-case change (no equipment change)</p>
+
+  <div class="strip-label">Back bar &mdash; 20-foot, west to east</div>
+  <table class="bar-strip">
+    <tr>
+      <td class="changed" style="width:9%;">Coffee station<br>+ French press<span class="alloc">12&Prime;</span></td>
+      <td style="width:9%;">Hot water<br>(Bunn HW2)<span class="alloc">12&Prime;</span></td>
+      <td style="width:9%;">Induction<br>burner<span class="alloc">14&Prime;</span></td>
+      <td style="width:46%;">Marble / quartz pastry slab<br><span style="font-weight:400; color:var(--gray-500);">chocolate flight plating + cocktail prep</span><span class="alloc">140&Prime;</span></td>
+      <td class="changed" style="width:13%;">Reach-in #1<br>cocktail mise<br>+ wine backup<span class="alloc">24&Prime;</span></td>
+      <td style="width:14%;">Reach-in #2<br>reds 58&deg;F<span class="alloc">24&Prime;</span></td>
+    </tr>
+  </table>
+  <p class="strip-caption"><span class="swatch unchanged"></span> unchanged <span class="swatch changed"></span> use-case or addition change</p>
+
+  <div style="margin-top:48px; padding-top:24px; border-top:1px solid var(--gray-300); text-align:center; color:var(--gray-500); font-style:italic; font-size:14px;">
+    Cacao Cellars &middot; Front &amp; Back Bar Review against NOVUS BOH &middot; May 11, 2026
+  </div>
+
+  <a href="index.html" class="back-link" style="margin-top:32px;">Back to Floor Plan</a>
+</div>
+
+<footer>
+  <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
+  Durham, NC &middot; Bar Review &middot; May 2026
+</footer>
+
+</body>
+</html>

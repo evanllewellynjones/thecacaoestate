@@ -5,6 +5,57 @@
 <title>Bar &amp; Back Bar Area &mdash; The Cacao Estate at NOVUS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="styles.css">
+<style>
+  .doc-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin: 24px 0 32px;
+  }
+  .doc-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-top: 4px solid var(--maroon);
+    padding: 22px 22px 18px;
+    text-decoration: none;
+    color: var(--gray-700);
+    transition: all 0.2s ease;
+    display: block;
+  }
+  .doc-card:hover {
+    border-top-color: var(--purple);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+  .doc-card .doc-eyebrow {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--maroon);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .doc-card:hover .doc-eyebrow { color: var(--purple); }
+  .doc-card h3 {
+    font-family: "Didot", "Cormorant Garamond", serif;
+    font-size: 20px;
+    color: var(--green-deep);
+    margin-bottom: 8px;
+    margin-top: 0;
+  }
+  .doc-card p { font-size: 14.5px; margin-bottom: 0; color: var(--gray-700); }
+  .doc-card .doc-meta {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--gray-300);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    font-family: "Helvetica Neue", sans-serif;
+  }
+</style>
 </head>
 <body>
 
@@ -27,20 +78,44 @@
   <div class="subpage-header-inner">
     <div class="crumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; Bar &amp; Back Bar Area</div>
     <h1>Bar &amp; Back Bar Area</h1>
-    <p class="subtitle">18&prime; &times; 10&prime; &middot; West wall &middot; 7 stools</p>
+    <p class="subtitle">18&prime; &times; 10&prime; &middot; West wall &middot; 7 stools &middot; 20-foot front bar / 20-foot back bar</p>
   </div>
 </section>
 
 <div class="subpage-body">
   <a href="index.html" class="back-link">Back to Floor Plan</a>
 
-  <div class="placeholder">
-    <h2>Coming Soon</h2>
-    <p>Front-bar and back-bar equipment, glassware program, wine-preservation system, and service flow. Source from Cacao_Cellars_Front_Bar_Equipment and Cacao_Cellars_Back_Bar_Equipment when ready to populate.</p>
-    <span class="badge">Under Development</span>
+  <h2>About this area</h2>
+  <p>The bar zone is the working heart of Cacao Cellars: a 20-foot front bar serving guests on stools, a 20-foot back bar with the marble pastry slab and refrigeration, and a 120-bottle backlit wine wall above. The full equipment specification lives in two universal documents (Front Bar Equipment and Back Bar Equipment) plus a May 11 review against the NOVUS BOH layout.</p>
+
+  <h2>Documents for this area</h2>
+
+  <div class="doc-card-grid">
+    <a class="doc-card" href="bar-review.html">
+      <div class="doc-eyebrow">Most Recent &middot; May 11, 2026</div>
+      <h3>Front &amp; Back Bar Review vs. NOVUS BOH</h3>
+      <p>Slot-by-slot review of both bars against the new Food Prep, Choco Prep, and Wash rooms. Lists every add, change, and confirmed-no-change &mdash; plus the wine fridge double-count resolution.</p>
+      <div class="doc-meta">Read first &middot; supersedes original docs on slot use</div>
+    </a>
+    <a class="doc-card" href="wine-preservation.html">
+      <div class="doc-eyebrow">Equipment &middot; April 2026</div>
+      <h3>Wine Preservation Comparison</h3>
+      <p>Napa Tech WineStation models compared, and Coravin Pivot vs. Timeless for red BTG service. Includes combined opening cost ($6,668&ndash;8,068).</p>
+      <div class="doc-meta">Supports the wine program at the front bar</div>
+    </a>
+    <a class="doc-card" href="wine.html">
+      <div class="doc-eyebrow">Strategy &middot; May 9, 2026</div>
+      <h3>Wine Retail Strategy</h3>
+      <p>Sourcing, display, and margins for the off-premise retail wine program leveraging the three NOVUS retail display zones.</p>
+      <div class="doc-meta">Off-premise companion to the bar program</div>
+    </a>
   </div>
 
-  <a href="index.html" class="back-link">Back to Floor Plan</a>
+  <h2>Operational notes</h2>
+  <p>The bar is built around a chocolate-first menu architecture: each house-made chocolate is presented with curated wine, fortified, and spirits pairings, and the front bar&rsquo;s wine preservation system (Napa Tech for whites, Coravin Pivot for reds) is sized for a 14-SKU by-the-glass program. The back bar carries three signature Cacao Cocktails (Cacao Martini, Cacao Old Fashioned, Cacao Affogato) on the evening menu, plus a small coffee program (cold brew, Aeropress, French press for brunch) and hot chocolate service.</p>
+  <p>Stemware is washed at the front bar in a CMA 181GW high-temp glasswasher and never travels to the BOH dishwasher &mdash; the operational model keeps glasses, bartender focus, and breakage all forward of the back-bar wall.</p>
+
+  <a href="index.html" class="back-link" style="margin-top:32px;">Back to Floor Plan</a>
 </div>
 
 <footer>

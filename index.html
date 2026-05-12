@@ -218,150 +218,6 @@
     margin-top: 4px;
     font-style: italic;
   }
-
-  /* =====================================================================
-     CONCEPT GALLERY — four-photo grid showing the build
-     ===================================================================== */
-  .concept-wrap {
-    background: var(--gray-100);
-    padding: 64px 24px 72px;
-    border-top: 1px solid var(--gray-300);
-    border-bottom: 1px solid var(--gray-300);
-  }
-  .concept-inner {
-    max-width: 1300px;
-    margin: 0 auto;
-  }
-  .concept-eyebrow {
-    text-align: center;
-    font-family: "Helvetica Neue", "Arial", sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--purple);
-    margin-bottom: 10px;
-  }
-  .concept-title {
-    text-align: center;
-    font-family: "Didot", "Playfair Display", serif;
-    font-size: 38px;
-    color: var(--green-deep);
-    margin-bottom: 12px;
-    font-weight: 400;
-  }
-  .concept-title .em { color: var(--maroon); font-style: italic; }
-  .concept-lede {
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto 44px;
-    color: var(--gray-700);
-    font-size: 16px;
-    font-style: italic;
-    line-height: 1.6;
-  }
-
-  /* Photo grid */
-  .concept-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px;
-  }
-  .concept-card {
-    position: relative;
-    overflow: hidden;
-    background: var(--white);
-    border: 1px solid var(--gray-300);
-    box-shadow: var(--shadow);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-  }
-  .concept-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-  }
-
-  .concept-photo {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    background: var(--gray-100);
-  }
-  .concept-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    transition: transform 0.6s ease;
-  }
-  .concept-card:hover .concept-photo img {
-    transform: scale(1.04);
-  }
-
-  /* Color overlay accent — subtle tint on hover that hints at brand */
-  .concept-photo::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(31,58,46,0) 60%, rgba(31,58,46,0.45) 100%);
-    pointer-events: none;
-    transition: opacity 0.35s ease;
-  }
-
-  .concept-caption {
-    padding: 18px 22px 20px;
-    border-top: 3px solid var(--purple);
-  }
-  .concept-card:nth-child(1) .concept-caption { border-top-color: var(--maroon); }
-  .concept-card:nth-child(2) .concept-caption { border-top-color: var(--purple); }
-  .concept-card:nth-child(3) .concept-caption { border-top-color: var(--green-mid); }
-  .concept-card:nth-child(4) .concept-caption { border-top-color: var(--maroon-soft); }
-
-  .concept-caption .label {
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--purple);
-    margin-bottom: 6px;
-    display: block;
-  }
-  .concept-caption h3 {
-    font-family: "Didot", "Playfair Display", serif;
-    font-size: 22px;
-    color: var(--green-deep);
-    font-weight: 500;
-    margin-bottom: 6px;
-    line-height: 1.2;
-  }
-  .concept-caption p {
-    color: var(--gray-700);
-    font-size: 14px;
-    line-height: 1.55;
-    margin: 0;
-  }
-
-  /* Brand-strip caption beneath grid */
-  .concept-footnote {
-    margin-top: 40px;
-    text-align: center;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gray-500);
-  }
-  .concept-footnote .dot {
-    color: var(--maroon);
-    margin: 0 10px;
-  }
-
-  /* Responsive — single column on tablet & smaller */
-  @media (max-width: 880px) {
-    .concept-grid { grid-template-columns: 1fr; gap: 18px; }
-    .concept-title { font-size: 30px; }
-    .concept-wrap { padding: 48px 16px 56px; }
-  }
 </style>
 </head>
 <body>
@@ -374,11 +230,10 @@
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="menu.html">Menu</a></li>
       <li><a href="wine.html">Wine</a></li>
-      <li><a href="food-production.html">Food Prod.</a></li>
+      <li><a href="food-production.html">Food Production</a></li>
       <li><a href="employees.html">Employees</a></li>
       <li><a href="marketing.html">Marketing</a></li>
-      <li><a href="operations.html">Operations</a></li>
-      <li><a href="chocolate-production.html">Choc. Prod.</a></li>
+      <li><a href="chocolate-production.html">Chocolate Production</a></li>
     </ul>
   </nav>
 </header>
@@ -388,71 +243,6 @@
   <h1>The Cacao Estate <span class="em">at NOVUS</span></h1>
   <div class="tagline">Wine &middot; Chocolate &middot; Pairings &middot; Durham, NC</div>
   <p class="lede">A 1,683 sq ft wine and chocolate bar built around Tier&nbsp;1 chocolate production, a curated wine program, and Sunday brunch. Click any room in the layout below to explore its design.</p>
-</section>
-
-<!-- =============== CONCEPT GALLERY =============== -->
-<section class="concept-wrap">
-  <div class="concept-inner">
-    <div class="concept-eyebrow">The Concept</div>
-    <h2 class="concept-title">A Wine &amp; Chocolate Bar <span class="em">in Durham</span></h2>
-    <p class="concept-lede">Salvaged brick, hand-carved Balinese wood, a glass-walled chocolate atelier, and a wine program built around the pairing flight. The atmosphere we&rsquo;re building toward, room by room.</p>
-
-    <div class="concept-grid">
-
-      <!-- Wine Bar -->
-      <div class="concept-card">
-        <div class="concept-photo">
-          <img src="images/wine-bar.jpg" alt="Wine bar interior with exposed brick, illuminated bottle shelves, communal teak tables, and rattan barstools">
-        </div>
-        <div class="concept-caption">
-          <span class="label">The Front of House</span>
-          <h3>The Wine Bar</h3>
-          <p>Exposed brick, an 18-foot bar with a backlit bottle wall, communal teak tables, and rattan stools. Eight bar seats facing the chocolate atelier through a viewing window.</p>
-        </div>
-      </div>
-
-      <!-- Chocolatier -->
-      <div class="concept-card">
-        <div class="concept-photo">
-          <img src="images/chocolatier.jpg" alt="Chocolatier at work in a glass-walled production room, with tempered chocolate molds, a hand-carved Balinese doorway alongside">
-        </div>
-        <div class="concept-caption">
-          <span class="label">Tier 1 Production</span>
-          <h3>The Chocolate Atelier</h3>
-          <p>A glass-walled prep room visible from the dining floor. Tier 1 production &mdash; melting, tempering, molding, and packaging &mdash; happening in plain view of every guest.</p>
-        </div>
-      </div>
-
-      <!-- Pairings -->
-      <div class="concept-card">
-        <div class="concept-photo">
-          <img src="images/pairings.jpg" alt="Wine and chocolate pairing flight: three wines beside four tempered bonbons on a wooden board atop a teak table">
-        </div>
-        <div class="concept-caption">
-          <span class="label">The Signature</span>
-          <h3>Pairings &amp; Tasting Flights</h3>
-          <p>Three or four wines poured beside an equal number of bonbons, each pairing chosen to bring out what neither does alone. The signature experience of the room.</p>
-        </div>
-      </div>
-
-      <!-- Patio -->
-      <div class="concept-card">
-        <div class="concept-photo">
-          <img src="images/patio.jpg" alt="Outdoor patio at dusk with brick walls, lush plants, café tables, and a hand-carved Balinese entry doorway">
-        </div>
-        <div class="concept-caption">
-          <span class="label">Outdoor Seating</span>
-          <h3>The Patio</h3>
-          <p>Salvaged-brick walls, low ambient lighting, café tables and lush plantings, with the carved Balinese doorway as the threshold between street and room.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="concept-footnote">
-      Wine <span class="dot">&middot;</span> Chocolate <span class="dot">&middot;</span> Pairings <span class="dot">&middot;</span> Brunch
-    </div>
-  </div>
 </section>
 
 <!-- =============== LAYOUT =============== -->
@@ -839,7 +629,7 @@
 <section class="legend">
   <a href="bar.html">
     <span class="legend-title">Bar &amp; Back Bar</span>
-    <span class="legend-sub">18&prime; &times; 10&prime;  &middot;  7 stools</span>
+    <span class="legend-sub">18&prime; &times; 10&prime;  &middot;  May 11 NOVUS review</span>
   </a>
   <a href="wash.html">
     <span class="legend-title">Wash &amp; Clean Area</span>
