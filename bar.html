@@ -1,61 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- CACAO_GATE_START -->
+<style id="cacao-gate-style">
+  html.cacao-locked body { visibility: hidden !important; }
+  #cacao-gate-overlay {
+    position: fixed; inset: 0; z-index: 999999;
+    background: linear-gradient(180deg,#1a2e1f 0%,#0d1a13 100%);
+    color: #f5f2ec; display: flex; align-items: center; justify-content: center;
+    font-family: 'Helvetica Neue', Arial, sans-serif; visibility: visible;
+  }
+  #cacao-gate-overlay .gate-box {
+    background: #faf8f4; color: #1a1a1a; padding: 40px 44px;
+    border-top: 4px solid #6b1f2a; box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    max-width: 420px; width: 90%; text-align: center;
+  }
+  #cacao-gate-overlay .gate-brand {
+    font-family: 'Didot','Playfair Display',serif; font-size: 26px;
+    color: #1a2e1f; margin-bottom: 4px;
+  }
+  #cacao-gate-overlay .gate-brand .em { color: #5b3a7a; font-style: italic; }
+  #cacao-gate-overlay .gate-sub {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #6b6b6b; margin-bottom: 24px;
+  }
+  #cacao-gate-overlay .gate-note {
+    font-size: 13px; color: #3a3833; margin-bottom: 18px; line-height: 1.5;
+  }
+  #cacao-gate-overlay input {
+    width: 100%; padding: 12px 14px; font-size: 15px;
+    border: 1px solid #ccc; box-sizing: border-box; margin-bottom: 12px;
+    font-family: inherit; letter-spacing: 0.05em;
+  }
+  #cacao-gate-overlay input:focus { outline: 2px solid #5b3a7a; border-color: #5b3a7a; }
+  #cacao-gate-overlay button {
+    width: 100%; padding: 12px; background: #6b1f2a; color: #fff;
+    border: 0; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-family: inherit; cursor: pointer; transition: background 0.2s ease;
+  }
+  #cacao-gate-overlay button:hover { background: #5b3a7a; }
+  #cacao-gate-overlay .gate-err {
+    color: #6b1f2a; font-size: 12px; min-height: 16px; margin-top: 10px;
+    letter-spacing: 0.05em;
+  }
+  #cacao-gate-overlay .gate-foot {
+    margin-top: 22px; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #999;
+  }
+</style>
+<script>
+(function () {
+  var SITE_PASSWORD = "CACAO2026";
+  var STORAGE_KEY   = "cacao_estate_auth_v1";
+  try {
+    if (sessionStorage.getItem(STORAGE_KEY) === SITE_PASSWORD) return;
+  } catch (e) {}
+  document.documentElement.classList.add("cacao-locked");
+  function buildGate() {
+    if (document.getElementById("cacao-gate-overlay")) return;
+    var overlay = document.createElement("div");
+    overlay.id = "cacao-gate-overlay";
+    overlay.innerHTML =
+      '<div class="gate-box">' +
+      '  <div class="gate-brand">The Cacao Estate <span class="em">at NOVUS</span></div>' +
+      '  <div class="gate-sub">Site in Development</div>' +
+      '  <div class="gate-note">This site is currently in development. Please enter the access password to continue.</div>' +
+      '  <input id="cacao-gate-input" type="password" placeholder="Access password" autocomplete="off" autocapitalize="characters" />' +
+      '  <button id="cacao-gate-btn" type="button">Enter Site</button>' +
+      '  <div class="gate-err" id="cacao-gate-err"></div>' +
+      '  <div class="gate-foot">Durham, NC</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    var input = document.getElementById("cacao-gate-input");
+    var btn   = document.getElementById("cacao-gate-btn");
+    var err   = document.getElementById("cacao-gate-err");
+    function attempt() {
+      var val = (input.value || "").trim();
+      if (val.toUpperCase() === SITE_PASSWORD) {
+        try { sessionStorage.setItem(STORAGE_KEY, SITE_PASSWORD); } catch (e) {}
+        document.documentElement.classList.remove("cacao-locked");
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+      } else {
+        err.textContent = "Incorrect password. Please try again.";
+        input.value = "";
+        input.focus();
+      }
+    }
+    btn.addEventListener("click", attempt);
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); attempt(); }
+    });
+    setTimeout(function () { input.focus(); }, 30);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", buildGate);
+  } else {
+    buildGate();
+  }
+})();
+</script>
+<!-- CACAO_GATE_END -->
 <meta charset="UTF-8">
 <title>Bar &amp; Back Bar Area &mdash; The Cacao Estate at NOVUS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="styles.css">
-<style>
-  .doc-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
-    margin: 24px 0 32px;
-  }
-  .doc-card {
-    background: var(--white);
-    border: 1px solid var(--gray-300);
-    border-top: 4px solid var(--maroon);
-    padding: 22px 22px 18px;
-    text-decoration: none;
-    color: var(--gray-700);
-    transition: all 0.2s ease;
-    display: block;
-  }
-  .doc-card:hover {
-    border-top-color: var(--purple);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    transform: translateY(-2px);
-  }
-  .doc-card .doc-eyebrow {
-    font-family: "Helvetica Neue", sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--maroon);
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .doc-card:hover .doc-eyebrow { color: var(--purple); }
-  .doc-card h3 {
-    font-family: "Didot", "Cormorant Garamond", serif;
-    font-size: 20px;
-    color: var(--green-deep);
-    margin-bottom: 8px;
-    margin-top: 0;
-  }
-  .doc-card p { font-size: 14.5px; margin-bottom: 0; color: var(--gray-700); }
-  .doc-card .doc-meta {
-    margin-top: 12px;
-    padding-top: 10px;
-    border-top: 1px dashed var(--gray-300);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--gray-500);
-    font-family: "Helvetica Neue", sans-serif;
-  }
-</style>
 </head>
 <body>
 
@@ -78,44 +126,20 @@
   <div class="subpage-header-inner">
     <div class="crumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; Bar &amp; Back Bar Area</div>
     <h1>Bar &amp; Back Bar Area</h1>
-    <p class="subtitle">18&prime; &times; 10&prime; &middot; West wall &middot; 7 stools &middot; 20-foot front bar / 20-foot back bar</p>
+    <p class="subtitle">18&prime; &times; 10&prime; &middot; West wall &middot; 7 stools</p>
   </div>
 </section>
 
 <div class="subpage-body">
   <a href="index.html" class="back-link">Back to Floor Plan</a>
 
-  <h2>About this area</h2>
-  <p>The bar zone is the working heart of Cacao Cellars: a 20-foot front bar serving guests on stools, a 20-foot back bar with the marble pastry slab and refrigeration, and a 120-bottle backlit wine wall above. The full equipment specification lives in two universal documents (Front Bar Equipment and Back Bar Equipment) plus a May 11 review against the NOVUS BOH layout.</p>
-
-  <h2>Documents for this area</h2>
-
-  <div class="doc-card-grid">
-    <a class="doc-card" href="bar-review.html">
-      <div class="doc-eyebrow">Most Recent &middot; May 11, 2026</div>
-      <h3>Front &amp; Back Bar Review vs. NOVUS BOH</h3>
-      <p>Slot-by-slot review of both bars against the new Food Prep, Choco Prep, and Wash rooms. Lists every add, change, and confirmed-no-change &mdash; plus the wine fridge double-count resolution.</p>
-      <div class="doc-meta">Read first &middot; supersedes original docs on slot use</div>
-    </a>
-    <a class="doc-card" href="wine-preservation.html">
-      <div class="doc-eyebrow">Equipment &middot; April 2026</div>
-      <h3>Wine Preservation Comparison</h3>
-      <p>Napa Tech WineStation models compared, and Coravin Pivot vs. Timeless for red BTG service. Includes combined opening cost ($6,668&ndash;8,068).</p>
-      <div class="doc-meta">Supports the wine program at the front bar</div>
-    </a>
-    <a class="doc-card" href="wine.html">
-      <div class="doc-eyebrow">Strategy &middot; May 9, 2026</div>
-      <h3>Wine Retail Strategy</h3>
-      <p>Sourcing, display, and margins for the off-premise retail wine program leveraging the three NOVUS retail display zones.</p>
-      <div class="doc-meta">Off-premise companion to the bar program</div>
-    </a>
+  <div class="placeholder">
+    <h2>Coming Soon</h2>
+    <p>Front-bar and back-bar equipment, glassware program, wine-preservation system, and service flow. Source from Cacao_Cellars_Front_Bar_Equipment and Cacao_Cellars_Back_Bar_Equipment when ready to populate.</p>
+    <span class="badge">Under Development</span>
   </div>
 
-  <h2>Operational notes</h2>
-  <p>The bar is built around a chocolate-first menu architecture: each house-made chocolate is presented with curated wine, fortified, and spirits pairings, and the front bar&rsquo;s wine preservation system (Napa Tech for whites, Coravin Pivot for reds) is sized for a 14-SKU by-the-glass program. The back bar carries three signature Cacao Cocktails (Cacao Martini, Cacao Old Fashioned, Cacao Affogato) on the evening menu, plus a small coffee program (cold brew, Aeropress, French press for brunch) and hot chocolate service.</p>
-  <p>Stemware is washed at the front bar in a CMA 181GW high-temp glasswasher and never travels to the BOH dishwasher &mdash; the operational model keeps glasses, bartender focus, and breakage all forward of the back-bar wall.</p>
-
-  <a href="index.html" class="back-link" style="margin-top:32px;">Back to Floor Plan</a>
+  <a href="index.html" class="back-link">Back to Floor Plan</a>
 </div>
 
 <footer>
