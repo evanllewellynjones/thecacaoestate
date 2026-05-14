@@ -1,6 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- CACAO_GATE_START -->
+<style id="cacao-gate-style">
+  html.cacao-locked body { visibility: hidden !important; }
+  #cacao-gate-overlay {
+    position: fixed; inset: 0; z-index: 999999;
+    background: linear-gradient(180deg,#1a2e1f 0%,#0d1a13 100%);
+    color: #f5f2ec; display: flex; align-items: center; justify-content: center;
+    font-family: 'Helvetica Neue', Arial, sans-serif; visibility: visible;
+  }
+  #cacao-gate-overlay .gate-box {
+    background: #faf8f4; color: #1a1a1a; padding: 40px 44px;
+    border-top: 4px solid #6b1f2a; box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    max-width: 420px; width: 90%; text-align: center;
+  }
+  #cacao-gate-overlay .gate-brand {
+    font-family: 'Didot','Playfair Display',serif; font-size: 26px;
+    color: #1a2e1f; margin-bottom: 4px;
+  }
+  #cacao-gate-overlay .gate-brand .em { color: #5b3a7a; font-style: italic; }
+  #cacao-gate-overlay .gate-sub {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #6b6b6b; margin-bottom: 24px;
+  }
+  #cacao-gate-overlay .gate-note {
+    font-size: 13px; color: #3a3833; margin-bottom: 18px; line-height: 1.5;
+  }
+  #cacao-gate-overlay input {
+    width: 100%; padding: 12px 14px; font-size: 15px;
+    border: 1px solid #ccc; box-sizing: border-box; margin-bottom: 12px;
+    font-family: inherit; letter-spacing: 0.05em;
+  }
+  #cacao-gate-overlay input:focus { outline: 2px solid #5b3a7a; border-color: #5b3a7a; }
+  #cacao-gate-overlay button {
+    width: 100%; padding: 12px; background: #6b1f2a; color: #fff;
+    border: 0; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-family: inherit; cursor: pointer; transition: background 0.2s ease;
+  }
+  #cacao-gate-overlay button:hover { background: #5b3a7a; }
+  #cacao-gate-overlay .gate-err {
+    color: #6b1f2a; font-size: 12px; min-height: 16px; margin-top: 10px;
+    letter-spacing: 0.05em;
+  }
+  #cacao-gate-overlay .gate-foot {
+    margin-top: 22px; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #999;
+  }
+</style>
+<script>
+(function () {
+  var SITE_PASSWORD = "CACAO2026";
+  var STORAGE_KEY   = "cacao_estate_auth_v1";
+  try {
+    if (sessionStorage.getItem(STORAGE_KEY) === SITE_PASSWORD) return;
+  } catch (e) {}
+  document.documentElement.classList.add("cacao-locked");
+  function buildGate() {
+    if (document.getElementById("cacao-gate-overlay")) return;
+    var overlay = document.createElement("div");
+    overlay.id = "cacao-gate-overlay";
+    overlay.innerHTML =
+      '<div class="gate-box">' +
+      '  <div class="gate-brand">The Cacao Estate <span class="em">at NOVUS</span></div>' +
+      '  <div class="gate-sub">Site in Development</div>' +
+      '  <div class="gate-note">This site is currently in development. Please enter the access password to continue.</div>' +
+      '  <input id="cacao-gate-input" type="password" placeholder="Access password" autocomplete="off" autocapitalize="characters" />' +
+      '  <button id="cacao-gate-btn" type="button">Enter Site</button>' +
+      '  <div class="gate-err" id="cacao-gate-err"></div>' +
+      '  <div class="gate-foot">Durham, NC</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    var input = document.getElementById("cacao-gate-input");
+    var btn   = document.getElementById("cacao-gate-btn");
+    var err   = document.getElementById("cacao-gate-err");
+    function attempt() {
+      var val = (input.value || "").trim();
+      if (val.toUpperCase() === SITE_PASSWORD) {
+        try { sessionStorage.setItem(STORAGE_KEY, SITE_PASSWORD); } catch (e) {}
+        document.documentElement.classList.remove("cacao-locked");
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+      } else {
+        err.textContent = "Incorrect password. Please try again.";
+        input.value = "";
+        input.focus();
+      }
+    }
+    btn.addEventListener("click", attempt);
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); attempt(); }
+    });
+    setTimeout(function () { input.focus(); }, 30);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", buildGate);
+  } else {
+    buildGate();
+  }
+})();
+</script>
+<!-- CACAO_GATE_END -->
 <meta charset="UTF-8">
 <title>Chocolate Production &mdash; The Cacao Estate at NOVUS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,11 +172,10 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="menu.html">Menu</a></li>
       <li><a href="wine.html">Wine</a></li>
-      <li><a href="food-production.html">Food Prod.</a></li>
+      <li><a href="food-production.html">Food Production</a></li>
       <li><a href="employees.html">Employees</a></li>
       <li><a href="marketing.html">Marketing</a></li>
-      <li><a href="operations.html">Operations</a></li>
-      <li><a href="chocolate-production.html" class="active">Choc. Prod.</a></li>
+      <li><a href="chocolate-production.html" class="active">Chocolate Production</a></li>
     </ul>
   </nav>
 </header>
@@ -100,34 +198,6 @@
   <p>The program has two production streams: <strong>solid molded pieces</strong> (the core six-piece signature line plus seasonal molds) and <strong>filled ganache bonbons</strong> (the higher-margin shell-fill-cap format that anchors the chocolate-and-wine pairing program). Both run in the same prep room with the same equipment; the discipline difference is in process timing.</p>
 
   <div class="topic-grid">
-
-    <a class="topic-card" href="chocolate-process.html">
-      <div class="topic-pre">Process &middot; production math &middot; suppliers</div>
-      <h3>Chocolate Creation Process</h3>
-      <p class="topic-summary">The three tiers of chocolate production and why Tier 1 is right for Cacao Cellars. Honest production math for 150 bars (5.5 to 9 hours depending on workflow), the operational implications of running 4 flavor profiles (8&ndash;10 hour days unless you split production across days or hire help), and the supplier strategy: Callebaut as the workhorse, Valrhona as the premium line, Guittard worth a look.</p>
-      <span class="topic-cta">View process &amp; production math &rsaquo;</span>
-    </a>
-
-    <a class="topic-card" href="chocolate-training.html">
-      <div class="topic-pre">Training &middot; education pathway &middot; budget</div>
-      <h3>Chocolate Training</h3>
-      <p class="topic-summary">A 6-month training pathway for the Chocolate Production Lead, scaled to run alongside the build-out. Starts with a low-commitment tempering workshop at The Secret Chocolatier in Charlotte (booked May 23), progresses through &Eacute;cole Chocolat's 3-month online Professional Chocolatier Program, then a 3-day Callebaut Discovering Chocolate intensive in Chicago. Total budget $4,800&ndash;$7,000.</p>
-      <span class="topic-cta">View training pathway &rsaquo;</span>
-    </a>
-
-    <a class="topic-card" href="chocolate-vendors.html">
-      <div class="topic-pre">Suppliers &middot; private label &middot; pairings</div>
-      <h3>Chocolate Vendors</h3>
-      <p class="topic-summary">Local NC artisans (Videri, Brasstown, French Broad), premium national suppliers (Bar &amp; Cocoa, Cacao &amp; Cardamom), and private-label options (Videri custom stickered bars, Tony's Chocolonely full-wrapper customization). Plus the pairing framework &mdash; white/milk/dark and specialty &mdash; and the Indonesia signage strategy that ties to the Bali-carved doorway.</p>
-      <span class="topic-cta">View vendors &amp; pairings &rsaquo;</span>
-    </a>
-
-    <a class="topic-card" href="chocolate-beverages.html">
-      <div class="topic-pre">Beverage program &middot; equipment &middot; menu</div>
-      <h3>Chocolate Beverages</h3>
-      <p class="topic-summary">Three pieces of equipment build a complete drinking-chocolate program without an espresso machine: a FETCO batch brewer, an SPM Lola liquid drinking-chocolate dispenser loaded with our own Valrhona, and a commercial milk frother. Total stack $950&ndash;$2,400 vs. $8K&ndash;$15K for espresso. The chocolate dispenser is on-brand in a way an espresso machine never could be.</p>
-      <span class="topic-cta">View beverage program &rsaquo;</span>
-    </a>
 
     <a class="topic-card" href="chocolate-molds.html">
       <div class="topic-pre">Production &middot; equipment</div>
