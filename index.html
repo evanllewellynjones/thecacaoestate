@@ -1,105 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- CACAO_GATE_START -->
-<style id="cacao-gate-style">
-  html.cacao-locked body { visibility: hidden !important; }
-  #cacao-gate-overlay {
-    position: fixed; inset: 0; z-index: 999999;
-    background: linear-gradient(180deg,#1a2e1f 0%,#0d1a13 100%);
-    color: #f5f2ec; display: flex; align-items: center; justify-content: center;
-    font-family: 'Helvetica Neue', Arial, sans-serif; visibility: visible;
-  }
-  #cacao-gate-overlay .gate-box {
-    background: #faf8f4; color: #1a1a1a; padding: 40px 44px;
-    border-top: 4px solid #6b1f2a; box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-    max-width: 420px; width: 90%; text-align: center;
-  }
-  #cacao-gate-overlay .gate-brand {
-    font-family: 'Didot','Playfair Display',serif; font-size: 26px;
-    color: #1a2e1f; margin-bottom: 4px;
-  }
-  #cacao-gate-overlay .gate-brand .em { color: #5b3a7a; font-style: italic; }
-  #cacao-gate-overlay .gate-sub {
-    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: #6b6b6b; margin-bottom: 24px;
-  }
-  #cacao-gate-overlay .gate-note {
-    font-size: 13px; color: #3a3833; margin-bottom: 18px; line-height: 1.5;
-  }
-  #cacao-gate-overlay input {
-    width: 100%; padding: 12px 14px; font-size: 15px;
-    border: 1px solid #ccc; box-sizing: border-box; margin-bottom: 12px;
-    font-family: inherit; letter-spacing: 0.05em;
-  }
-  #cacao-gate-overlay input:focus { outline: 2px solid #5b3a7a; border-color: #5b3a7a; }
-  #cacao-gate-overlay button {
-    width: 100%; padding: 12px; background: #6b1f2a; color: #fff;
-    border: 0; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
-    font-family: inherit; cursor: pointer; transition: background 0.2s ease;
-  }
-  #cacao-gate-overlay button:hover { background: #5b3a7a; }
-  #cacao-gate-overlay .gate-err {
-    color: #6b1f2a; font-size: 12px; min-height: 16px; margin-top: 10px;
-    letter-spacing: 0.05em;
-  }
-  #cacao-gate-overlay .gate-foot {
-    margin-top: 22px; font-size: 10px; letter-spacing: 0.18em;
-    text-transform: uppercase; color: #999;
-  }
-</style>
-<script>
-(function () {
-  var SITE_PASSWORD = "CACAO2026";
-  var STORAGE_KEY   = "cacao_estate_auth_v1";
-  try {
-    if (sessionStorage.getItem(STORAGE_KEY) === SITE_PASSWORD) return;
-  } catch (e) {}
-  document.documentElement.classList.add("cacao-locked");
-  function buildGate() {
-    if (document.getElementById("cacao-gate-overlay")) return;
-    var overlay = document.createElement("div");
-    overlay.id = "cacao-gate-overlay";
-    overlay.innerHTML =
-      '<div class="gate-box">' +
-      '  <div class="gate-brand">The Cacao Estate <span class="em">at NOVUS</span></div>' +
-      '  <div class="gate-sub">Site in Development</div>' +
-      '  <div class="gate-note">This site is currently in development. Please enter the access password to continue.</div>' +
-      '  <input id="cacao-gate-input" type="password" placeholder="Access password" autocomplete="off" autocapitalize="characters" />' +
-      '  <button id="cacao-gate-btn" type="button">Enter Site</button>' +
-      '  <div class="gate-err" id="cacao-gate-err"></div>' +
-      '  <div class="gate-foot">Durham, NC</div>' +
-      '</div>';
-    document.body.appendChild(overlay);
-    var input = document.getElementById("cacao-gate-input");
-    var btn   = document.getElementById("cacao-gate-btn");
-    var err   = document.getElementById("cacao-gate-err");
-    function attempt() {
-      var val = (input.value || "").trim();
-      if (val.toUpperCase() === SITE_PASSWORD) {
-        try { sessionStorage.setItem(STORAGE_KEY, SITE_PASSWORD); } catch (e) {}
-        document.documentElement.classList.remove("cacao-locked");
-        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-      } else {
-        err.textContent = "Incorrect password. Please try again.";
-        input.value = "";
-        input.focus();
-      }
-    }
-    btn.addEventListener("click", attempt);
-    input.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") { e.preventDefault(); attempt(); }
-    });
-    setTimeout(function () { input.focus(); }, 30);
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", buildGate);
-  } else {
-    buildGate();
-  }
-})();
-</script>
-<!-- CACAO_GATE_END -->
 <meta charset="UTF-8">
 <title>The Cacao Estate at NOVUS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -317,96 +218,6 @@
     margin-top: 4px;
     font-style: italic;
   }
-
-  /* ---- Technical Exhibits ---- */
-  .exhibits-wrap {
-    max-width: 1100px;
-    margin: 32px auto 48px;
-    padding: 0 24px;
-  }
-  .exhibits-title {
-    font-family: "Didot", "Playfair Display", serif;
-    font-size: 28px;
-    color: var(--green-deep);
-    text-align: center;
-    margin-bottom: 6px;
-    letter-spacing: 0.02em;
-  }
-  .exhibits-sub {
-    text-align: center;
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gray-500);
-    margin-bottom: 26px;
-  }
-  .exhibits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 14px;
-  }
-  .exhibit-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    background: var(--white);
-    border: 1px solid var(--gray-300);
-    border-left: 4px solid var(--purple);
-    padding: 16px 18px;
-    text-decoration: none;
-    color: var(--gray-700);
-    transition: all 0.2s ease;
-  }
-  .exhibit-card:hover {
-    border-left-color: var(--maroon);
-    background: var(--gray-100);
-    transform: translateX(2px);
-  }
-  .exhibit-icon {
-    flex-shrink: 0;
-    width: 38px;
-    height: 46px;
-    background: var(--maroon);
-    color: var(--white);
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2px;
-    position: relative;
-  }
-  .exhibit-icon::after {
-    content: "";
-    position: absolute;
-    top: 0; right: 0;
-    border-style: solid;
-    border-width: 0 10px 10px 0;
-    border-color: transparent var(--white) transparent transparent;
-  }
-  .exhibit-body { flex: 1; min-width: 0; }
-  .exhibit-title {
-    font-family: "Didot", serif;
-    font-size: 16px;
-    color: var(--green-deep);
-    margin-bottom: 3px;
-    display: block;
-    line-height: 1.25;
-  }
-  .exhibit-meta {
-    font-size: 11px;
-    color: var(--gray-500);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .exhibit-desc {
-    font-size: 12px;
-    color: var(--gray-700);
-    line-height: 1.4;
-  }
 </style>
 </head>
 <body>
@@ -580,19 +391,28 @@
              That means: bar x=54..194 (10' wide = 140 units), y=82..334 (18' deep = 252 units)
              7 stools strip: x=194..222 (2' wide), y=84..330
         -->
-        <a xlink:href="bar.html" class="room room--bar">
-          <rect x="54" y="82" width="140" height="252"/>
-          <text class="room-label" x="124" y="190">Bar &amp; Back Bar</text>
-          <text class="room-sub"   x="124" y="208">18&prime; &times; 10&prime;</text>
-          <text class="room-sub"   x="124" y="240" font-style="italic" font-size="9">3.5&prime; on each side for entrance</text>
-          <title>Bar &amp; Back Bar &mdash; 18&prime; &times; 10&prime;</title>
+        <!-- Back Bar (against west wall, 5' deep) — the working wall behind the bartender -->
+        <a xlink:href="back-bar.html" class="room room--bar">
+          <rect x="54" y="82" width="70" height="252"/>
+          <text class="room-label" x="89" y="190" font-size="11">Back Bar</text>
+          <text class="room-sub"   x="89" y="206" font-size="9">5&prime; &times; 18&prime;</text>
+          <title>Back Bar &mdash; working wall (coffee, hot water, induction, pastry slab, reach-ins)</title>
         </a>
 
-        <!-- 7 Stools strip (2' wide, just east of bar) -->
-        <a xlink:href="bar.html" class="room room--seating">
+        <!-- Front Bar (guest-side half, 5' deep) — what customers face, with hand sink, wine pres, ice bin, etc. -->
+        <a xlink:href="front-bar.html" class="room room--bar">
+          <rect x="124" y="82" width="70" height="252"/>
+          <text class="room-label" x="159" y="190" font-size="11">Front Bar</text>
+          <text class="room-sub"   x="159" y="206" font-size="9">5&prime; &times; 18&prime;</text>
+          <text class="room-sub"   x="159" y="240" font-style="italic" font-size="9">3.5&prime; aisles each side</text>
+          <title>Front Bar &mdash; hand sink, wine preservation, ice bin, glass froster, 3-comp, glasswasher</title>
+        </a>
+
+        <!-- 7 Stools strip (2' wide, just east of front bar) -->
+        <a xlink:href="front-bar.html" class="room room--seating">
           <rect x="200" y="100" width="22" height="216"/>
           <text class="room-label" x="211" y="208" font-size="10" transform="rotate(-90 211 208)">7&nbsp; S t o o l s</text>
-          <title>7 Stools at Bar</title>
+          <title>7 Stools at Front Bar</title>
         </a>
 
         <!-- Wine Display 10' × 3' (yellow vertical strip)
@@ -816,9 +636,13 @@
 
 <!-- =============== LEGEND =============== -->
 <section class="legend">
-  <a href="bar.html">
-    <span class="legend-title">Bar &amp; Back Bar</span>
-    <span class="legend-sub">18&prime; &times; 10&prime;  &middot;  7 stools</span>
+  <a href="front-bar.html">
+    <span class="legend-title">Front Bar</span>
+    <span class="legend-sub">5&prime; &times; 18&prime;  &middot;  7 stools  &middot;  wine preservation, ice, glasswasher</span>
+  </a>
+  <a href="back-bar.html">
+    <span class="legend-title">Back Bar</span>
+    <span class="legend-sub">5&prime; &times; 18&prime;  &middot;  coffee, hot water, induction, 140&Prime; pastry slab, reach-ins</span>
   </a>
   <a href="wash.html">
     <span class="legend-title">Wash &amp; Clean Area</span>
@@ -852,70 +676,6 @@
     <span class="legend-title">10&prime; Teak Communal Table</span>
     <span class="legend-sub">East wall  &middot;  flagship seating</span>
   </a>
-</section>
-
-<!-- =============== TECHNICAL EXHIBITS =============== -->
-<section class="exhibits-wrap" aria-label="Technical Exhibits">
-  <h2 class="exhibits-title">Technical Exhibits</h2>
-  <p class="exhibits-sub">NOVUS construction documents &middot; click to open PDF</p>
-
-  <div class="exhibits-grid">
-
-    <a class="exhibit-card" href="exhibits/A-101a__GROUND_FLOOR_PLAN_-_a_Rev_13_markup.pdf" target="_blank" rel="noopener">
-      <span class="exhibit-icon">PDF</span>
-      <span class="exhibit-body">
-        <span class="exhibit-title">A-101a &mdash; Ground Floor Plan (Markup)</span>
-        <span class="exhibit-meta">Architectural &middot; Rev 13 &middot; Bulletin 30</span>
-        <span class="exhibit-desc">Full ground-floor architectural plan with partition types, dimensions, and parking counts for the NOVUS building. Retail A is highlighted.</span>
-      </span>
-    </a>
-
-    <a class="exhibit-card" href="exhibits/E-101A__ELECTRICAL_POWER_GROUND_FLOOR_PLAN_-_AREA_A_Rev_6_markup.pdf" target="_blank" rel="noopener">
-      <span class="exhibit-icon">PDF</span>
-      <span class="exhibit-body">
-        <span class="exhibit-title">E-101A &mdash; Electrical Power, Ground Floor (Markup)</span>
-        <span class="exhibit-meta">Electrical &middot; Rev 6 &middot; Bulletin 21</span>
-        <span class="exhibit-desc">Ground-level electrical power plan for Area A &mdash; panel locations, equipment circuiting, and tenant rough-in points.</span>
-      </span>
-    </a>
-
-    <a class="exhibit-card" href="exhibits/05_400_W_MAIN_ST_CCD-021_-_M.pdf" target="_blank" rel="noopener">
-      <span class="exhibit-icon">PDF</span>
-      <span class="exhibit-body">
-        <span class="exhibit-title">Sheet 05 &mdash; Mechanical (M)</span>
-        <span class="exhibit-meta">HVAC piping &middot; CCD-021</span>
-        <span class="exhibit-desc">HVAC piping ground floor plan with heat pump locations, condenser water risers, and 2&Prime; CCS/CCR tenant stub-outs.</span>
-      </span>
-    </a>
-
-    <a class="exhibit-card" href="exhibits/06_400_W_MAIN_ST_CCD-021_-_E.pdf" target="_blank" rel="noopener">
-      <span class="exhibit-icon">PDF</span>
-      <span class="exhibit-body">
-        <span class="exhibit-title">Sheet 06 &mdash; Electrical (E)</span>
-        <span class="exhibit-meta">Power &amp; risers &middot; CCD-021</span>
-        <span class="exhibit-desc">Complete electrical construction set: lower-level and ground floor power plans, plus the full partial riser diagram (MSA / MSB / MSC).</span>
-      </span>
-    </a>
-
-    <a class="exhibit-card" href="exhibits/07_400_W_MAIN_ST_CCD-021_-_P.pdf" target="_blank" rel="noopener">
-      <span class="exhibit-icon">PDF</span>
-      <span class="exhibit-body">
-        <span class="exhibit-title">Sheet 07 &mdash; Plumbing (P)</span>
-        <span class="exhibit-meta">Pressure &amp; waste &middot; CCD-021</span>
-        <span class="exhibit-desc">Plumbing pressure plans (domestic water, hot/cold supply) and waste/vent plans for both lower level and ground floor.</span>
-      </span>
-    </a>
-
-    <a class="exhibit-card" href="exhibits/10_400_W_MAIN_ST_CCD-021_-_T.pdf" target="_blank" rel="noopener">
-      <span class="exhibit-icon">PDF</span>
-      <span class="exhibit-body">
-        <span class="exhibit-title">Sheet 10 &mdash; Telecom (T)</span>
-        <span class="exhibit-meta">Data / low-voltage &middot; CCD-021</span>
-        <span class="exhibit-desc">Telecom rough-in plans: MDF location, retail conduit stub-ups, AP placements, and access-point cabling pathways.</span>
-      </span>
-    </a>
-
-  </div>
 </section>
 
 <!-- =============== FOOTER =============== -->
