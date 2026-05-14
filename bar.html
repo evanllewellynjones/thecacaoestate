@@ -1,105 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- CACAO_GATE_START -->
-<style id="cacao-gate-style">
-  html.cacao-locked body { visibility: hidden !important; }
-  #cacao-gate-overlay {
-    position: fixed; inset: 0; z-index: 999999;
-    background: linear-gradient(180deg,#1a2e1f 0%,#0d1a13 100%);
-    color: #f5f2ec; display: flex; align-items: center; justify-content: center;
-    font-family: 'Helvetica Neue', Arial, sans-serif; visibility: visible;
-  }
-  #cacao-gate-overlay .gate-box {
-    background: #faf8f4; color: #1a1a1a; padding: 40px 44px;
-    border-top: 4px solid #6b1f2a; box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-    max-width: 420px; width: 90%; text-align: center;
-  }
-  #cacao-gate-overlay .gate-brand {
-    font-family: 'Didot','Playfair Display',serif; font-size: 26px;
-    color: #1a2e1f; margin-bottom: 4px;
-  }
-  #cacao-gate-overlay .gate-brand .em { color: #5b3a7a; font-style: italic; }
-  #cacao-gate-overlay .gate-sub {
-    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: #6b6b6b; margin-bottom: 24px;
-  }
-  #cacao-gate-overlay .gate-note {
-    font-size: 13px; color: #3a3833; margin-bottom: 18px; line-height: 1.5;
-  }
-  #cacao-gate-overlay input {
-    width: 100%; padding: 12px 14px; font-size: 15px;
-    border: 1px solid #ccc; box-sizing: border-box; margin-bottom: 12px;
-    font-family: inherit; letter-spacing: 0.05em;
-  }
-  #cacao-gate-overlay input:focus { outline: 2px solid #5b3a7a; border-color: #5b3a7a; }
-  #cacao-gate-overlay button {
-    width: 100%; padding: 12px; background: #6b1f2a; color: #fff;
-    border: 0; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
-    font-family: inherit; cursor: pointer; transition: background 0.2s ease;
-  }
-  #cacao-gate-overlay button:hover { background: #5b3a7a; }
-  #cacao-gate-overlay .gate-err {
-    color: #6b1f2a; font-size: 12px; min-height: 16px; margin-top: 10px;
-    letter-spacing: 0.05em;
-  }
-  #cacao-gate-overlay .gate-foot {
-    margin-top: 22px; font-size: 10px; letter-spacing: 0.18em;
-    text-transform: uppercase; color: #999;
-  }
-</style>
-<script>
-(function () {
-  var SITE_PASSWORD = "CACAO2026";
-  var STORAGE_KEY   = "cacao_estate_auth_v1";
-  try {
-    if (sessionStorage.getItem(STORAGE_KEY) === SITE_PASSWORD) return;
-  } catch (e) {}
-  document.documentElement.classList.add("cacao-locked");
-  function buildGate() {
-    if (document.getElementById("cacao-gate-overlay")) return;
-    var overlay = document.createElement("div");
-    overlay.id = "cacao-gate-overlay";
-    overlay.innerHTML =
-      '<div class="gate-box">' +
-      '  <div class="gate-brand">The Cacao Estate <span class="em">at NOVUS</span></div>' +
-      '  <div class="gate-sub">Site in Development</div>' +
-      '  <div class="gate-note">This site is currently in development. Please enter the access password to continue.</div>' +
-      '  <input id="cacao-gate-input" type="password" placeholder="Access password" autocomplete="off" autocapitalize="characters" />' +
-      '  <button id="cacao-gate-btn" type="button">Enter Site</button>' +
-      '  <div class="gate-err" id="cacao-gate-err"></div>' +
-      '  <div class="gate-foot">Durham, NC</div>' +
-      '</div>';
-    document.body.appendChild(overlay);
-    var input = document.getElementById("cacao-gate-input");
-    var btn   = document.getElementById("cacao-gate-btn");
-    var err   = document.getElementById("cacao-gate-err");
-    function attempt() {
-      var val = (input.value || "").trim();
-      if (val.toUpperCase() === SITE_PASSWORD) {
-        try { sessionStorage.setItem(STORAGE_KEY, SITE_PASSWORD); } catch (e) {}
-        document.documentElement.classList.remove("cacao-locked");
-        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-      } else {
-        err.textContent = "Incorrect password. Please try again.";
-        input.value = "";
-        input.focus();
-      }
-    }
-    btn.addEventListener("click", attempt);
-    input.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") { e.preventDefault(); attempt(); }
-    });
-    setTimeout(function () { input.focus(); }, 30);
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", buildGate);
-  } else {
-    buildGate();
-  }
-})();
-</script>
-<!-- CACAO_GATE_END -->
 <meta charset="UTF-8">
 <title>Bar &amp; Back Bar Area &mdash; The Cacao Estate at NOVUS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -131,20 +32,43 @@
 </section>
 
 <div class="subpage-body">
+
   <a href="index.html" class="back-link">Back to Floor Plan</a>
 
-  <div class="placeholder">
-    <h2>Coming Soon</h2>
-    <p>Front-bar and back-bar equipment, glassware program, wine-preservation system, and service flow. Source from Cacao_Cellars_Front_Bar_Equipment and Cacao_Cellars_Back_Bar_Equipment when ready to populate.</p>
-    <span class="badge">Under Development</span>
+  <h2>Overview</h2>
+  <p>The bar runs the full length of the west wall &mdash; a 20-foot front bar facing seven stools, with a 20-foot back-bar working wall behind the bartender. The front bar carries seven equipment slots (hand sink, wine preservation, 48&Prime; wine fridge, ice bin, glass froster, 3-comp sink, glasswasher) plus two millwork slots for clean landing and stem storage. The back bar carries the coffee station, hot-water dispenser, induction burner, a 140&Prime; marble pastry slab for chocolate-flight plating and cocktail prep, and two reach-in refrigerators (cocktail mise + wine backup; reds at 58&deg;F).</p>
+
+  <p>The bar program is built around a wine-by-the-glass dispenser as the operational center of gravity. The Wineemotion OTTO 8-bottle preservation system on the front bar runs the BTG list; the 48&Prime; Perlick HC48RW fridge stages sparkling and white/ros&eacute; backup at service temperature; the back-bar reach-in holds reds at 58&deg;F. Together those three pieces of equipment hold roughly 50&ndash;60 bottles of working inventory at the bar, with the rest of the program housed in the wine display and back-of-house storage.</p>
+
+  <p>Bar layout and equipment were reviewed on May 11, 2026 against the May 9 NOVUS BOH layout. The review concluded the bar requires no equipment deletions, one use-case change on the front bar (Slot 3 fridge moves entirely to wine service), and two use-case changes on the back bar (Reach-in&nbsp;#1 to cocktail mise + wine backup; French press added to coffee station for Sunday brunch). Those changes are reflected in the current spec.</p>
+
+  <div class="topic-grid">
+
+    <a class="topic-card" href="bar-review.html">
+      <div class="topic-pre">Equipment &middot; slot-by-slot</div>
+      <h3>Front &amp; Back Bar Review (May 11, 2026)</h3>
+      <p class="topic-summary">Slot-by-slot walk of the 20-foot front bar and 20-foot back bar, comparing the original equipment specification against the May 9 NOVUS BOH layout. Includes the rationale for keeping every front-bar slot, the one change on the front bar (Slot 3 fridge to wine-only), the two changes on the back bar (Reach-in&nbsp;#1 use-case shift and French press add), and the open items still to confirm before placing orders.</p>
+      <span class="topic-cta">View slot-by-slot review &rsaquo;</span>
+    </a>
+
+    <a class="topic-card" href="wine-preservation.html">
+      <div class="topic-pre">Equipment &middot; wine BTG program</div>
+      <h3>Wine Preservation System</h3>
+      <p class="topic-summary">The Wineemotion OTTO 8-bottle preservation system is the heart of the wine-by-the-glass program. Comparison of preservation technologies (argon-blanket dispensers vs. Coravin needle-pour vs. simpler vacuum systems), why the OTTO won on operational fit, and how the preservation strategy ties into the broader wine retail and BTG program.</p>
+      <span class="topic-cta">View preservation comparison &rsaquo;</span>
+    </a>
+
   </div>
+
+  <h2>Related Pages</h2>
+  <p>For the wine program, BTG list, and retail strategy, see the <a href="wine.html">Wine</a> page. For the wash-and-clean area that handles plateware off the back bar, see the <a href="wash.html">Wash &amp; Clean Area</a> page. For the food production that feeds composed plates to the bar pass, see the <a href="food-production.html">Food Production</a> page. For the GM / Beverage Director role that owns the bar program, see the <a href="job-gm.html">GM job posting</a>.</p>
 
   <a href="index.html" class="back-link">Back to Floor Plan</a>
 </div>
 
 <footer>
   <span class="footer-brand">THE CACAO ESTATE AT NOVUS</span>
-  Durham, NC &middot; Wine, Chocolate &amp; Pairings
+  Durham, NC &middot; Bar &amp; Back Bar Area &middot; May 2026
 </footer>
 
 </body>
