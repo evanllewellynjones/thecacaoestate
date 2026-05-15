@@ -1,105 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- CACAO_GATE_START -->
-<style id="cacao-gate-style">
-  html.cacao-locked body { visibility: hidden !important; }
-  #cacao-gate-overlay {
-    position: fixed; inset: 0; z-index: 999999;
-    background: linear-gradient(180deg,#1a2e1f 0%,#0d1a13 100%);
-    color: #f5f2ec; display: flex; align-items: center; justify-content: center;
-    font-family: 'Helvetica Neue', Arial, sans-serif; visibility: visible;
-  }
-  #cacao-gate-overlay .gate-box {
-    background: #faf8f4; color: #1a1a1a; padding: 40px 44px;
-    border-top: 4px solid #6b1f2a; box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-    max-width: 420px; width: 90%; text-align: center;
-  }
-  #cacao-gate-overlay .gate-brand {
-    font-family: 'Didot','Playfair Display',serif; font-size: 26px;
-    color: #1a2e1f; margin-bottom: 4px;
-  }
-  #cacao-gate-overlay .gate-brand .em { color: #5b3a7a; font-style: italic; }
-  #cacao-gate-overlay .gate-sub {
-    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: #6b6b6b; margin-bottom: 24px;
-  }
-  #cacao-gate-overlay .gate-note {
-    font-size: 13px; color: #3a3833; margin-bottom: 18px; line-height: 1.5;
-  }
-  #cacao-gate-overlay input {
-    width: 100%; padding: 12px 14px; font-size: 15px;
-    border: 1px solid #ccc; box-sizing: border-box; margin-bottom: 12px;
-    font-family: inherit; letter-spacing: 0.05em;
-  }
-  #cacao-gate-overlay input:focus { outline: 2px solid #5b3a7a; border-color: #5b3a7a; }
-  #cacao-gate-overlay button {
-    width: 100%; padding: 12px; background: #6b1f2a; color: #fff;
-    border: 0; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
-    font-family: inherit; cursor: pointer; transition: background 0.2s ease;
-  }
-  #cacao-gate-overlay button:hover { background: #5b3a7a; }
-  #cacao-gate-overlay .gate-err {
-    color: #6b1f2a; font-size: 12px; min-height: 16px; margin-top: 10px;
-    letter-spacing: 0.05em;
-  }
-  #cacao-gate-overlay .gate-foot {
-    margin-top: 22px; font-size: 10px; letter-spacing: 0.18em;
-    text-transform: uppercase; color: #999;
-  }
-</style>
-<script>
-(function () {
-  var SITE_PASSWORD = "CACAO2026";
-  var STORAGE_KEY   = "cacao_estate_auth_v1";
-  try {
-    if (sessionStorage.getItem(STORAGE_KEY) === SITE_PASSWORD) return;
-  } catch (e) {}
-  document.documentElement.classList.add("cacao-locked");
-  function buildGate() {
-    if (document.getElementById("cacao-gate-overlay")) return;
-    var overlay = document.createElement("div");
-    overlay.id = "cacao-gate-overlay";
-    overlay.innerHTML =
-      '<div class="gate-box">' +
-      '  <div class="gate-brand">The Cacao Estate <span class="em">at NOVUS</span></div>' +
-      '  <div class="gate-sub">Site in Development</div>' +
-      '  <div class="gate-note">This site is currently in development. Please enter the access password to continue.</div>' +
-      '  <input id="cacao-gate-input" type="password" placeholder="Access password" autocomplete="off" autocapitalize="characters" />' +
-      '  <button id="cacao-gate-btn" type="button">Enter Site</button>' +
-      '  <div class="gate-err" id="cacao-gate-err"></div>' +
-      '  <div class="gate-foot">Durham, NC</div>' +
-      '</div>';
-    document.body.appendChild(overlay);
-    var input = document.getElementById("cacao-gate-input");
-    var btn   = document.getElementById("cacao-gate-btn");
-    var err   = document.getElementById("cacao-gate-err");
-    function attempt() {
-      var val = (input.value || "").trim();
-      if (val.toUpperCase() === SITE_PASSWORD) {
-        try { sessionStorage.setItem(STORAGE_KEY, SITE_PASSWORD); } catch (e) {}
-        document.documentElement.classList.remove("cacao-locked");
-        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-      } else {
-        err.textContent = "Incorrect password. Please try again.";
-        input.value = "";
-        input.focus();
-      }
-    }
-    btn.addEventListener("click", attempt);
-    input.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") { e.preventDefault(); attempt(); }
-    });
-    setTimeout(function () { input.focus(); }, 30);
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", buildGate);
-  } else {
-    buildGate();
-  }
-})();
-</script>
-<!-- CACAO_GATE_END -->
 <meta charset="UTF-8">
 <title>Food Prep Area &mdash; The Cacao Estate at NOVUS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -133,6 +34,11 @@
 <div class="subpage-body">
 
   <a href="index.html" class="back-link">Back to Floor Plan</a>
+
+  <figure class="room-schematic">
+    <img src="images/food-prep-schematic.png" alt="Food Prep Area equipment layout schematic — 8 by 10 feet — showing slot positions 1 through 7 for the toaster/panini/induction stainless table, full refrigerator, stainless table prep, additional shelving, a 4-by-2 prep table beneath the service window, and the hand sink by the swinging door">
+    <figcaption>Equipment layout &mdash; 8&prime; &times; 10&prime; &middot; slots 1&ndash;7</figcaption>
+  </figure>
 
   <h2>About This Room</h2>
   <p>This is the 8&prime; &times; 10&prime; Food Prep room introduced in the NOVUS layout (May 9, 2026). It supersedes the dual-purpose chocolate-prep-table approach in Vol. II &sect;6 and gives Sunday brunch its own production space.</p>

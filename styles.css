@@ -62,21 +62,20 @@ body {
 nav ul {
   list-style: none;
   display: flex;
-  gap: 2px;
+  gap: 4px;
   flex-wrap: wrap;
 }
 nav a {
   color: var(--gray-100);
   text-decoration: none;
-  padding: 7px 11px;
-  font-size: 13px;
+  padding: 8px 14px;
+  font-size: 14px;
   font-family: "Helvetica Neue", "Arial", sans-serif;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   border-radius: 2px;
   transition: all 0.2s ease;
   border: 1px solid transparent;
-  white-space: nowrap;
 }
 nav a:hover {
   background: var(--maroon);
@@ -92,32 +91,32 @@ nav a.active {
 .hero {
   background: linear-gradient(180deg, var(--green-deep) 0%, var(--green-darker) 100%);
   color: var(--white);
-  padding: 40px 32px 32px;
+  padding: 64px 32px 48px;
   text-align: center;
   border-bottom: 2px solid var(--purple);
 }
 .hero h1 {
   font-family: "Didot", "Playfair Display", serif;
-  font-size: 44px;
+  font-size: 56px;
   font-weight: 400;
   letter-spacing: 0.02em;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 .hero h1 .em {
   color: var(--purple-soft);
   font-style: italic;
 }
 .hero .tagline {
-  font-size: 14px;
-  letter-spacing: 0.28em;
+  font-size: 16px;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gray-300);
-  margin-bottom: 18px;
+  margin-bottom: 28px;
 }
 .hero .lede {
   max-width: 720px;
   margin: 0 auto;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--gray-100);
   font-style: italic;
 }
@@ -245,7 +244,7 @@ nav a.active {
 .subpage-header {
   background: linear-gradient(180deg, var(--green-deep) 0%, var(--green-mid) 100%);
   color: var(--white);
-  padding: 28px 32px 26px;
+  padding: 48px 32px;
   border-bottom: 2px solid var(--purple);
 }
 .subpage-header-inner {
@@ -253,11 +252,11 @@ nav a.active {
   margin: 0 auto;
 }
 .subpage-header .crumb {
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  font-size: 12px;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--gray-300);
-  margin-bottom: 8px;
+  margin-bottom: 14px;
 }
 .subpage-header .crumb a {
   color: var(--purple-soft);
@@ -266,13 +265,12 @@ nav a.active {
 .subpage-header .crumb a:hover { text-decoration: underline; }
 .subpage-header h1 {
   font-family: "Didot", "Playfair Display", serif;
-  font-size: 32px;
+  font-size: 44px;
   font-weight: 400;
-  margin-bottom: 4px;
-  line-height: 1.15;
+  margin-bottom: 10px;
 }
 .subpage-header .subtitle {
-  font-size: 14px;
+  font-size: 17px;
   color: var(--gray-300);
   font-style: italic;
 }
@@ -280,7 +278,7 @@ nav a.active {
 .subpage-body {
   max-width: 950px;
   margin: 0 auto;
-  padding: 28px 32px 80px;
+  padding: 48px 32px 80px;
 }
 
 .subpage-body h2 {
@@ -495,18 +493,34 @@ footer .footer-brand {
   text-transform: uppercase;
 }
 
+/* ---------------- ROOM SCHEMATIC ---------------- */
+.room-schematic {
+  margin: 0 0 32px;
+  text-align: center;
+}
+.room-schematic img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--gray-300);
+  background: var(--white);
+  padding: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.room-schematic figcaption {
+  margin-top: 8px;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
 /* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 700px) {
-  .topbar { flex-direction: column; align-items: flex-start; padding: 12px 18px; gap: 10px; }
-  nav ul { gap: 2px; }
-  nav a { padding: 5px 9px; font-size: 11px; letter-spacing: 0.08em; }
-  .hero { padding: 28px 18px 24px; }
-  .hero h1 { font-size: 30px; }
-  .hero .tagline { font-size: 12px; letter-spacing: 0.22em; }
-  .hero .lede { font-size: 14px; }
-  .subpage-header { padding: 22px 18px 20px; }
-  .subpage-header h1 { font-size: 24px; }
-  .subpage-header .subtitle { font-size: 13px; }
-  .subpage-body { padding: 20px 18px 60px; }
+  .topbar { flex-direction: column; align-items: flex-start; padding: 14px 18px; }
+  nav ul { gap: 0; }
+  nav a { padding: 6px 10px; font-size: 12px; }
+  .hero h1 { font-size: 36px; }
+  .subpage-header h1 { font-size: 30px; }
   .hot-label { font-size: 9px; padding: 4px 8px; }
 }
