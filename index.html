@@ -6,6 +6,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="styles.css">
 <style>
+  /* ---- Local color tokens ----
+     These mirror the :root variables in styles.css. They are duplicated
+     here so the floor plan SVG always renders in-color even if styles.css
+     fails to load (e.g. wrong path). styles.css still controls the rest
+     of the page (nav, hero, footer, legend). */
+  :root {
+    --green-deep:   #1f3a2e;
+    --green-darker: #142319;
+    --green-mid:    #2d5642;
+    --purple:       #5b3a7a;
+    --purple-soft:  #7d5aa3;
+    --maroon:       #6b1f2a;
+    --maroon-soft:  #8a2a36;
+    --gray-100:     #f3f1ed;
+    --gray-300:     #c9c4ba;
+    --gray-500:     #807a70;
+    --gray-700:     #3a3833;
+    --black:        #0d0c0a;
+    --white:        #faf8f4;
+    --shadow:       0 4px 24px rgba(0,0,0,0.18);
+  }
   /* ---- Layout: floor plan + capacity panel ---- */
   .map-and-capacity {
     max-width: 1300px;
@@ -251,6 +272,21 @@
     margin-top: 4px;
     font-style: italic;
   }
+
+  /* ---- Compact top bar ----
+     Slim the brand/nav bar down: less vertical padding and a smaller
+     brand size so it reads as one line at roughly half its old depth. */
+  .topbar {
+    padding: 7px 32px;
+    gap: 10px 18px;
+  }
+  .brand {
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  nav a { padding-top: 4px; padding-bottom: 4px; }
 </style>
 </head>
 <body>
@@ -311,7 +347,7 @@
       Total viewBox: 836 x 782.
 
       Room placement follows the shapes drawn in the Excel "Novus 2064" sheet:
-        - Bar & Back Bar + 7 Stools  -> NW corner of WEST
+        - Back Bar + Front Bar + 7 Stools  -> NW corner of WEST
         - Hightop areas, Reg-height seating, Lounge, Teak tables -> seating zones
         - Chocolate Display -> upper-mid WEST (FOH-facing)
         - Chocolate Prep, Food Prep, Wash/Clean -> stacked down the WEST core
@@ -452,37 +488,41 @@
         <text class="static-text--note" x="229" y="60">27&prime; across &middot; 48&prime; deep &middot; 1,296 sq ft</text>
         <text class="static-text--note" x="607" y="60">27&prime; across &middot; 32&prime; deep &middot; 864 sq ft</text>
 
-        <!-- ============ CLOSE-OFF DOOR (top wall, at the section boundary) ============ -->
-        <a xlink:href="#" class="room room--door no-click" tabindex="-1">
-          <rect x="404" y="40" width="28" height="34"/>
-          <text class="room-label" x="418" y="54">Close</text>
-          <text class="room-label" x="418" y="65">Off Door</text>
-          <title>Close-Off Door &mdash; separates west FOH from east seating zone</title>
-        </a>
-
         <!-- ====================================================================
              WEST SECTION  (x = 40..418, y = 40..712)
              ==================================================================== -->
 
-        <!-- Bar & Back Bar: 20' x 10' — NW corner, 3.5' clearance each side for entrance.
-             Bar runs vertically (20' deep) x 10' wide against the west wall. -->
-        <a xlink:href="bar.html" class="room room--bar">
-          <rect x="49" y="61" width="140" height="280"/>
-          <text class="room-label" x="119" y="190">Bar &amp; Back Bar</text>
-          <text class="room-sub"   x="119" y="208">20&prime; &times; 10&prime;</text>
-          <text class="room-sub"   x="119" y="240" font-style="italic" font-size="9">3.5&prime; on each side for entrance</text>
-          <title>Bar &amp; Back Bar &mdash; 20&prime; &times; 10&prime;</title>
+        <!-- Back Bar: 20' x 3' — against the west wall (working wall behind bartender).
+             Front Bar: 20' x 4' — just east of the back bar (guest-facing).
+             7 Stools: strip east of the front bar. Together = the 10'-wide bar zone,
+             with 3.5' clearance each side for the entrance.
+             Front & Back bar each link to their own child page. -->
+
+        <!-- Back Bar (20' x 3') -->
+        <a xlink:href="back-bar.html" class="room room--bar">
+          <rect x="49" y="61" width="42" height="280"/>
+          <text class="room-label" x="70" y="178" font-size="11" transform="rotate(-90 70 178)">Back Bar</text>
+          <text class="room-sub"   x="70" y="232" font-size="9" transform="rotate(-90 70 232)">20&prime;&times;3&prime;</text>
+          <title>Back Bar &mdash; 20&prime; &times; 3&prime; &middot; working wall</title>
         </a>
 
-        <!-- 7 Stools strip (2' wide, just east of bar) -->
-        <a xlink:href="bar.html" class="room room--seating">
-          <rect x="189" y="75" width="28" height="252"/>
-          <text class="room-label" x="203" y="201" font-size="10" transform="rotate(-90 203 201)">7&nbsp; S t o o l s</text>
-          <title>7 Stools at Bar</title>
+        <!-- Front Bar (20' x 4') -->
+        <a xlink:href="front-bar.html" class="room room--bar">
+          <rect x="95" y="61" width="52" height="280"/>
+          <text class="room-label" x="121" y="184" font-size="12" transform="rotate(-90 121 184)">Front Bar</text>
+          <text class="room-sub"   x="121" y="234" font-size="9" transform="rotate(-90 121 234)">20&prime;&times;4&prime;</text>
+          <title>Front Bar &mdash; 20&prime; &times; 4&prime; &middot; guest-facing &middot; 3.5&prime; clearance each side</title>
+        </a>
+
+        <!-- 7 Stools strip (2' wide, just east of the front bar) -->
+        <a xlink:href="front-bar.html" class="room room--seating">
+          <rect x="147" y="75" width="28" height="252"/>
+          <text class="room-label" x="161" y="201" font-size="10" transform="rotate(-90 161 201)">7&nbsp; S t o o l s</text>
+          <title>7 Stools at Front Bar</title>
         </a>
 
         <!-- Hightop Area (lower-west): 30" hightops, 2 stools each -->
-        <a xlink:href="bar.html" class="room room--seating">
+        <a xlink:href="teak-table.html" class="room room--seating">
           <rect x="231" y="61" width="112" height="266"/>
           <text class="room-label" x="287" y="180">Hightop Area</text>
           <text class="room-sub"   x="287" y="197">30&Prime; hightop &middot; 2 stools</text>
@@ -504,7 +544,7 @@
         </a>
 
         <!-- Hightop Area (mid-west): second hightop cluster, 8' x 18' footprint -->
-        <a xlink:href="bar.html" class="room room--seating">
+        <a xlink:href="teak-table.html" class="room room--seating">
           <rect x="131" y="355" width="126" height="125"/>
           <text class="room-label" x="194" y="412">Hightop Area</text>
           <text class="room-sub"   x="194" y="429">8&prime; &times; 18&prime; &middot; 30&Prime; tops</text>
@@ -694,9 +734,13 @@
 
 <!-- =============== LEGEND =============== -->
 <section class="legend">
-  <a href="bar.html">
-    <span class="legend-title">Bar &amp; Back Bar</span>
-    <span class="legend-sub">20&prime; &times; 10&prime;  &middot;  7 stools</span>
+  <a href="front-bar.html">
+    <span class="legend-title">Front Bar</span>
+    <span class="legend-sub">20&prime; &times; 4&prime;  &middot;  7 stools  &middot;  guest-facing</span>
+  </a>
+  <a href="back-bar.html">
+    <span class="legend-title">Back Bar</span>
+    <span class="legend-sub">20&prime; &times; 3&prime;  &middot;  working wall</span>
   </a>
   <a href="wash.html">
     <span class="legend-title">Wash &amp; Clean Area</span>
