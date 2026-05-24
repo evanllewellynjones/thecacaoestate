@@ -6,6 +6,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="styles.css">
 <style>
+  /* ---- Local color tokens ----
+     These mirror the :root variables in styles.css. They are duplicated
+     here so the floor plan SVG always renders in-color even if styles.css
+     fails to load (e.g. wrong path). styles.css still controls the rest
+     of the page (nav, hero, footer, legend). */
+  :root {
+    --green-deep:   #1f3a2e;
+    --green-darker: #142319;
+    --green-mid:    #2d5642;
+    --purple:       #5b3a7a;
+    --purple-soft:  #7d5aa3;
+    --maroon:       #6b1f2a;
+    --maroon-soft:  #8a2a36;
+    --gray-100:     #f3f1ed;
+    --gray-300:     #c9c4ba;
+    --gray-500:     #807a70;
+    --gray-700:     #3a3833;
+    --black:        #0d0c0a;
+    --white:        #faf8f4;
+    --shadow:       0 4px 24px rgba(0,0,0,0.18);
+  }
   /* ---- Layout: floor plan + capacity panel ---- */
   .map-and-capacity {
     max-width: 1300px;
@@ -42,6 +63,11 @@
 
   /* Room base style */
   .room { cursor: pointer; }
+  /* Keep category colors after click: SVG <a> otherwise inherits the
+     browser's visited/active link color and renders rooms black. */
+  .room:link, .room:visited, .room:hover, .room:active, .room:focus {
+    text-decoration: none;
+  }
   .room rect {
     stroke: #1a1a1a;
     stroke-width: 1.2;
@@ -94,6 +120,34 @@
   .room--electric .room-label { fill: var(--purple-soft); font-size: 9px; }
   .room--window rect        { fill: var(--gray-100); stroke: var(--gray-500); } /* light gray — window/service pass */
   .room--window .room-label { fill: var(--gray-700); font-size: 11px; font-style: italic; }
+
+  /* ---- Visited / active state lock ----
+     SVG <a> elements adopt the browser's visited & active link color.
+     Without this, clicking a room turns its rect + labels black.
+     Re-assert every category's fill for :visited / :active / :focus. */
+  .room:visited rect, .room:active rect, .room:focus rect { stroke: #1a1a1a; }
+  .room--service:visited rect,  .room--service:active rect  { fill: #ffffff; }
+  .room--bar:visited rect,      .room--bar:active rect      { fill: var(--maroon); }
+  .room--display:visited rect,  .room--display:active rect  { fill: var(--purple); }
+  .room--seating:visited rect,  .room--seating:active rect  { fill: #f5f2ec; }
+  .room--utility:visited rect,  .room--utility:active rect  { fill: #ffffff; }
+  .room--column:visited rect,   .room--column:active rect   { fill: #0d0c0a; }
+  .room--door:visited rect,     .room--door:active rect     { fill: var(--maroon); }
+  .room--electric:visited rect, .room--electric:active rect { fill: #0d0c0a; }
+  .room--window:visited rect,   .room--window:active rect   { fill: var(--gray-100); }
+  /* Labels: keep their category text color when visited/active */
+  .room--service:visited .room-label, .room--service:active .room-label { fill: var(--green-deep); }
+  .room--bar:visited .room-label,     .room--bar:active .room-label,
+  .room--display:visited .room-label, .room--display:active .room-label,
+  .room--column:visited .room-label,  .room--column:active .room-label,
+  .room--door:visited .room-label,    .room--door:active .room-label { fill: var(--white); }
+  .room--seating:visited .room-label, .room--seating:active .room-label { fill: var(--green-deep); }
+  .room--window:visited .room-label,  .room--window:active .room-label  { fill: var(--gray-700); }
+  .room--bar:visited .room-sub,     .room--bar:active .room-sub,
+  .room--display:visited .room-sub, .room--display:active .room-sub { fill: var(--gray-100); }
+  /* Hover still wins over everything above */
+  .room:hover rect { fill: var(--purple) !important; stroke: var(--purple) !important; }
+  .room:hover .room-label, .room:hover .room-sub { fill: var(--white) !important; }
 
   /* Non-clickable items still hover but don't darken */
   .room.no-click           { cursor: default; }
@@ -378,6 +432,37 @@
     color: var(--gray-500);
     margin-top: 2px;
   }
+
+  /* ---- Compact top bar ----
+     Slim the brand/nav bar down: less vertical padding and a smaller
+     brand size so it reads as one line at roughly half its old depth. */
+  .topbar {
+    padding: 7px 32px;
+    gap: 10px 18px;
+  }
+  .brand {
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  nav a { padding-top: 4px; padding-bottom: 4px; }
+
+  /* ---- Compact hero ----
+     Halve the dark-green band's depth: less padding, smaller heading,
+     and the intro trimmed to two lines (heading + tagline). */
+  .hero {
+    padding: 26px 32px 22px;
+  }
+  .hero h1 {
+    font-size: 38px;
+    margin-bottom: 6px;
+  }
+  .hero .tagline {
+    margin-bottom: 0;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+  }
 </style>
 </head>
 <body>
@@ -402,7 +487,6 @@
 <section class="hero hero--photo">
   <h1>The Cacao Estate <span class="em">at NOVUS</span></h1>
   <div class="tagline">Wine &middot; Chocolate &middot; Pairings &middot; Durham, NC</div>
-  <p class="lede">A 1,683 sq ft wine and chocolate bar built around Tier&nbsp;1 chocolate production, a curated wine program, and Sunday brunch. Click any room in the layout below to explore its design.</p>
 </section>
 
 <!-- =============== A LOOK INSIDE (PHOTO GALLERY) =============== -->
@@ -453,7 +537,7 @@
 <!-- =============== LAYOUT =============== -->
 <section class="layout-wrap">
   <h2 class="layout-title">NOVUS Floor Plan</h2>
-  <p class="layout-sub">May 11, 2026 &middot; click rooms to explore</p>
+  <p class="layout-sub">May 23, 2026 &middot; click rooms to explore</p>
 
   <div class="layout-instructions">
     <strong>How to use this site:</strong> Click any colored room in the floor plan below to open its detailed equipment specification. The navigation bar at the top will take you to operational areas (menu, wine, marketing, etc.) as those sub-pages are developed.
@@ -463,7 +547,7 @@
 
     <!--
       ===========================================================================
-      INLINE SVG FLOOR PLAN
+      INLINE SVG FLOOR PLAN  —  revised 23 May 2026 to match NOVUS_design_May23.xlsx
       ---------------------------------------------------------------------------
       Coordinate system: 14 SVG units per foot.
 
@@ -471,308 +555,343 @@
       Building NW corner = (40, 40), so labels/sidewalk fit above & at the side.
 
       Building footprint (L-shape):
-        WEST section (left/main): 24' wide × 42' deep
-            x = 40 to 40+(24*14)=376
-            y = 40 to 40+(42*14)=628
-        EAST section (right wing): 27' wide × 25' deep, only the top portion
-            x = 376 to 376+(27*14)=754
-            y = 40 to 40+(25*14)=390
-        (Below east section, y > 390, is open / no building — just outdoor or seating)
+        WEST section (left/main): 27' wide x 48' deep
+            x = 40 to 40+(27*14)=418
+            y = 40 to 40+(48*14)=712
+        EAST section (right wing): 27' wide x 32' deep, top-aligned with west
+            x = 418 to 418+(27*14)=796
+            y = 40 to 40+(32*14)=488
+        (Below east section, y > 488, is open / no building.)
 
-      Total viewBox: 780 × 690.
+      Total footprint: 27x48 + 27x32 - 96 carve-out = 2,064 sq ft.
+      Total viewBox: 836 x 782.
+
+      Room placement follows the shapes drawn in the Excel "Novus 2064" sheet:
+        - Back Bar + Front Bar + 7 Stools  -> NW corner of WEST
+        - Hightop areas, Reg-height seating, Lounge, Teak tables -> seating zones
+        - Chocolate Display -> upper-mid WEST (FOH-facing)
+        - Chocolate Prep, Food Prep, Wash/Clean -> stacked down the WEST core
+        - Two bathrooms -> SW corner of WEST, stacked
+        - Office + Column -> top of EAST section
+        - Electric box + hallways -> WEST circulation spine
       ===========================================================================
     -->
     <div class="floorplan-card">
-      <svg class="floorplan-svg" viewBox="0 0 780 690" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NOVUS floor plan with clickable rooms">
+      <svg class="floorplan-svg" viewBox="0 -118 836 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NOVUS floor plan with clickable rooms">
 
-        <!-- Sidewalk strip across the top -->
-        <rect x="40" y="12" width="714" height="20" fill="#e0e6ee" stroke="#999" stroke-width="0.8"/>
-        <text class="sidewalk-label" x="397" y="26">S I D E W A L K</text>
+        <!-- ============ OUTDOOR PATIO / SIDEWALK SEATING ============ -->
+        <!-- The Excel shows 5 tables out on the sidewalk in front of the WEST section:
+             three 4-tops (36 sq ft / 4 seats each) + two 2-tops (24 sq ft / 2 seats each)
+             = 16 outdoor seats, ~210 sq ft. Shown here as an outdoor zone above the building. -->
+
+        <!-- Curb edge -->
+        <rect x="40" y="-118" width="756" height="6" fill="#cfd6df" stroke="#999" stroke-width="0.6"/>
+
+        <!-- Patio band (the sidewalk seating area, in front of the west section) -->
+        <rect x="40" y="-112" width="378" height="84" fill="#eef1f5" stroke="#b9bfc7" stroke-width="1" stroke-dasharray="4,3"/>
+        <text class="sidewalk-label" x="229" y="-95">O U T D O O R&nbsp;&nbsp;P A T I O</text>
+
+        <!-- Remaining sidewalk (in front of the east section) -->
+        <rect x="418" y="-112" width="378" height="84" fill="#e0e6ee" stroke="#999" stroke-width="0.8"/>
+        <text class="sidewalk-label" x="607" y="-66">S I D E W A L K</text>
+
+        <!-- Outdoor tables (clickable, link to seating page) -->
+        <a xlink:href="teak-table.html" class="room room--seating">
+          <rect x="76" y="-94" width="62" height="48"/>
+          <text class="room-label" x="107" y="-72" font-size="10">4-top</text>
+          <text class="room-sub"   x="107" y="-60" font-size="8">36 sq ft</text>
+          <title>Outdoor 4-top &mdash; 36 sq ft, 4 seats</title>
+        </a>
+        <a xlink:href="teak-table.html" class="room room--seating">
+          <rect x="156" y="-94" width="48" height="48"/>
+          <text class="room-label" x="180" y="-72" font-size="10">2-top</text>
+          <text class="room-sub"   x="180" y="-60" font-size="8">24 sq ft</text>
+          <title>Outdoor 2-top &mdash; 24 sq ft, 2 seats</title>
+        </a>
+        <a xlink:href="teak-table.html" class="room room--seating">
+          <rect x="222" y="-94" width="62" height="48"/>
+          <text class="room-label" x="253" y="-72" font-size="10">4-top</text>
+          <text class="room-sub"   x="253" y="-60" font-size="8">36 sq ft</text>
+          <title>Outdoor 4-top &mdash; 36 sq ft, 4 seats</title>
+        </a>
+        <a xlink:href="teak-table.html" class="room room--seating">
+          <rect x="302" y="-94" width="62" height="48"/>
+          <text class="room-label" x="333" y="-72" font-size="10">4-top</text>
+          <text class="room-sub"   x="333" y="-60" font-size="8">36 sq ft</text>
+          <title>Outdoor 4-top &mdash; 36 sq ft, 4 seats</title>
+        </a>
+        <a xlink:href="teak-table.html" class="room room--seating">
+          <rect x="370" y="-94" width="40" height="48"/>
+          <text class="room-label" x="390" y="-72" font-size="9">2-top</text>
+          <text class="room-sub"   x="390" y="-60" font-size="8">24 sq ft</text>
+          <title>Outdoor 2-top &mdash; 24 sq ft, 2 seats</title>
+        </a>
+
+        <text class="static-text--note" x="229" y="-36">5 tables &middot; 210 sq ft &middot; 16 outdoor seats</text>
 
         <!-- ============ BUILDING SHELLS ============ -->
-        <!-- West section -->
-        <rect class="shell" x="40" y="40" width="336" height="588"/>
-        <!-- East section -->
-        <rect class="shell" x="376" y="40" width="378" height="350"/>
+        <!-- West section: 27' x 48' -->
+        <rect class="shell" x="40" y="40" width="378" height="672"/>
+        <!-- East section: 27' x 32' -->
+        <rect class="shell" x="418" y="40" width="378" height="448"/>
 
-        <!-- ============ TOP AXIS LABELS (foot markers, 52 on far left to 2 on far right) ============ -->
-        <!-- Building total width: 24 + 27 = 51 ft, plus close-off door area. Axis labels every 2 ft. -->
-        <!-- West section (24 ft wide, x=40 to x=376): labels from 52 (=west outer wall) to 28 (east edge of west) -->
+        <!-- ============ TOP AXIS LABELS (foot markers) ============ -->
+        <!-- Building total width: 27 + 27 = 54 ft. Axis labels every 2 ft, 54 at far left to 0 at far right. -->
         <g class="axis-label">
-          <text x="40"  y="9">52</text>
-          <text x="68"  y="9">50</text>
-          <text x="96"  y="9">48</text>
-          <text x="124" y="9">46</text>
-          <text x="152" y="9">44</text>
-          <text x="180" y="9">42</text>
-          <text x="208" y="9">40</text>
-          <text x="236" y="9">38</text>
-          <text x="264" y="9">36</text>
-          <text x="292" y="9">34</text>
-          <text x="320" y="9">32</text>
-          <text x="348" y="9">30</text>
-          <text x="376" y="9">28</text>
-          <!-- East section (27 ft wide, x=376 to x=754): labels from 28 (= east edge of west = west edge of east) to 2 -->
-          <text x="404" y="9">26</text>
-          <text x="432" y="9">24</text>
-          <text x="460" y="9">22</text>
-          <text x="488" y="9">20</text>
-          <text x="516" y="9">18</text>
-          <text x="544" y="9">16</text>
-          <text x="572" y="9">14</text>
-          <text x="600" y="9">12</text>
-          <text x="628" y="9">10</text>
-          <text x="656" y="9">8</text>
-          <text x="684" y="9">6</text>
-          <text x="712" y="9">4</text>
-          <text x="740" y="9">2</text>
+          <text x="40"  y="9">54</text>
+          <text x="68"  y="9">52</text>
+          <text x="96"  y="9">50</text>
+          <text x="124" y="9">48</text>
+          <text x="152" y="9">46</text>
+          <text x="180" y="9">44</text>
+          <text x="208" y="9">42</text>
+          <text x="236" y="9">40</text>
+          <text x="264" y="9">38</text>
+          <text x="292" y="9">36</text>
+          <text x="320" y="9">34</text>
+          <text x="348" y="9">32</text>
+          <text x="376" y="9">30</text>
+          <text x="404" y="9">28</text>
+          <text x="418" y="9">27</text>
+          <text x="446" y="9">25</text>
+          <text x="474" y="9">23</text>
+          <text x="502" y="9">21</text>
+          <text x="530" y="9">19</text>
+          <text x="558" y="9">17</text>
+          <text x="586" y="9">15</text>
+          <text x="614" y="9">13</text>
+          <text x="642" y="9">11</text>
+          <text x="670" y="9">9</text>
+          <text x="698" y="9">7</text>
+          <text x="726" y="9">5</text>
+          <text x="754" y="9">3</text>
+          <text x="782" y="9">1</text>
         </g>
 
-        <!-- ============ LEFT AXIS LABELS (west outer wall, y=42 at top to y=2 at bottom) ============ -->
+        <!-- ============ LEFT AXIS LABELS (west outer wall, 48' deep) ============ -->
         <g class="axis-label">
-          <text x="28" y="48">42</text><text x="28" y="76">40</text>
-          <text x="28" y="104">38</text><text x="28" y="132">36</text>
-          <text x="28" y="160">34</text><text x="28" y="188">32</text>
-          <text x="28" y="216">30</text><text x="28" y="244">28</text>
-          <text x="28" y="272">26</text><text x="28" y="300">24</text>
-          <text x="28" y="328">22</text><text x="28" y="356">20</text>
-          <text x="28" y="384">18</text><text x="28" y="412">16</text>
-          <text x="28" y="440">14</text><text x="28" y="468">12</text>
-          <text x="28" y="496">10</text><text x="28" y="524">8</text>
-          <text x="28" y="552">6</text><text x="28" y="580">4</text>
-          <text x="28" y="608">2</text>
+          <text x="28" y="48">48</text><text x="28" y="76">46</text>
+          <text x="28" y="104">44</text><text x="28" y="132">42</text>
+          <text x="28" y="160">40</text><text x="28" y="188">38</text>
+          <text x="28" y="216">36</text><text x="28" y="244">34</text>
+          <text x="28" y="272">32</text><text x="28" y="300">30</text>
+          <text x="28" y="328">28</text><text x="28" y="356">26</text>
+          <text x="28" y="384">24</text><text x="28" y="412">22</text>
+          <text x="28" y="440">20</text><text x="28" y="468">18</text>
+          <text x="28" y="496">16</text><text x="28" y="524">14</text>
+          <text x="28" y="552">12</text><text x="28" y="580">10</text>
+          <text x="28" y="608">8</text><text x="28" y="636">6</text>
+          <text x="28" y="664">4</text><text x="28" y="692">2</text>
         </g>
 
-        <!-- ============ INNER AXIS (between west right wall and bottom of east, in the open area) ============ -->
+        <!-- ============ INNER AXIS (east section ends at y=488; open area below) ============ -->
         <g class="axis-label">
-          <!-- East section ends at y=390. From y=410 (= 16ft from top of building) down to y=608 (= 2ft from bottom) -->
-          <text x="384" y="412">16</text><text x="384" y="440">14</text>
-          <text x="384" y="468">12</text><text x="384" y="496">10</text>
-          <text x="384" y="524">8</text><text x="384" y="552">6</text>
-          <text x="384" y="580">4</text><text x="384" y="608">2</text>
+          <text x="426" y="510">16</text><text x="426" y="538">14</text>
+          <text x="426" y="566">12</text><text x="426" y="594">10</text>
+          <text x="426" y="622">8</text><text x="426" y="650">6</text>
+          <text x="426" y="678">4</text><text x="426" y="706">2</text>
         </g>
 
-        <!-- ============ RIGHT AXIS (east outer wall) ============ -->
+        <!-- ============ RIGHT AXIS (east outer wall, 32' deep) ============ -->
         <g class="axis-label">
-          <text x="762" y="48">42</text><text x="762" y="76">40</text>
-          <text x="762" y="104">38</text><text x="762" y="132">36</text>
-          <text x="762" y="160">34</text><text x="762" y="188">32</text>
-          <text x="762" y="216">30</text><text x="762" y="244">28</text>
-          <text x="762" y="272">26</text><text x="762" y="300">24</text>
-          <text x="762" y="328">22</text><text x="762" y="356">20</text>
-          <text x="762" y="384">18</text>
+          <text x="808" y="48">32</text><text x="808" y="76">30</text>
+          <text x="808" y="104">28</text><text x="808" y="132">26</text>
+          <text x="808" y="160">24</text><text x="808" y="188">22</text>
+          <text x="808" y="216">20</text><text x="808" y="244">18</text>
+          <text x="808" y="272">16</text><text x="808" y="300">14</text>
+          <text x="808" y="328">12</text><text x="808" y="356">10</text>
+          <text x="808" y="384">8</text><text x="808" y="412">6</text>
+          <text x="808" y="440">4</text><text x="808" y="468">2</text>
         </g>
 
         <!-- ============ DIMENSION NOTES ============ -->
-        <text class="static-text--note" x="208" y="60">24&prime; across &middot; 42&prime; deep &middot; 1,008 sq ft</text>
-        <text class="static-text--note" x="565" y="60">27&prime; across &middot; 25&prime; deep &middot; 675 sq ft</text>
-
-        <!-- ============ CLOSE-OFF DOOR (top, near boundary between sections) ============ -->
-        <a xlink:href="#" class="room room--door no-click" tabindex="-1">
-          <rect x="346" y="40" width="30" height="34"/>
-          <text class="room-label" x="361" y="54">Close</text>
-          <text class="room-label" x="361" y="65">Off Door</text>
-          <title>Close-Off Door &mdash; separates west FOH from east production zone</title>
-        </a>
+        <text class="static-text--note" x="229" y="60">27&prime; across &middot; 48&prime; deep &middot; 1,296 sq ft</text>
+        <text class="static-text--note" x="607" y="60">27&prime; across &middot; 32&prime; deep &middot; 864 sq ft</text>
 
         <!-- ====================================================================
-             WEST SECTION ROOMS (x = 40..376, y = 40..628)
+             WEST SECTION  (x = 40..418, y = 40..712)
              ==================================================================== -->
 
-        <!-- Bar & Back Bar: 18' × 10', positioned at top
-             Bar runs east-west, 18' wide × 10' deep, set in 3.5' from each side
-             SVG: 18' = 252 units wide, 10' = 140 units deep
-             Position: starts 3.5' (= 49 units) east of west wall ? Actually looking at image
-             the bar is at the NW corner of west section, occupying mostly upper area.
-             Image shows: bar fills from ~axis 50 (left side, 2ft in from west wall) to axis 32 (close-off door)
-             That's 18ft wide in the EW direction. Vertically (NS) it appears to go from row 42 to row 24,
-             which is 18ft deep -- but the label says 18'×10'. There may be a 8' walkway in the bar zone.
-             
-             Let me reconsider: in the image, the BAR & BACK BAR (pink rectangle, 18'×10' label)
-             takes up the LEFT half of the upper-west region, with "7 Stools" strip to its right.
-             So bar is on the west wall, runs 18' deep vertically (top to bottom of "bar area"),
-             and 10' wide horizontally (from west wall toward center).
-             
-             That means: bar x=54..194 (10' wide = 140 units), y=82..334 (18' deep = 252 units)
-             7 stools strip: x=194..222 (2' wide), y=84..330
-        -->
-        <a xlink:href="bar.html" class="room room--bar">
-          <rect x="54" y="82" width="140" height="252"/>
-          <text class="room-label" x="124" y="190">Bar &amp; Back Bar</text>
-          <text class="room-sub"   x="124" y="208">18&prime; &times; 10&prime;</text>
-          <text class="room-sub"   x="124" y="240" font-style="italic" font-size="9">3.5&prime; on each side for entrance</text>
-          <title>Bar &amp; Back Bar &mdash; 18&prime; &times; 10&prime;</title>
+        <!-- Back Bar: 20' x 3' — against the west wall (working wall behind bartender).
+             Front Bar: 20' x 4' — just east of the back bar (guest-facing).
+             7 Stools: strip east of the front bar. Together = the 10'-wide bar zone,
+             with 3.5' clearance each side for the entrance.
+             Front & Back bar each link to their own child page. -->
+
+        <!-- Back Bar (20' x 3') -->
+        <a xlink:href="back-bar.html" class="room room--bar">
+          <rect x="49" y="61" width="42" height="280"/>
+          <text class="room-label" x="70" y="178" font-size="11" transform="rotate(-90 70 178)">Back Bar</text>
+          <text class="room-sub"   x="70" y="232" font-size="9" transform="rotate(-90 70 232)">20&prime;&times;3&prime;</text>
+          <title>Back Bar &mdash; 20&prime; &times; 3&prime; &middot; working wall</title>
         </a>
 
-        <!-- 7 Stools strip (2' wide, just east of bar) -->
-        <a xlink:href="bar.html" class="room room--seating">
-          <rect x="200" y="100" width="22" height="216"/>
-          <text class="room-label" x="211" y="208" font-size="10" transform="rotate(-90 211 208)">7&nbsp; S t o o l s</text>
-          <title>7 Stools at Bar</title>
+        <!-- Front Bar (20' x 4') -->
+        <a xlink:href="front-bar.html" class="room room--bar">
+          <rect x="95" y="61" width="52" height="280"/>
+          <text class="room-label" x="121" y="184" font-size="12" transform="rotate(-90 121 184)">Front Bar</text>
+          <text class="room-sub"   x="121" y="234" font-size="9" transform="rotate(-90 121 234)">20&prime;&times;4&prime;</text>
+          <title>Front Bar &mdash; 20&prime; &times; 4&prime; &middot; guest-facing &middot; 3.5&prime; clearance each side</title>
         </a>
 
-        <!-- Wine Display 10' × 3' (yellow vertical strip)
-             From image: located in middle-west, slightly east of west wall, vertical orientation
-             Position: x=180..222 (3' wide), y=376..516 (10' deep)
-        -->
-        <a xlink:href="wine.html" class="room room--display">
-          <rect x="180" y="376" width="42" height="140"/>
-          <text class="room-label" x="201" y="450" font-size="10" transform="rotate(-90 201 450)">Wine Display</text>
-          <text class="room-sub"   x="201" y="464" font-size="9" transform="rotate(-90 201 464)">10&prime;&times;3&prime;</text>
-          <title>Wine Display &mdash; 10&prime; &times; 3&prime;</title>
+        <!-- 7 Stools strip (2' wide, just east of the front bar) -->
+        <a xlink:href="front-bar.html" class="room room--seating">
+          <rect x="147" y="75" width="28" height="252"/>
+          <text class="room-label" x="161" y="201" font-size="10" transform="rotate(-90 161 201)">7&nbsp; S t o o l s</text>
+          <title>7 Stools at Front Bar</title>
         </a>
 
-        <!-- Electric box (red, west wall, between bar and wash area) -->
+        <!-- Hightop Area (lower-west): 30" hightops, 2 stools each -->
+        <a xlink:href="teak-table.html" class="room room--seating">
+          <rect x="231" y="61" width="112" height="266"/>
+          <text class="room-label" x="287" y="180">Hightop Area</text>
+          <text class="room-sub"   x="287" y="197">30&Prime; hightop &middot; 2 stools</text>
+          <title>Hightop Area &mdash; 30&Prime; hightop tables, 2 stools each</title>
+        </a>
+
+        <!-- Electric box (west wall, mid-depth) -->
         <a xlink:href="#" class="room room--electric no-click" tabindex="-1">
-          <rect x="54" y="376" width="22" height="72"/>
-          <text class="room-label" x="65" y="414" transform="rotate(-90 65 414)">Electric Box</text>
+          <rect x="49" y="370" width="26" height="110"/>
+          <text class="room-label" x="62" y="427" transform="rotate(-90 62 427)">Electric Box</text>
           <title>Electric Box</title>
         </a>
 
-        <!-- Hallway upper (between electric box and wine display vertical strip) -->
+        <!-- Hallway — 4' wide circulation spine down the west wall -->
         <a xlink:href="#" class="room room--utility no-click" tabindex="-1">
-          <rect x="76" y="376" width="48" height="72"/>
-          <text class="room-sub" x="100" y="416">Hallway</text>
-          <title>Hallway</title>
+          <rect x="75" y="370" width="56" height="110"/>
+          <text class="room-sub" x="103" y="420" transform="rotate(-90 103 420)">Hallway &middot; 4&prime;</text>
+          <title>Hallway &mdash; 4&prime; wide</title>
         </a>
 
-        <!-- Hallway lower (the lower L-shape continuation, between electric and wash) -->
-        <a xlink:href="#" class="room room--utility no-click" tabindex="-1">
-          <rect x="54" y="448" width="70" height="40"/>
-          <text class="room-sub" x="89" y="473">Hallway</text>
-          <title>Hallway</title>
-        </a>
-
-        <!-- Wash & Clean Area 9' × 10', south wall, far west
-             Position: x=54..180 (9' wide=126), y=488..628 (10' deep=140)
-        -->
-        <a xlink:href="wash.html" class="room room--service">
-          <rect x="54" y="488" width="126" height="140"/>
-          <text class="room-label" x="117" y="546">Wash / Clean only</text>
-          <text class="room-label" x="117" y="562">Area</text>
-          <text class="room-sub"   x="117" y="582">9&prime; &times; 10&prime;</text>
-          <title>Wash &amp; Clean Area &mdash; 9&prime; &times; 10&prime;</title>
-          <polygon class="door-swing" points="180,488 136,488 180,518"/>
-        </a>
-
-        <!-- Bathroom #1: 7' × 10', south wall middle
-             Position: x=180..278 (7' wide=98), y=488..628 (10' deep=140)
-        -->
-        <a xlink:href="bathroom.html" class="room room--service">
-          <rect x="180" y="488" width="98" height="140"/>
-          <text class="room-label" x="229" y="552">7&times;10 Bathroom #1</text>
-          <title>Bathroom #1 (ADA-compliant)</title>
-          <polygon class="door-swing" points="278,488 234,488 278,518"/>
-        </a>
-
-        <!-- Bathroom #2: 7' × 10', south wall east -->
-        <a xlink:href="bathroom.html" class="room room--service">
-          <rect x="278" y="488" width="98" height="140"/>
-          <text class="room-label" x="327" y="556" transform="rotate(-90 327 556)">7&times;10 Bathroom #2</text>
-          <title>Bathroom #2 (ADA-compliant)</title>
-          <polygon class="door-swing" points="376,488 332,488 376,518"/>
-        </a>
-
-        <!-- ====================================================================
-             EAST SECTION ROOMS (x = 376..754, y = 40..390)
-             ==================================================================== -->
-
-        <!-- 10' Teak Table: far east, upper-right
-             Looking at image: positioned on the east wall, vertical orientation
-             10ft tall × 2.5ft deep, so position: x=696..734, y=80..220
-        -->
+        <!-- Hightop Area (mid-west): second hightop cluster, 8' x 18' footprint -->
         <a xlink:href="teak-table.html" class="room room--seating">
-          <rect x="696" y="80" width="44" height="170"/>
-          <text class="room-label" x="718" y="170" transform="rotate(-90 718 170)">10&prime; Teak Table</text>
-          <title>10&prime; Teak Communal Table &mdash; flagship seating</title>
+          <rect x="131" y="355" width="126" height="125"/>
+          <text class="room-label" x="194" y="412">Hightop Area</text>
+          <text class="room-sub"   x="194" y="429">8&prime; &times; 18&prime; &middot; 30&Prime; tops</text>
+          <title>Hightop Area &mdash; 30&Prime; hightop tables, 2 stools each</title>
         </a>
 
-        <!-- Chocolate Display Case (Counter for sale) 8' × 5'
-             Yellow box positioned at top of east section, west of teak
-             Position: x=460..572, y=190..232 (8' wide=112, 5' depth=42... actually 3' depth in image)
-             Image shows roughly: starts mid-east section, before the chocolate prep room
-        -->
+        <!-- Chocolate Display Case (Counter for sale) 8' x 5' — FOH-facing, upper-mid west -->
         <a xlink:href="chocolate-display.html" class="room room--display">
-          <rect x="460" y="190" width="112" height="42"/>
-          <text class="room-label" x="516" y="210" font-size="11">Chocolate Display</text>
-          <text class="room-sub"   x="516" y="225">8&prime; &times; 5&prime;</text>
+          <rect x="257" y="343" width="112" height="40"/>
+          <text class="room-label" x="313" y="362" font-size="11">Chocolate Display</text>
+          <text class="room-sub"   x="313" y="376">8&prime; &times; 5&prime;</text>
           <title>Chocolate Display Case &mdash; 8&prime; &times; 5&prime; (FOH refrigerated case)</title>
         </a>
 
-        <!-- Window (between display and chocolate prep) -->
+        <!-- Window — pass-through from Chocolate Prep to FOH -->
         <a xlink:href="#" class="room room--window no-click" tabindex="-1">
-          <rect x="460" y="232" width="112" height="20"/>
-          <text class="room-label" x="516" y="246">Window</text>
+          <rect x="257" y="383" width="112" height="18"/>
+          <text class="room-label" x="313" y="396">Window</text>
           <title>Pass-through Window from Chocolate Prep to FOH</title>
         </a>
 
-        <!-- Structural Column (between open seating and chocolate prep, west side of east section) -->
-        <a xlink:href="#" class="room room--column no-click" tabindex="-1">
-          <rect x="432" y="252" width="28" height="28"/>
-          <text class="room-label" x="446" y="270">Column</text>
-          <title>Structural Column</title>
-        </a>
-
-        <!-- Chocolate Prep Area 12' × 10'
-             12ft wide × 10ft deep = 168 × 140 units
-             Position: x=460..628, y=252..392
-        -->
+        <!-- Chocolate Prep Area 12' x 11' — west core -->
         <a xlink:href="chocolate-prep.html" class="room room--service">
-          <rect x="460" y="252" width="168" height="140"/>
-          <text class="room-label" x="544" y="316">Chocolate Prep Area</text>
-          <text class="room-sub"   x="544" y="332">12&prime; &times; 10&prime;</text>
-          <title>Chocolate Prep Area &mdash; 12&prime; &times; 10&prime; &middot; Tier 1 production</title>
+          <rect x="250" y="401" width="168" height="154"/>
+          <text class="room-label" x="334" y="472">Chocolate Prep Area</text>
+          <text class="room-sub"   x="334" y="488">12&prime; &times; 11&prime;</text>
+          <title>Chocolate Prep Area &mdash; 12&prime; &times; 11&prime; &middot; Tier 1 production</title>
         </a>
 
         <!-- Service window (between chocolate prep and food prep) -->
         <a xlink:href="#" class="room room--window no-click" tabindex="-1">
-          <rect x="628" y="232" width="56" height="20"/>
-          <text class="room-label" x="656" y="246">Service</text>
+          <rect x="250" y="555" width="168" height="18"/>
+          <text class="room-label" x="334" y="568">Service</text>
           <title>Service Window between Chocolate Prep and Food Prep</title>
         </a>
 
-        <!-- Food Prep Area 8' × 10'
-             8ft wide × 10ft deep = 112 × 140 units
-             Position: x=628..740, y=252..392
-        -->
+        <!-- Food Prep Area 8' x 12' — west core, below Chocolate Prep -->
         <a xlink:href="food-prep.html" class="room room--service">
-          <rect x="628" y="252" width="84" height="140"/>
-          <text class="room-label" x="670" y="316">Food Prep</text>
-          <text class="room-sub"   x="670" y="332">8&prime; &times; 10&prime;</text>
-          <title>Food Prep Area &mdash; 8&prime; &times; 10&prime; &middot; Sunday brunch + hors d&rsquo;oeuvres</title>
-          <polygon class="door-swing" points="712,252 670,252 712,282"/>
+          <rect x="250" y="573" width="168" height="55"/>
+          <text class="room-label" x="334" y="597">Food Prep Area</text>
+          <text class="room-sub"   x="334" y="613">8&prime; &times; 12&prime;</text>
+          <title>Food Prep Area &mdash; 8&prime; &times; 12&prime; &middot; Sunday brunch + hors d&rsquo;oeuvres</title>
+          <polygon class="door-swing" points="250,573 292,573 250,603"/>
         </a>
 
-        <!-- Wine display 3' × 5' on east wall, above the office
-             Position: just to the right of Food Prep, above Office
-        -->
-        <a xlink:href="wine.html" class="room room--display">
-          <rect x="712" y="190" width="42" height="70"/>
-          <text class="room-label" x="733" y="216" font-size="10">Wine</text>
-          <text class="room-label" x="733" y="230" font-size="10">Display</text>
-          <text class="room-sub"   x="733" y="246">3&prime;&times;5&prime;</text>
-          <title>Wine Display &mdash; 3&prime; &times; 5&prime;</title>
+        <!-- Wash & Clean Area 12' x 6' — SE corner of west section -->
+        <a xlink:href="wash.html" class="room room--service">
+          <rect x="250" y="628" width="168" height="84"/>
+          <text class="room-label" x="334" y="666">Wash / Clean only Area</text>
+          <text class="room-sub"   x="334" y="684">12&prime; &times; 6&prime;</text>
+          <title>Wash &amp; Clean Area &mdash; 12&prime; &times; 6&prime;</title>
+          <polygon class="door-swing" points="250,628 294,628 250,658"/>
         </a>
 
-        <!-- Office 5' × 8' — east wall, south of wine display
-             Position: x=712..754 (5' wide rounded), y=260..390 (~8' deep)
-        -->
+        <!-- Bathroom #1: 5.5' x 9' — SW corner, upper of the stacked pair -->
+        <a xlink:href="bathroom.html" class="room room--service">
+          <rect x="49" y="544" width="133" height="84"/>
+          <text class="room-label" x="115" y="590">5.5&times;9 Bathroom #1</text>
+          <title>Bathroom #1 (ADA-compliant)</title>
+          <polygon class="door-swing" points="182,544 138,544 182,574"/>
+        </a>
+
+        <!-- Bathroom #2: 5.5' x 9' — SW corner, lower of the stacked pair -->
+        <a xlink:href="bathroom.html" class="room room--service">
+          <rect x="49" y="628" width="133" height="84"/>
+          <text class="room-label" x="115" y="674">5.5&times;9 Bathroom #2</text>
+          <title>Bathroom #2 (ADA-compliant)</title>
+          <polygon class="door-swing" points="182,628 138,628 182,658"/>
+        </a>
+
+        <!-- ====================================================================
+             EAST SECTION  (x = 418..796, y = 40..488)
+             ==================================================================== -->
+
+        <!-- Regular Height seating — large central seating zone, 4-top tables (36 sq ft each) -->
+        <a xlink:href="teak-table.html" class="room room--seating">
+          <rect x="432" y="61" width="280" height="300"/>
+          <text class="room-label" x="572" y="200" font-size="13">Regular Height Seating</text>
+          <text class="room-sub"   x="572" y="218">4-top tables &middot; 36 sq ft each</text>
+          <title>Regular Height Seating &mdash; 4-top dining tables</title>
+        </a>
+
+        <!-- Structural Column (top of east section) -->
+        <a xlink:href="#" class="room room--column no-click" tabindex="-1">
+          <rect x="432" y="375" width="28" height="28"/>
+          <title>Structural Column</title>
+        </a>
+
+        <!-- Office 7' x 6' — top of east section, beside the column -->
         <a xlink:href="office.html" class="room room--seating">
-          <rect x="712" y="260" width="42" height="130"/>
-          <text class="room-label" x="733" y="320">Office</text>
-          <text class="room-sub"   x="733" y="336">5&prime; &times; 8&prime;</text>
-          <title>Office &mdash; 5&prime; &times; 8&prime; &middot; back-of-house</title>
+          <rect x="460" y="375" width="98" height="84"/>
+          <text class="room-label" x="509" y="413">Office</text>
+          <text class="room-sub"   x="509" y="429">7&prime; &times; 6&prime;</text>
+          <title>Office &mdash; 7&prime; &times; 6&prime; &middot; back-of-house</title>
         </a>
 
-        <!-- ============ DOOR-SWING TRIANGLES (decorative blue arrows) ============ -->
-        <!-- Top entries from sidewalk into the building -->
-        <polygon class="door-swing" points="54,40 96,40 54,80"/>
-        <polygon class="door-swing" points="394,40 436,40 394,80"/>
-        <!-- Side door swings near food prep -->
-        <polygon class="door-swing" points="740,232 700,232 740,260"/>
+        <!-- 7' Teak Table with benches — east section, lower-mid -->
+        <a xlink:href="teak-table.html" class="room room--seating">
+          <rect x="572" y="375" width="56" height="98"/>
+          <text class="room-label" x="600" y="420" font-size="10" transform="rotate(-90 600 420)">7&prime; Teak Table</text>
+          <title>7&prime; Teak Communal Table with benches</title>
+        </a>
+
+        <!-- 10' Teak Table with benches — east section, lower-right -->
+        <a xlink:href="teak-table.html" class="room room--seating">
+          <rect x="640" y="403" width="140" height="56"/>
+          <text class="room-label" x="710" y="427">10&prime; Teak Table</text>
+          <text class="room-sub"   x="710" y="443">with benches</text>
+          <title>10&prime; Teak Communal Table with benches &mdash; flagship seating</title>
+        </a>
+
+        <!-- Lounge Area — far-right of east section: 4 round low tables, lounge chairs -->
+        <a xlink:href="teak-table.html" class="room room--seating">
+          <rect x="640" y="61" width="140" height="320"/>
+          <text class="room-label" x="710" y="200">Lounge Area</text>
+          <text class="room-sub"   x="710" y="220">4 &middot; 24&Prime; round low tables</text>
+          <text class="room-sub"   x="710" y="234">lounge chairs &amp; ottomans</text>
+          <text class="room-sub"   x="710" y="248">2&ndash;3 people per table</text>
+          <title>Lounge Area &mdash; four 24&Prime; round low tables with lounge seating</title>
+        </a>
+
+        <!-- ============ DOOR-SWING TRIANGLES (entries from sidewalk) ============ -->
+        <polygon class="door-swing" points="49,40 91,40 49,80"/>
+        <polygon class="door-swing" points="436,40 478,40 436,80"/>
 
         <!-- ============ LEGEND ============ -->
-        <g transform="translate(180, 658)">
+        <g transform="translate(200, 750)">
           <rect x="0" y="0" width="14" height="10" fill="#ffffff" stroke="#3a3833" stroke-width="0.5"/>
           <text class="legend-key" x="20" y="9">Production / Service</text>
 
@@ -798,32 +917,36 @@
 
       <div class="capacity-section">
         <h4>Footprint</h4>
-        <div class="capacity-row"><span class="label">24&prime; &times; 42&prime;</span><span class="val">1,008 sq ft</span></div>
-        <div class="capacity-row"><span class="label">25&prime; &times; 27&prime;</span><span class="val">675 sq ft</span></div>
-        <div class="capacity-row total"><span class="label">Total indoor</span><span class="val">1,683 sq ft</span></div>
-        <div class="capacity-row"><span class="label">Outdoor</span><span class="val">240 sq ft</span></div>
+        <div class="capacity-row"><span class="label">27&prime; &times; 48&prime;</span><span class="val">1,296 sq ft</span></div>
+        <div class="capacity-row"><span class="label">27&prime; &times; 32&prime;</span><span class="val">864 sq ft</span></div>
+        <div class="capacity-row"><span class="label">Carve-out</span><span class="val">&minus;96 sq ft</span></div>
+        <div class="capacity-row total"><span class="label">Total indoor</span><span class="val">2,064 sq ft</span></div>
+        <div class="capacity-row"><span class="label">Outdoor</span><span class="val">210 sq ft</span></div>
       </div>
 
       <div class="capacity-section">
         <h4>Sq ft allocation</h4>
-        <div class="capacity-row"><span class="label">Bar + stools</span><span class="val">250</span></div>
-        <div class="capacity-row"><span class="label">Displays</span><span class="val">125</span></div>
+        <div class="capacity-row"><span class="label">Bar space</span><span class="val">230</span></div>
+        <div class="capacity-row"><span class="label">Displays / hallway</span><span class="val">226</span></div>
         <div class="capacity-row"><span class="label">Bathrooms</span><span class="val">140</span></div>
+        <div class="capacity-row"><span class="label">Choc prep</span><span class="val">130</span></div>
+        <div class="capacity-row"><span class="label">Food prep</span><span class="val">100</span></div>
         <div class="capacity-row"><span class="label">Wash / prep</span><span class="val">90</span></div>
-        <div class="capacity-row"><span class="label">Office</span><span class="val">35</span></div>
-        <div class="capacity-row total"><span class="label">Seating area</span><span class="val">1,043</span></div>
+        <div class="capacity-row"><span class="label">Office</span><span class="val">40</span></div>
+        <div class="capacity-row total"><span class="label">Seating area</span><span class="val">1,108</span></div>
       </div>
 
       <div class="capacity-section">
-        <h4>Occupancy &middot; 17 sq ft / person</h4>
-        <div class="capacity-row"><span class="label">Indoor</span><span class="val">61 people</span></div>
-        <div class="capacity-row"><span class="label">Outdoor</span><span class="val">14 people</span></div>
-      </div>
-
-      <div class="capacity-big">
-        <div class="big-num">75</div>
-        <div class="big-lbl">Total Capacity</div>
-        <div class="big-sub">indoor + outdoor</div>
+        <h4>Seats</h4>
+        <div class="capacity-row"><span class="label">Lounge Area</span><span class="val">10</span></div>
+        <div class="capacity-row"><span class="label">10&prime; Teak Table</span><span class="val">8</span></div>
+        <div class="capacity-row"><span class="label">7&prime; Teak Table</span><span class="val">6</span></div>
+        <div class="capacity-row"><span class="label">Bar Stools</span><span class="val">7</span></div>
+        <div class="capacity-row"><span class="label">Hightops</span><span class="val">10</span></div>
+        <div class="capacity-row"><span class="label">Regular height seating</span><span class="val">24</span></div>
+        <div class="capacity-row total"><span class="label">Indoor</span><span class="val">65</span></div>
+        <div class="capacity-row"><span class="label">Outdoor</span><span class="val">16</span></div>
+        <div class="capacity-row total"><span class="label">Total seats</span><span class="val">81</span></div>
       </div>
     </aside>
 
@@ -832,41 +955,41 @@
 
 <!-- =============== LEGEND =============== -->
 <section class="legend">
-  <a href="bar.html">
-    <span class="legend-title">Bar &amp; Back Bar</span>
-    <span class="legend-sub">18&prime; &times; 10&prime;  &middot;  7 stools</span>
+  <a href="front-bar.html">
+    <span class="legend-title">Front Bar</span>
+    <span class="legend-sub">20&prime; &times; 4&prime;  &middot;  7 stools  &middot;  guest-facing</span>
+  </a>
+  <a href="back-bar.html">
+    <span class="legend-title">Back Bar</span>
+    <span class="legend-sub">20&prime; &times; 3&prime;  &middot;  working wall</span>
   </a>
   <a href="wash.html">
     <span class="legend-title">Wash &amp; Clean Area</span>
-    <span class="legend-sub">9&prime; &times; 10&prime;  &middot;  3-comp + dishwasher</span>
+    <span class="legend-sub">12&prime; &times; 6&prime;  &middot;  3-comp + dishwasher</span>
   </a>
   <a href="chocolate-prep.html">
     <span class="legend-title">Chocolate Prep Area</span>
-    <span class="legend-sub">12&prime; &times; 10&prime;  &middot;  Tier 1 production</span>
+    <span class="legend-sub">12&prime; &times; 11&prime;  &middot;  Tier 1 production</span>
   </a>
   <a href="food-prep.html">
     <span class="legend-title">Food Prep Area</span>
-    <span class="legend-sub">8&prime; &times; 10&prime;  &middot;  Brunch + hors d&rsquo;oeuvres</span>
+    <span class="legend-sub">8&prime; &times; 12&prime;  &middot;  Brunch + hors d&rsquo;oeuvres</span>
   </a>
   <a href="chocolate-display.html">
     <span class="legend-title">Chocolate Display Case</span>
     <span class="legend-sub">8&prime; &times; 5&prime;  &middot;  FOH refrigerated case</span>
   </a>
-  <a href="wine.html">
-    <span class="legend-title">Wine Displays</span>
-    <span class="legend-sub">10&prime;&times;3&prime;  &middot;  3&prime;&times;5&prime;</span>
-  </a>
   <a href="office.html">
     <span class="legend-title">Office</span>
-    <span class="legend-sub">5&prime; &times; 8&prime;  &middot;  back-of-house</span>
+    <span class="legend-sub">7&prime; &times; 6&prime;  &middot;  back-of-house</span>
   </a>
   <a href="bathroom.html">
     <span class="legend-title">Bathrooms</span>
-    <span class="legend-sub">Two 7&prime; &times; 10&prime; ADA-compliant</span>
+    <span class="legend-sub">Two 5.5&prime; &times; 9&prime; ADA-compliant</span>
   </a>
   <a href="teak-table.html">
-    <span class="legend-title">10&prime; Teak Communal Table</span>
-    <span class="legend-sub">East wall  &middot;  flagship seating</span>
+    <span class="legend-title">Teak Communal Tables</span>
+    <span class="legend-sub">10&prime; &amp; 7&prime;  &middot;  flagship seating</span>
   </a>
 </section>
 
