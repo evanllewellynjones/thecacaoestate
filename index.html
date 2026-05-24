@@ -287,6 +287,22 @@
     white-space: nowrap;
   }
   nav a { padding-top: 4px; padding-bottom: 4px; }
+
+  /* ---- Compact hero ----
+     Halve the dark-green band's depth: less padding, smaller heading,
+     and the intro trimmed to two lines (heading + tagline). */
+  .hero {
+    padding: 26px 32px 22px;
+  }
+  .hero h1 {
+    font-size: 38px;
+    margin-bottom: 6px;
+  }
+  .hero .tagline {
+    margin-bottom: 0;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+  }
 </style>
 </head>
 <body>
@@ -311,7 +327,6 @@
 <section class="hero">
   <h1>The Cacao Estate <span class="em">at NOVUS</span></h1>
   <div class="tagline">Wine &middot; Chocolate &middot; Pairings &middot; Durham, NC</div>
-  <p class="lede">A 2,064 sq ft wine and chocolate bar built around Tier&nbsp;1 chocolate production, a curated wine program, and Sunday brunch. Click any room in the layout below to explore its design.</p>
 </section>
 
 <!-- =============== LAYOUT =============== -->
@@ -717,15 +732,16 @@
       </div>
 
       <div class="capacity-section">
-        <h4>Occupancy</h4>
-        <div class="capacity-row"><span class="label">Indoor</span><span class="val">71 seats</span></div>
-        <div class="capacity-row"><span class="label">Outdoor</span><span class="val">16 seats</span></div>
-      </div>
-
-      <div class="capacity-big">
-        <div class="big-num">87</div>
-        <div class="big-lbl">Total Seats</div>
-        <div class="big-sub">indoor + outdoor</div>
+        <h4>Seats</h4>
+        <div class="capacity-row"><span class="label">Lounge Area</span><span class="val">10</span></div>
+        <div class="capacity-row"><span class="label">10&prime; Teak Table</span><span class="val">8</span></div>
+        <div class="capacity-row"><span class="label">7&prime; Teak Table</span><span class="val">6</span></div>
+        <div class="capacity-row"><span class="label">Bar Stools</span><span class="val">7</span></div>
+        <div class="capacity-row"><span class="label">Hightops</span><span class="val">10</span></div>
+        <div class="capacity-row"><span class="label">Regular height seating</span><span class="val">24</span></div>
+        <div class="capacity-row total"><span class="label">Indoor</span><span class="val">65</span></div>
+        <div class="capacity-row"><span class="label">Outdoor</span><span class="val">16</span></div>
+        <div class="capacity-row total"><span class="label">Total seats</span><span class="val">81</span></div>
       </div>
     </aside>
 
